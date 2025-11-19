@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clases</title>
+  <link rel="stylesheet" href="inicio.css">
+  <link rel="stylesheet" href="clases.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+  <style>
+    /* === AJUSTES DEL ÁREA DE CONTENIDO === */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      background-color: #edf1fd;
+      overflow-y: auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2, h3 {
+      margin: 0 0 12px 0;
+    }
+
+    /* === SECCIÓN PRINCIPAL === */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .left-column, .right-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* === MODO SELECTOR === */
+    .mode-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .mode-toggle {
+      padding: 12px;
+      cursor: pointer;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.2s;
+      background: #fff;
+    }
+
+    .mode-toggle:hover {
+      border-color: #9ca3af;
+    }
+
+    .mode-toggle.active {
+      border-color: #111729;
+      background: #dce3ff;
+      color: #111729;
+    }
+
+    /* === VIDEO === */
+    .video-container {
+      min-height: 400px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    .video-placeholder-text {
+      color: #fff;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* === CAMPOS DE ENTRADA === */
+    .input-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .field-input:focus {
+      outline: none;
+      border-color: #111729;
+    }
+
+    /* === BOTONES === */
+    .button-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background: #111729;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .primary-btn:hover {
+      background: #1f2937;
+    }
+
+    .secondary-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 2px solid #e5e7eb;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .secondary-btn:hover {
+      border-color: #9ca3af;
+      background: #f9fafb;
+    }
+
+    .secondary-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* === HERRAMIENTAS IA === */
+    .ia-toolbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #f3f4f6;
+    }
+
+    .ia-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 2px solid #e5e7eb;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .ia-btn:hover {
+      border-color: #111729;
+      background: #f9fafb;
+    }
+
+    .ia-btn.primary {
+      background: #111729;
+      color: #fff;
+      border-color: #111729;
+    }
+
+    .ia-btn.primary:hover {
+      background: #1f2937;
+    }
+
+    /* === LISTA DE RESULTADOS === */
+    .results-container {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .result-item {
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e5e7eb;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .result-item:hover {
+      border-color: #9ca3af;
+      background: #f9fafb;
+    }
+
+    .result-item.selected {
+      border-color: #111729;
+      background: #eef2ff;
+    }
+
+    .result-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: #111729;
+    }
+
+    .result-meta {
+      font-size: 0.85rem;
+      color: #6b7280;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .result-year {
+      background: #e5e7eb;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+
+    /* === CONTENIDO DE TEXTO === */
+    #text-content {
+      margin-top: 16px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: #374151;
+      max-height: 500px;
+      overflow-y: auto;
+      padding: 16px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    #text-content:empty {
+      display: none;
+    }
+
+    .text-preview {
+      font-size: 0.95rem;
+    }
+
+    .external-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #2563eb;
+      text-decoration: none;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #eff6ff;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .external-link:hover {
+      background: #dbeafe;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    /* === LOADING === */
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #6b7280;
+    }
+
+    .loading::after {
+      content: '...';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+
+    .error {
+      color: #dc2626;
+      padding: 12px;
+      background: #fee2e2;
+      border-radius: 8px;
+      margin: 8px 0;
+    }
+
+    /* === SCROLLBAR === */
+    .results-container::-webkit-scrollbar,
+    #text-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .results-container::-webkit-scrollbar-track,
+    #text-content::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+
+    .results-container::-webkit-scrollbar-thumb,
+    #text-content::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    .results-container::-webkit-scrollbar-thumb:hover,
+    #text-content::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- === MENÚ LATERAL === -->
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="imag.png" alt="logo">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="inicio.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">home</span>
+            <span class="nav-label">Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="clases.html" class="nav-link active">
+            <span class="nav-icon material-symbols-rounded">assignment</span>
+            <span class="nav-label">Clases</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="oportunidades.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">book</span>
+            <span class="nav-label">Oportunidades</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="becas.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">school</span>
+            <span class="nav-label">Becas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="ayuda.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">Distance</span>
+            <span class="nav-label">Oportunidades Locales</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Perfil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Salir</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- === CONTENIDO PRINCIPAL === -->
+  <main class="main-content">
+    <div class="container">
+      <!-- === COLUMNA IZQUIERDA === -->
+      <div class="left-column">
+        <!-- Selector de Modo -->
+        <div class="mode-selector">
+          <div class="card mode-toggle active" id="mode-text">
+            📝 Texto
+          </div>
+          <div class="card mode-toggle" id="mode-video">
+            🎥 Video
+          </div>
+        </div>
+
+        <!-- Video Container -->
+        <div class="card">
+          <div class="video-container" id="video-container">
+            <div class="video-placeholder-text">
+              Selecciona un video de los resultados para verlo aquí
+            </div>
+          </div>
+        </div>
+
+        <!-- Campos de búsqueda -->
+        <div class="card">
+          <div class="input-group">
+            <div class="field-wrapper">
+              <label class="field-label">Materia</label>
+              <input
+                type="text"
+                id="subject-input"
+                class="field-input"
+                placeholder="Ej: Cálculo, Física, Historia"
+              >
+            </div>
+            <div class="field-wrapper">
+              <label class="field-label">Tópico</label>
+              <input
+                type="text"
+                id="topic-input"
+                class="field-input"
+                placeholder="Ej: integrales, cinemática"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="card">
+          <div class="button-group">
+            <button id="search-btn" class="primary-btn">🔍 Buscar recursos</button>
+            <button id="download-pdf-btn" class="secondary-btn" disabled>📄 Descargar PDF</button>
+            <button id="download-mp4-btn" class="secondary-btn" style="display:none;" disabled>🎬 Descargar MP4</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- === COLUMNA DERECHA === -->
+      <div class="right-column">
+        <div class="card">
+          <!-- Herramientas IA -->
+          <div class="ia-toolbar">
+            <button id="btn-guide" class="ia-btn primary">📚 Guía de estudio</button>
+            <button id="btn-practice" class="ia-btn">✏️ Ejercicios</button>
+            <button id="btn-quiz" class="ia-btn">📝 Quiz</button>
+          </div>
+
+          <h3>Resultados de búsqueda</h3>
+          
+          <div id="results-list" class="results-container">
+            <div class="empty-state">
+              <div class="empty-state-icon">🔍</div>
+              <p>Introduce una materia o tópico y haz clic en "Buscar recursos"</p>
+            </div>
+          </div>
+
+          <div id="text-content"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // === CONFIGURACIÓN ===
+    const API_BASE = "http://127.0.0.1:8000";
+    let currentMode = "text";
+    let currentResults = [];
+    let currentIndex = null;
+
+    // === ELEMENTOS DEL DOM ===
+    const modeTextCard = document.getElementById("mode-text");
+    const modeVideoCard = document.getElementById("mode-video");
+    const searchBtn = document.getElementById("search-btn");
+    const subjectInput = document.getElementById("subject-input");
+    const topicInput = document.getElementById("topic-input");
+    const resultsList = document.getElementById("results-list");
+    const textContent = document.getElementById("text-content");
+    const videoContainer = document.getElementById("video-container");
+    const downloadPdfBtn = document.getElementById("download-pdf-btn");
+    const downloadMp4Btn = document.getElementById("download-mp4-btn");
+    const btnGuide = document.getElementById("btn-guide");
+    const btnPractice = document.getElementById("btn-practice");
+    const btnQuiz = document.getElementById("btn-quiz");
+
+    // === FUNCIONES AUXILIARES ===
+    function getYouTubeEmbedURL(url) {
+      if (!url) return null;
+      
+      try {
+        // Si ya es una URL de embed, devolverla
+        if (url.includes('/embed/')) {
+          return url;
+        }
+
+        const parsed = new URL(url);
+        
+        // youtu.be/VIDEO_ID
+        if (parsed.hostname === "youtu.be") {
+          const videoId = parsed.pathname.slice(1);
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        // youtube.com/shorts/VIDEO_ID
+        if (parsed.pathname.startsWith("/shorts/")) {
+          const videoId = parsed.pathname.split("/shorts/")[1].split("?")[0];
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        // youtube.com/watch?v=VIDEO_ID
+        if (parsed.searchParams.get("v")) {
+          const videoId = parsed.searchParams.get("v");
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        return null;
+      } catch (e) {
+        console.error("Error parsing YouTube URL:", e);
+        return null;
+      }
+    }
+
+    function showLoading(container, message = "Cargando") {
+      container.innerHTML = `<div class="loading">${message}</div>`;
+    }
+
+    function showError(container, message) {
+      container.innerHTML = `<div class="error">❌ ${message}</div>`;
+    }
+
+    function showEmptyState(container, message) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <p>${message}</p>
+        </div>
+      `;
+    }
+
+    // === CAMBIO DE MODO ===
+    function setMode(mode) {
+      currentMode = mode;
+      
+      if (mode === "text") {
+        modeTextCard.classList.add("active");
+        modeVideoCard.classList.remove("active");
+        downloadPdfBtn.style.display = "inline-block";
+        downloadMp4Btn.style.display = "none";
+      } else {
+        modeVideoCard.classList.add("active");
+        modeTextCard.classList.remove("active");
+        downloadPdfBtn.style.display = "none";
+        downloadMp4Btn.style.display = "inline-block";
+      }
+      
+      // Limpiar resultados al cambiar de modo
+      currentResults = [];
+      currentIndex = null;
+      downloadPdfBtn.disabled = true;
+      downloadMp4Btn.disabled = true;
+      renderResults();
+      textContent.textContent = "";
+      videoContainer.innerHTML = '<div class="video-placeholder-text">Modo ' + (mode === 'text' ? 'texto' : 'video') + ' activo</div>';
+    }
+
+    modeTextCard.addEventListener("click", () => setMode("text"));
+    modeVideoCard.addEventListener("click", () => setMode("video"));
+
+    // === BÚSQUEDA DE RECURSOS ===
+    searchBtn.addEventListener("click", buscarRecursos);
+    
+    [subjectInput, topicInput].forEach(input => {
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") buscarRecursos();
+      });
+    });
+
+    async function buscarRecursos() {
+      const subject = subjectInput.value.trim();
+      const topic = topicInput.value.trim();
+
+      if (!subject && !topic) {
+        showError(resultsList, "Por favor introduce al menos la materia o el tópico");
+        return;
+      }
+
+      showLoading(resultsList, "🔍 Buscando recursos educativos");
+      textContent.innerHTML = "";
+      videoContainer.innerHTML = '<div class="video-placeholder-text">Buscando...</div>';
+      downloadPdfBtn.disabled = true;
+      downloadMp4Btn.disabled = true;
+
+      const endpoint = currentMode === "text"
+        ? `${API_BASE}/api/text/search`
+        : `${API_BASE}/api/videos/search`;
+
+      try {
+        console.log(`📡 Llamando a: ${endpoint}`);
+        console.log(`📦 Enviando:`, { subject, topic });
+
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ subject, topic })
+        });
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(`Error ${res.status}: ${errorText}`);
+        }
+
+        const data = await res.json();
+        console.log("✅ Respuesta del backend:", data);
+
+        const items = data.results || data.items || data.sources || data.videos || [];
+        
+        if (items.length === 0) {
+          showEmptyState(resultsList, "No se encontraron resultados. Intenta con otros términos.");
+          videoContainer.innerHTML = '<div class="video-placeholder-text">Sin resultados</div>';
+          return;
+        }
+
+        currentResults = items;
+        currentIndex = null;
+        renderResults();
+
+      } catch (err) {
+        console.error("❌ Error en búsqueda:", err);
+        showError(resultsList, `Error al buscar recursos: ${err.message}`);
+        videoContainer.innerHTML = '<div class="video-placeholder-text">Error en la búsqueda</div>';
+      }
+    }
+
+    // === RENDERIZAR RESULTADOS ===
+    function renderResults() {
+      resultsList.innerHTML = "";
+      textContent.innerHTML = "";
+      
+      if (currentMode === "video") {
+        videoContainer.innerHTML = '<div class="video-placeholder-text">Selecciona un video de la lista</div>';
+      } else {
+        videoContainer.innerHTML = '<div class="video-placeholder-text">Modo texto activo</div>';
+      }
+
+      if (!currentResults.length) {
+        showEmptyState(resultsList, "No hay resultados para mostrar");
+        return;
+      }
+
+      currentResults.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "result-item";
+        div.setAttribute('data-index', index);
+
+        const title = document.createElement("div");
+        title.className = "result-title";
+        title.textContent = item.title || item.name || `Recurso #${index + 1}`;
+
+        const meta = document.createElement("div");
+        meta.className = "result-meta";
+        
+        if (currentMode === "text") {
+          const source = item.source || item.author || "Recurso educativo";
+          const year = item.year || item.first_publish_year;
+          meta.innerHTML = `
+            <span>${source}</span>
+            ${year && year !== 'N/A' ? `<span class="result-year">${year}</span>` : ''}
+          `;
+        } else {
+          meta.textContent = item.platform || item.channel || "Video educativo";
+        }
+
+        div.appendChild(title);
+        div.appendChild(meta);
+
+        div.addEventListener("click", () => mostrarRecurso(index));
+
+        resultsList.appendChild(div);
+      });
+
+      console.log(`✅ Renderizados ${currentResults.length} resultados`);
+    }
+
+    // === MOSTRAR RECURSO SELECCIONADO ===
+    async function mostrarRecurso(index) {
+      currentIndex = index;
+      const item = currentResults[index];
+
+      console.log("👆 Recurso seleccionado:", item);
+
+      // Actualizar selección visual
+      document.querySelectorAll(".result-item").forEach((el, i) => {
+        el.classList.toggle("selected", i === index);
+      });
+
+      if (currentMode === "text") {
+        downloadPdfBtn.disabled = false;
+        
+        // Mostrar el contenido completo si está disponible
+        let contentHTML = '';
+        
+        if (item.content) {
+          // Si tiene campo content, mostrarlo (ya formateado)
+          contentHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${item.content}</pre>`;
+        } else {
+          // Fallback: mostrar info básica
+          contentHTML = `
+            <div class="text-preview">
+              <h4>${item.title || 'Sin título'}</h4>
+              <p><strong>Autor:</strong> ${item.author || 'Desconocido'}</p>
+              ${item.year && item.year !== 'N/A' ? `<p><strong>Año:</strong> ${item.year}</p>` : ''}
+              ${item.languages ? `<p><strong>Idiomas:</strong> ${item.languages.join(', ')}</p>` : ''}
+              ${item.description ? `<p><strong>Descripción:</strong> ${item.description}</p>` : ''}
+              ${item.summary ? `<p><strong>Resumen:</strong> ${item.summary}</p>` : ''}
+              
+              <p style="margin-top: 16px; padding: 12px; background: #f0f9ff; border-left: 4px solid #0284c7; border-radius: 4px;">
+                💡 <strong>Recurso disponible online</strong><br>
+                Haz clic en el botón de abajo para acceder al contenido completo.
+              </p>
+            </div>
+          `;
+        }
+        
+        // Agregar botones de acceso
+        contentHTML += `
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            ${item.read_url ? `
+              <a href="${item.read_url}" target="_blank" class="external-link">
+                📖 Leer en ${item.source === 'openlibrary' ? 'OpenLibrary' : 'sitio original'}
+                <span class="material-symbols-rounded" style="font-size: 16px;">open_in_new</span>
+              </a>
+            ` : ''}
+            
+            ${item.pdf_url ? `
+              <a href="${item.pdf_url}" target="_blank" class="external-link">
+                📄 Descargar PDF
+                <span class="material-symbols-rounded" style="font-size: 16px;">download</span>
+              </a>
+            ` : ''}
+            
+            ${item.url && item.url !== item.read_url ? `
+              <a href="${item.url}" target="_blank" class="external-link">
+                🔗 Ver en sitio original
+                <span class="material-symbols-rounded" style="font-size: 16px;">open_in_new</span>
+              </a>
+            ` : ''}
+          </div>
+        `;
+        
+        textContent.innerHTML = contentHTML;
+        videoContainer.innerHTML = '<div class="video-placeholder-text">Modo texto activo</div>';
+        
+      } else {
+        // Modo video
+        downloadMp4Btn.disabled = false;
+        
+        const url = item.url || item.video_url || item.link;
+        console.log("🎥 URL del video:", url);
+        
+        if (!url) {
+          videoContainer.innerHTML = '<div class="video-placeholder-text">❌ No hay URL de video disponible</div>';
+          textContent.innerHTML = '<div class="error">Este recurso no tiene un enlace de video válido.</div>';
+          return;
+        }
+        
+        const embed = getYouTubeEmbedURL(url);
+        console.log("🎬 URL de embed:", embed);
+        
+        if (embed) {
+          videoContainer.innerHTML = `
+            <iframe 
+              src="${embed}" 
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            ></iframe>
+          `;
+          
+          textContent.innerHTML = item.description || item.summary || '';
+        } else {
+          videoContainer.innerHTML = '<div class="video-placeholder-text">❌ URL de video no válida para YouTube</div>';
+          textContent.innerHTML = `
+            <div class="error">
+              <p>No se pudo cargar el video. URL recibida:</p>
+              <code>${url}</code>
+              <p style="margin-top: 8px;">
+                <a href="${url}" target="_blank" class="external-link">Abrir en nueva pestaña</a>
+              </p>
+            </div>
+          `;
+        }
+      }
+    }
+
+    // === DESCARGAS ===
+    downloadPdfBtn.addEventListener("click", () => {
+      if (currentIndex === null) {
+        alert("⚠️ Selecciona primero un recurso de texto");
+        return;
+      }
+      
+      const item = currentResults[currentIndex];
+      
+      // Para OpenLibrary, abrir la página de lectura
+      if (item.read_url) {
+        window.open(item.read_url, "_blank");
+        return;
+      }
+      
+      // Para otros recursos con PDF
+      if (item.pdf_url) {
+        window.open(item.pdf_url, "_blank");
+        return;
+      }
+      
+      // Fallback a la URL normal
+      if (item.url) {
+        window.open(item.url, "_blank");
+        return;
+      }
+      
+      alert("❌ Este recurso no tiene una opción de descarga disponible");
+    });
+
+    downloadMp4Btn.addEventListener("click", () => {
+      if (currentIndex === null) {
+        alert("⚠️ Selecciona primero un recurso de video");
+        return;
+      }
+      
+      const item = currentResults[currentIndex];
+      const url = item.url || item.video_url || item.link;
+      
+      if (url) {
+        window.open(url, "_blank");
+      } else {
+        alert("❌ Este recurso no tiene URL de descarga");
+      }
+    });
+
+    // === HERRAMIENTAS IA ===
+    async function callTextTool(type) {
+      const subject = subjectInput.value.trim();
+      const topic = topicInput.value.trim();
+      const effectiveTopic = topic || subject;
+
+      if (!effectiveTopic) {
+        alert("⚠️ Escribe al menos la materia o el tópico para usar las herramientas IA");
+        return;
+      }
+
+      setMode("text");
+      currentResults = [];
+      resultsList.innerHTML = "";
+      downloadPdfBtn.disabled = true;
+      
+      const typeNames = {
+        guide: "guía de estudio",
+        practice: "ejercicios de práctica",
+        quiz: "quiz"
+      };
+      
+      textContent.innerHTML = `<div class="loading">⏳ Generando ${typeNames[type]}</div>`;
+
+      let url, payload;
+
+      if (type === "guide") {
+        url = `${API_BASE}/api/text/generate`;
+        payload = {
+          topic: effectiveTopic,
+          class_name: subject || "General",
+          language: "es",
+          preferences: {}
+        };
+      } else if (type === "practice") {
+        url = `${API_BASE}/api/text/practice`;
+        payload = {
+          topic: effectiveTopic,
+          class_name: subject || "General",
+          language: "es",
+          count: 5
+        };
+      } else {
+        url = `${API_BASE}/api/text/quiz`;
+        payload = {
+          topic: effectiveTopic,
+          class_name: subject || "General",
+          language: "es",
+          num_questions: 5
+        };
+      }
+
+      try {
+        console.log(`📡 Generando ${type}:`, payload);
+
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(`Error ${res.status}: ${errorText}`);
+        }
+
+        const data = await res.json();
+        console.log("✅ Respuesta IA:", data);
+
+        let displayContent = "";
+
+        if (type === "guide") {
+          displayContent = data.content || data.study_guide || "Sin contenido";
+        } else if (type === "practice") {
+          if (Array.isArray(data.problems)) {
+            displayContent = data.problems
+              .map((p, i) => {
+                let text = `${i + 1}. ${p.question || p}`;
+                if (p.solution) text += `\n\n   💡 Solución: ${p.solution}`;
+                return text;
+              })
+              .join("\n\n---\n\n");
+          } else {
+            displayContent = JSON.stringify(data, null, 2);
+          }
+        } else {
+          if (Array.isArray(data.quiz)) {
+            displayContent = data.quiz
+              .map((q, i) => {
+                const opts = q.options || q.choices || [];
+                let text = `${i + 1}. ${q.question || ""}`;
+                text += "\n" + opts.map((o, j) => `   ${String.fromCharCode(65 + j)}. ${o}`).join("\n");
+                if (q.correct_answer) text += `\n\n   ✅ Respuesta correcta: ${q.correct_answer}`;
+                return text;
+              })
+              .join("\n\n---\n\n");
+          } else {
+            displayContent = JSON.stringify(data, null, 2);
+          }
+        }
+
+        textContent.textContent = displayContent;
+
+      } catch (err) {
+        console.error("❌ Error en IA:", err);
+        textContent.innerHTML = `<div class="error">Error al generar contenido: ${err.message}</div>`;
+      }
+    }
+
+    btnGuide.addEventListener("click", () => callTextTool("guide"));
+    btnPractice.addEventListener("click", () => callTextTool("practice"));
+    btnQuiz.addEventListener("click", () => callTextTool("quiz"));
+
+    // === INICIALIZACIÓN ===
+    setMode("text");
+    console.log("🚀 Aplicación iniciada en modo texto");
+  </script>
+</body>
+</html>

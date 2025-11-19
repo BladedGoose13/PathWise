@@ -1,0 +1,64 @@
+# .gitignore - Archivos que NO se suben a GitHub
+
+# 🔐 ARCHIVOS SENSIBLES (MUY IMPORTANTE)
+.env
+.env.local
+.env.production
+*.key
+*.pem
+secrets.json
+
+# 💾 BASE DE DATOS (no subir datos locales)
+*.db
+*.sqlite
+*.sqlite3
+scholarships.db
+
+# 🐍 ARCHIVOS DE PYTHON
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 🧪 ENTORNOS VIRTUALES
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# 💻 EDITORES E IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 📝 LOGS
+*.log
+logs/
+
+# 🧪 TESTS
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 📦 DEPENDENCIAS
+node_modules/

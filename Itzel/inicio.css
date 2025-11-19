@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.back{
+  background-image: url("fondo bienn.png");
+  text-align:center;
+  padding-top: 75px;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(#dde4fb, #cbe4ff);
+  display: flex;
+}
+
+/* ---------- SIDEBAR ---------- */
+
+.sidebar {
+  width: 270px;
+  position: fixed;
+  margin: 16px;
+  border-radius: 16px;
+  background: #151a2d;
+  height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.4s ease;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 90px;
+}
+
+/* ---------- HEADER ---------- */
+
+.sidebar-header {
+  display: flex;
+  padding: 25px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-header .header-logo img {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.sidebar-header .toggler {
+  height: 35px;
+  width: 35px;
+  border: none;
+  color: #151a2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 8px;
+  background: #fff;
+  transition: 0.3s ease;
+}
+
+.sidebar-header .toggler:hover {
+  background: #dde4fb;
+}
+
+.sidebar.collapsed .sidebar-header .toggler span {
+  transform: rotate(180deg);
+}
+
+/* ---------- NAVIGATION ---------- */
+
+.sidebar-nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 15px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px;
+  padding: 12px 15px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #fff;
+  color: #151a2d;
+}
+
+.nav-icon {
+  font-size: 1.6rem;
+}
+
+.nav-label {
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .nav-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- SECONDARY NAV ---------- */
+
+.secondary-nav {
+  margin-bottom: 20px;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+
+.main-content {
+  flex: 1;
+  margin-left: 300px;
+  padding: 40px;
+  transition: margin-left 0.4s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 120px;
+}
+
+.main-content h1 {
+  color: #151a2d;
+  font-size: 2rem;
+}
+
+.main-content p {
+  color: #555;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+/* ---------- TIPS SECTION ---------- */
+
+.tips-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 60px;
+}
+.tips-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 60px;
+  margin-bottom: 60px; /* 👈 agrega esta línea */
+}
+
+/* Recuadro con la palabra TIPS */
+.tips-title {
+  background-color: linear-gradient(#f1faff, #cbe4ff);
+  color: rgb(0, 0, 0);
+  border-radius: 16px;
+  padding: 40px 60px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  height: 150px;
+}
+
+.tips-title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Recuadro a la derecha donde van los tips */
+.tips-box {
+  background-color: linear-gradient(#95d5f8, #cbe4ff);
+  color: rgb(0, 0, 0);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  flex: 1;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tips-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+

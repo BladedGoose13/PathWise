@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test inicial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="formulario">
+        <h1>Test inicial</h1>
+
+        <!-- Formulario visual, sin envío real -->
+        <form onsubmit="event.preventDefault(); window.location.href='inicio.html';">
+            <div class="campo">
+                <select required>
+                    <option value="" disabled selected>Selecciona tu respuesta</option>
+                    <option value="Solo quiero pasar todas mis materias">Solo quiero pasar todas mis materias</option>
+                    <option value="Quiero subir un poco mi promedio">Quiero subir un poco mi promedio</option>
+                    <option value="Quiero subir mucho mi promedio para una beca">Quiero subir mucho mi promedio para una beca</option>
+                    <option value="Quiero prepararme para el examen de admisión a universidad / prepa">Quiero prepararme para el examen de admisión a universidad / prepa</option>
+                    <option value="Quiero entender mejor los temas, aunque las calificaciones sigan igual">Quiero entender mejor los temas, aunque las calificaciones sigan igual</option>
+                    <option value="No estoy seguro, solo quiero organizarme mejor">No estoy seguro, solo quiero organizarme mejor</option>
+                </select>
+                <label>¿Cuál es tu principal objetivo académico este semestre?</label>
+                <span></span>
+            </div>
+            <div class="campo">
+                <select required>
+                    <option value="" disabled selected>Selecciona tu respuesta</option>
+                    <option value="Menos de 6.0">Menos de 6.0</option>
+                    <option value="De 6.0 a 6.9">De 6.0 a 6.9</option>
+                    <option value="De 7.0 a 7.9">De 7.0 a 7.9</option>
+                    <option value="De 8.0 a 8.9">De 8.0 a 8.9</option>
+                    <option value="De 9.0 a 10">De 9.0 a 10</option>
+                </select>
+                <label>¿Cómo es tu promedio actual?</label>
+                <span></span>
+            </div>
+            <div class="campo">
+                <select required>
+                    <option value="" disabled selected>Selecciona tu respuesta</option>
+                    <option value="Matemáticas y lógica (mate, física, cálculo)">Matemáticas y lógica (mate, física, cálculo)</option>
+                    <option value="Ciencias naturales (biología, química)">Ciencias naturales (biología, química)</option>
+                    <option value="Lengua y comunicación (español, lectura, redacción)">Lengua y comunicación (español, lectura, redacción)</option>
+                    <option value="Idiomas (inglés u otros)">Idiomas (inglés u otros)</option>
+                    <option value="Ciencias sociales (historia, formación cívica, geografía)">Ciencias sociales (historia, formación cívica, geografía)</option>
+                    <option value="Arte, música o educación física">Arte, música o educación física</option>
+                    <option value="Ninguna en especial / me cuesta en general">Ninguna en especial / me cuesta en general</option>
+                </select>
+                <label>¿En qué tipo de materias te va mejor normalmente?</label>
+                <span></span>
+            </div>
+            <div class="campo">
+                <select required>
+                    <option value="" disabled selected>Selecciona tu respuesta</option>
+                    <option value="Matemáticas y lógica">Matemáticas y lógica</option>
+                    <option value="Ciencias naturales">Ciencias naturales</option>
+                    <option value="Lengua y comunicación">Lengua y comunicación</option>
+                    <option value="Idiomas">Idiomas</option>
+                    <option value="Ciencias sociales">Ciencias sociales</option>
+                    <option value="Organización y entrega de tareas (no tanto el contenido, sino entregar a tiempo)">Organización y entrega de tareas (no tanto el contenido, sino entregar a tiempo)</option>
+                    <option value="No identifico una materia específica">No identifico una materia específica</option>
+                </select>
+                <label>¿En qué tipo de materias sientes más dificultad?</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <select required>
+                    <option value="" disabled selected>Selecciona tu respuesta</option>
+                    <option value="Explicaciones simples de los temas que no entiendo">Explicaciones simples de los temas que no entiendo</option>
+                    <option value="Ejercicios prácticos paso a paso con soluciones">Ejercicios prácticos paso a paso con soluciones</option>
+                    <option value="Resúmenes y mapas mentales para estudiar más rápido">Resúmenes y mapas mentales para estudiar más rápido</option>
+                    <option value="Simuladores de exámenes y preguntas tipo prueba">Simuladores de exámenes y preguntas tipo prueba</option>
+                    <option value="Organizar mi tiempo y recordarme tareas / fechas importantes">Organizar mi tiempo y recordarme tareas / fechas importantes</option>
+                    <option value="Consejos de hábitos de estudio y motivación">Consejos de hábitos de estudio y motivación</option>
+                    <option value="De 8.0 a 8.9">Información sobre becas y universidades que se ajusten a mi perfil</option>
+                </select>
+                <label>¿En qué te gustaría que la plataforma te ayude más?</label>
+                <span></span>
+            </div>
+
+            
+
+            <!-- Botón principal que redirige -->
+            <input type="submit" class="boton" value="Enviar respuestas">
+        </form>
+
+        <!-- Botón regresar -->
+        <button class="boton boton-regresar" onclick="window.location.href='registro.html'">Regresar</button>
+    </div>
+</body>
+</html>

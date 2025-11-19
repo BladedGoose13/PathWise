@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="formulario"> 
+        <h1>Registro</h1>
+        <form id="registroForm">
+            <div class="campo">
+                <input type="text" id="nombre_completo" name="nombre_completo" required>
+                <label>Nombre completo</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <input type="email" id="correo" name="correo" required>
+                <label>Correo electrónico</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <input type="text" id="usuario" name="usuario" required>
+                <label>Nombre de usuario</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <input type="number" id="edad" name="edad" min="1" max="120" required>
+                <label>Edad</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <select id="estado" name="estado" required>
+                    <option value="" disabled selected>Selecciona tu estado</option>
+                    <option value="Aguascalientes">Aguascalientes</option>
+                    <option value="Baja California">Baja California</option>
+                    <option value="Baja California Sur">Baja California Sur</option>
+                    <option value="Campeche">Campeche</option>
+                    <option value="Chiapas">Chiapas</option>
+                    <option value="Chihuahua">Chihuahua</option>
+                    <option value="Ciudad de México">Ciudad de México</option>
+                    <option value="Coahuila">Coahuila</option>
+                    <option value="Colima">Colima</option>
+                    <option value="Durango">Durango</option>
+                    <option value="Estado de México">Estado de México</option>
+                    <option value="Guanajuato">Guanajuato</option>
+                    <option value="Guerrero">Guerrero</option>
+                    <option value="Hidalgo">Hidalgo</option>
+                    <option value="Jalisco">Jalisco</option>
+                    <option value="Michoacán">Michoacán</option>
+                    <option value="Nayarit">Nayarit</option>
+                    <option value="Nuevo León">Nuevo León</option>
+                    <option value="Oaxaca">Oaxaca</option>
+                    <option value="Puebla">Puebla</option>
+                    <option value="Querétaro">Querétaro</option>
+                    <option value="Quintana Roo">Quintana Roo</option>
+                    <option value="San Luis Potosí">San Luis Potosí</option>
+                    <option value="Sinaloa">Sinaloa</option>
+                    <option value="Sonora">Sonora</option>
+                    <option value="Tabasco">Tabasco</option>
+                    <option value="Tamaulipas">Tamaulipas</option>
+                    <option value="Tlaxcala">Tlaxcala</option>
+                    <option value="Veracruz">Veracruz</option>
+                    <option value="Yucatán">Yucatán</option>
+                    <option value="Zacatecas">Zacatecas</option>
+                </select>
+                <label>Estado</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <select id="genero" name="genero" required>
+                    <option value="" disabled selected>Selecciona tu género</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="otro">Otro</option>
+                    <option value="prefiero_no_decirlo">Prefiero no decirlo</option>
+                </select>
+                <label>Género</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <input type="password" id="password" name="password" required>
+                <label>Contraseña</label>
+                <span></span>
+            </div>
+
+            <div class="campo">
+                <input type="password" id="confirmar" name="confirmar" required>
+                <label>Confirmar contraseña</label>
+                <span></span>
+            </div>
+
+            <input type="submit" class="boton" value="Registrarse">
+        </form>
+
+        <!-- Botón de regresar -->
+        <button class="boton boton-regresar" onclick="window.location.href='index.html'">Regresar</button>
+
+        <p id="mensaje" style="margin-top:15px; text-align:center;"></p>
+    </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const nombre_completo = document.getElementById('nombre_completo').value;
+            const correo = document.getElementById('correo').value;
+            const usuario = document.getElementById('usuario').value;
+            const edad = document.getElementById('edad').value;
+            const estado = document.getElementById('estado').value;
+            const genero = document.getElementById('genero').value;
+            const password = document.getElementById('password').value;
+            const confirmar = document.getElementById('confirmar').value;
+            const mensaje = document.getElementById('mensaje');
+
+            // Validar contraseñas iguales
+            if (password !== confirmar) {
+                mensaje.textContent = " Las contraseñas no coinciden.";
+                mensaje.style.color = "red";
+                return;
+            }
+
+            try {
+                const respuesta = await fetch("http://127.0.0.1:8001/api/scholarships/user/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nombre_completo: nombre_completo,
+                        correo: correo,
+                        usuario: usuario,
+                        edad: parseInt(edad),
+                        estado: estado,
+                        genero: genero,
+                        password: password
+                    })
+                });
+
+                if (respuesta.ok) {
+                    mensaje.textContent = " Usuario creado con éxito.";
+                    mensaje.style.color = "green";
+                    // Redirigir después de 2 segundos
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2000);
+                } else {
+                    const data = await respuesta.json();
+                    mensaje.textContent = "Error: " + (data.detail || "No se pudo crear el usuario.");
+                    mensaje.style.color = "red";
+                }
+            } catch (error) {
+                mensaje.textContent = "Error de conexión con el servidor.";
+                mensaje.style.color = "orange";
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html>

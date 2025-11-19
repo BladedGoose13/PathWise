@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú Lateral + Google Maps</title>
+
+  <link rel="stylesheet" href="inicio.css">
+  <link rel="stylesheet" href="ayuda.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+
+  <style>
+    /* Ajustes visuales del mapa */
+    #map {
+      width: 100%;
+      height: 450px;
+      border-radius: 10px;
+      margin-top: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .controls {
+      margin-top: 10px;
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .my-button {
+      margin-left: 10px;
+      padding: 8px 15px;
+      background-color: #6c3483;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .my-button:hover {
+      background-color: #512a63;
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="imag.png" alt="logo">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="inicio.html" class="nav-link active">
+            <span class="nav-icon material-symbols-rounded">home</span>
+            <span class="nav-label">Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="clases.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">assignment</span>
+            <span class="nav-label">Clases</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="oportunidades.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">book</span>
+            <span class="nav-label">Oportunidades</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="becas.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">school</span>
+            <span class="nav-label">Becas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="ayuda.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">Distance</span>
+            <span class="nav-label">Oportunidades Locales</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Perfil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Salir</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="main-content">
+    <h1>Mapa Interactivo</h1>
+    <p>Busca un lugar o presiona el botón para centrarte en tu ubicación.</p>
+
+    <input id="pac-input" class="controls" type="text" placeholder="Buscar lugar...">
+    <button id="btn-current" class="my-button">Ir a mi ubicación</button>
+
+    <div id="map"></div>
+  </main>
+
+  <!-- ====== GOOGLE MAPS SCRIPT ====== -->
+  <script>
+  let map;
+  let markers = [];
+
+  function initMap() {
+    const defaultCenter = { lat: 19.018151353785328, lng: -98.24370562438774 }; // Tec de Monterrey Puebla
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: defaultCenter,
+      zoom: 14,
+      mapId: "44d076ec289aa894c4913e19" // Aquí va tu Map ID
+    });
+
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+      if (!places || places.length === 0) return;
+
+      markers.forEach((m) => m.setMap(null));
+      markers = [];
+
+      const bounds = new google.maps.LatLngBounds();
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) return;
+
+        const marker = new google.maps.Marker({
+          map,
+          title: place.name,
+          position: place.geometry.location,
+        });
+        markers.push(marker);
+
+        if (place.geometry.viewport) {
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+
+    document.getElementById("btn-current").addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const posLatLng = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude,
+            };
+            map.setCenter(posLatLng);
+            map.setZoom(15);
+
+            markers.forEach((m) => m.setMap(null));
+            markers = [
+              new google.maps.Marker({
+                position: posLatLng,
+                map,
+                title: "Tú estás aquí",
+              }),
+            ];
+          },
+          () => alert("No se pudo obtener la ubicación. Revisa permisos del navegador.")
+        );
+      } else {
+        alert("Tu navegador no soporta geolocalización.");
+      }
+    });
+  }
+</script>
+
+<!-- Carga correcta de Google Maps JS API -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8GjXLicr6OLrQxMriD7d7422fIGwbGh0&libraries=places&callback=initMap">
+</script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú Lateral</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+  background: linear-gradient(#dde4fb, #cbe4ff);
+  display: block;
+  overflow-y: auto; /* Permite desplazarte verticalmente */
+}
+
+    /* ---------- SIDEBAR ---------- */
+    .sidebar {
+      width: 270px;
+      position: fixed;
+      margin: 16px;
+      border-radius: 16px;
+      background: #151a2d;
+      height: calc(100vh - 32px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: width 0.4s ease;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed {
+      width: 90px;
+    }
+
+    /* ---------- HEADER ---------- */
+    .sidebar-header {
+      display: flex;
+      padding: 25px 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-header .header-logo img {
+      width: 46px;
+      height: 46px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .sidebar-header .toggler {
+      height: 35px;
+      width: 35px;
+      border: none;
+      color: #151a2d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 8px;
+      background: #fff;
+      transition: 0.3s ease;
+    }
+
+    .sidebar-header .toggler:hover {
+      background: #dde4fb;
+    }
+
+    .sidebar.collapsed .sidebar-header .toggler span {
+      transform: rotate(180deg);
+    }
+
+    /* ---------- NAVIGATION ---------- */
+    .sidebar-nav {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 15px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-radius: 8px;
+      padding: 12px 15px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #fff;
+      color: #151a2d;
+    }
+
+    .nav-icon {
+      font-size: 1.6rem;
+    }
+
+    .nav-label {
+      white-space: nowrap;
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar.collapsed .nav-label {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    .main-content {
+      flex: 1;
+      margin-left: 300px;
+      padding: 0;
+      transition: margin-left 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 120px;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero-section {
+      background: linear-gradient(135deg, #a8d5ff 0%, #7bb9e8 100%);
+      padding: 70px 50px;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 15px 40px rgba(123, 185, 232, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-text {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      color: #151a2d;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(255,255,255,0.5);
+    }
+
+    .hero-text p {
+      color: #1a3a52;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .hero-logo {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .hero-logo img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* ---------- TIPS SECTION ---------- */
+    .tips-container {
+      padding: 60px 50px;
+      background: transparent;
+    }
+
+    .tips-section {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 35px;
+      margin-bottom: 50px;
+    }
+
+    .tips-title {
+      background: linear-gradient(135deg, #6eb5e8 0%, #4a9fd6 100%);
+      color: #fff;
+      border-radius: 25px;
+      padding: 50px 40px;
+      box-shadow: 0 10px 30px rgba(74, 159, 214, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tips-title::before {
+      content: '';
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
+    }
+
+    .tips-title h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .tips-box {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      color: #151a2d;
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border: 3px solid rgba(123, 185, 232, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .tips-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(74, 159, 214, 0.4);
+      border-color: rgba(123, 185, 232, 0.6);
+    }
+
+    .tips-box p {
+      font-size: 1.15rem;
+      line-height: 2.2;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: linear-gradient(135deg, rgba(168, 213, 255, 0.1) 0%, rgba(203, 228, 255, 0.1) 100%);
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .tip-item:hover {
+      background: linear-gradient(135deg, rgba(168, 213, 255, 0.2) 0%, rgba(203, 228, 255, 0.2) 100%);
+      transform: translateX(5px);
+    }
+
+    .tip-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .tip-icon {
+      color: #4a9fd6;
+      margin-right: 15px;
+      font-size: 1.6rem;
+      margin-top: 3px;
+    }
+
+    /* ---------- BACK SECTION (actualizado) ---------- */
+    .back {
+      position: relative;
+      text-align: center;
+      padding: 100px 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      overflow: hidden;
+    }
+
+    .fondo-img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .logout-btn {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+      color: #151a2d;
+      border: 3px solid #7bb9e8;
+      padding: 18px 50px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(123, 185, 232, 0.5);
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .logout-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 50px rgba(74, 159, 214, 0.7);
+      background: linear-gradient(135deg, #7bb9e8 0%, #4a9fd6 100%);
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .logout-btn .nav-icon {
+      font-size: 1.6rem;
+      transition: transform 0.3s ease;
+    }
+
+    .logout-btn:hover .nav-icon {
+      transform: translateX(5px);
+    }
+
+    html, body {
+  height: auto !important;
+  min-height: 100%;
+  overflow-y: auto !important;
+}
+
+.container {
+  height: auto !important;
+}
+
+.back {
+  min-height: 100vh; /* permite que crezca si la imagen es más grande */
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: #151a2d;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  border-top: 3px solid #7bb9e8;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.footer-link {
+  color: #cbe4ff;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.footer-link span {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.footer-link:hover {
+  color: #7bb9e8;
+  transform: translateY(-3px);
+}
+
+.footer-link.active {
+  color: #7bb9e8;
+  font-weight: 600;
+}
+
+</style>
+
+
+</head>
+<body>
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="imag.png" alt="logo">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="inicio.html" class="nav-link active">
+            <span class="nav-icon material-symbols-rounded">home</span>
+            <span class="nav-label">Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="clases.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">assignment</span>
+            <span class="nav-label">Clases</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="oportunidades.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">book</span>
+            <span class="nav-label">Oportunidades</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="becas.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">school</span>
+            <span class="nav-label">Becas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="ayuda.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">Distance</span>
+            <span class="nav-label">Oportunidades Locales</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Perfil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Salir</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1>¡Bienvenido!</h1>
+        <p>Explora todas las oportunidades disponibles para tu crecimiento académico y profesional.</p>
+      </div>
+      <div class="hero-logo">
+        <img src="imag.png" alt="logo">
+      </div>
+    </section>
+
+    <div class="tips-container">
+      <section class="tips-section">
+        <div class="tips-title">
+          <h2>Tips</h2>
+        </div>
+        <div class="tips-box">
+          <div class="tip-item">
+            <span class="material-symbols-rounded tip-icon">event</span>
+            <p>Revisa las convocatorias cada semana para no perder fechas importantes</p>
+          </div>
+          <div class="tip-item">
+            <span class="material-symbols-rounded tip-icon">emoji_events</span>
+            <p>Completa los niveles para conseguir premios</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FONDO FINAL AHORA COMO IMAGEN NORMAL -->
+    <div class="back">
+      <img src="fondo bienn.png" alt="Fondo final" class="fondo-img">
+      <button class="logout-btn" onclick="window.location.href='clases.html'">
+        <span>Siguiente nivel</span>
+        <span class="nav-icon material-symbols-rounded">arrow_forward</span>
+      </button>
+    </div>
+    <div class="back">
+      <img src="dashboard.jpeg" alt="Fondo final" class="fondo-img">
+
+    </div>
+  </main>
+
+  <script>
+    const sidebar = document.querySelector(".sidebar");
+    const togglerBtn = document.querySelector(".sidebar-toggler");
+
+    togglerBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("collapsed");
+    });
+  </script>
+  <footer class="footer">
+  <footer class="footer">
+  <div class="footer-menu">
+    <a href="PDFPDF.pdf" target="_blank" class="footer-link">
+      <span class="material-symbols-rounded">privacy_tip</span>
+      <p>Políticas de Privacidad</p>
+    </a>
+
+    <a href="precios.jpeg" class="footer-link">
+      <span class="material-symbols-rounded">attach_money</span>
+      <p>Precios</p>
+    </a>
+  </div>
+</footer>
+
+</footer>
+
+</body>
+</html>

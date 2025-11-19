@@ -1,0 +1,63 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+/* Columna izquierda (video + tarjetas) */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: #dde4fb;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Recuadro del video */
+.video-container {
+  display: flex;
+  justify-content: center;
+}
+
+.video-placeholder {
+  width: 480px;
+  height: 270px;
+  background: black;
+  border-radius: 10px;
+}
+
+/* Dos tarjetas (Tópico y Tema) en una fila */
+.card-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Columna derecha (transcripción) */
+.right-column {
+  flex-shrink: 0;
+  width: 350px;
+}
+
+/* Input */
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Becas - Plataforma Educativa</title>
+  <link rel="stylesheet" href="inicio.css">
+  <link rel="stylesheet" href="oportunidades.css">
+  <link rel="stylesheet" href="becas.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@0..1" />
+  <style>
+    /* === ESTILOS ADICIONALES PARA BECAS === */
+    .profile-section {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .profile-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .profile-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .profile-input, .profile-select, .profile-textarea {
+      padding: 10px 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+
+    .profile-input:focus, .profile-select:focus, .profile-textarea:focus {
+      outline: none;
+      border-color: #111729;
+    }
+
+    .profile-textarea {
+      min-height: 80px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .search-btn {
+      width: 100%;
+      padding: 14px;
+      background: #111729;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .search-btn:hover {
+      background: #1f2937;
+    }
+
+    .search-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .loading-indicator {
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+    }
+
+    .loading-indicator::after {
+      content: '...';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+
+    .scholarship-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .scholarship-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .scholarship-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    .scholarship-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111729;
+      margin: 0;
+    }
+
+    .match-badge {
+      background: #10b981;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .scholarship-institution {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+
+    .scholarship-description {
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .scholarship-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      background: #e5e7eb;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #374151;
+    }
+
+    .scholarship-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .detail-item {
+      font-size: 0.85rem;
+    }
+
+    .detail-label {
+      color: #6b7280;
+      display: block;
+    }
+
+    .detail-value {
+      color: #111729;
+      font-weight: 600;
+    }
+
+    .scholarship-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .primary-action {
+      background: #111729;
+      color: white;
+    }
+
+    .primary-action:hover {
+      background: #1f2937;
+    }
+
+    .secondary-action {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .secondary-action:hover {
+      background: #e5e7eb;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: #9ca3af;
+    }
+
+    .empty-state-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .results-count {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- === SIDEBAR === -->
+  <aside class="sidebar">
+    <header class="sidebar-header">
+      <a href="#" class="header-logo">
+        <img src="imag.png" alt="logo">
+      </a>
+      <button class="toggler sidebar-toggler">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list primary-nav">
+        <li class="nav-item">
+          <a href="inicio.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">home</span>
+            <span class="nav-label">Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="clases.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">assignment</span>
+            <span class="nav-label">Clases</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="oportunidades.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">book</span>
+            <span class="nav-label">Oportunidades</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="becas.html" class="nav-link active">
+            <span class="nav-icon material-symbols-rounded">school</span>
+            <span class="nav-label">Becas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="ayuda.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">Distance</span>
+            <span class="nav-label">Oportunidades Locales</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav-list secondary-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">account_circle</span>
+            <span class="nav-label">Perfil</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">
+            <span class="nav-icon material-symbols-rounded">logout</span>
+            <span class="nav-label">Salir</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- === MAIN CONTENT === -->
+  <main class="main-content">
+    <h1>🎓 Búsqueda de Becas Personalizada</h1>
+
+    <!-- === SECCIÓN DE PERFIL === -->
+    <div class="profile-section">
+      <h2 style="margin-bottom: 20px;">📝 Cuéntanos sobre ti</h2>
+      
+      <div class="profile-grid">
+        <div class="profile-field">
+          <label class="profile-label">Nombre</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            class="profile-input" 
+            placeholder="Tu nombre completo"
+            value="María González"
+          >
+        </div>
+
+        <div class="profile-field">
+          <label class="profile-label">Ubicación</label>
+          <input 
+            type="text" 
+            id="ubicacion" 
+            class="profile-input" 
+            placeholder="Ciudad, Estado"
+            value="Quechultenango, Guerrero"
+          >
+        </div>
+
+        <div class="profile-field">
+          <label class="profile-label">Nivel Educativo</label>
+          <select id="nivel-educativo" class="profile-select">
+            <option value="">Selecciona...</option>
+            <option value="primaria">Primaria</option>
+            <option value="secundaria" selected>Secundaria</option>
+            <option value="preparatoria">Preparatoria</option>
+            <option value="universidad">Universidad</option>
+            <option value="posgrado">Posgrado</option>
+          </select>
+        </div>
+
+        <div class="profile-field">
+          <label class="profile-label">Promedio</label>
+          <input 
+            type="number" 
+            id="promedio" 
+            class="profile-input" 
+            placeholder="8.5"
+            min="6" 
+            max="10" 
+            step="0.1"
+            value="8.5"
+          >
+        </div>
+
+        <div class="profile-field">
+          <label class="profile-label">Situación Económica</label>
+          <select id="situacion-economica" class="profile-select">
+            <option value="">Selecciona...</option>
+            <option value="baja" selected>Baja</option>
+            <option value="media-baja">Media-Baja</option>
+            <option value="media">Media</option>
+            <option value="media-alta">Media-Alta</option>
+          </select>
+        </div>
+
+        <div class="profile-field">
+          <label class="profile-label">Área de Interés</label>
+          <select id="area-interes" class="profile-select">
+            <option value="">Selecciona...</option>
+            <option value="stem">STEM (Ciencia, Tecnología)</option>
+            <option value="humanidades">Humanidades</option>
+            <option value="artes">Artes</option>
+            <option value="deportes">Deportes</option>
+            <option value="general" selected>General</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="profile-field" style="margin-bottom: 20px;">
+        <label class="profile-label">Cuéntanos más sobre ti (opcional)</label>
+        <textarea 
+          id="descripcion" 
+          class="profile-textarea" 
+          placeholder="Actividades extracurriculares, logros, situación familiar, etc."
+        >Estudiante de secundaria en comunidad rural. No tengo proyectos escolares especiales aún, pero tengo interés en seguir estudiando.</textarea>
+      </div>
+
+      <button id="buscar-btn" class="search-btn">
+        🔍 Buscar Becas Personalizadas
+      </button>
+    </div>
+
+    <!-- === SECCIÓN DE RESULTADOS === -->
+    <div id="resultados-container" style="display: none;">
+      <div class="results-header">
+        <h2>💡 Becas Recomendadas para Ti</h2>
+        <span id="results-count" class="results-count"></span>
+      </div>
+      
+      <div id="becas-grid" class="oportunidades-grid">
+        <!-- Las becas se cargarán aquí dinámicamente -->
+      </div>
+    </div>
+
+    <!-- === ESTADO INICIAL === -->
+    <div id="empty-state" class="empty-state">
+      <div class="empty-state-icon">🎯</div>
+      <h3>Completa tu perfil y busca becas</h3>
+      <p>Nuestro sistema de IA te ayudará a encontrar las mejores opciones según tu situación</p>
+    </div>
+  </main>
+
+  <script>
+    const API_BASE = 'http://127.0.0.1:8001';
+
+    // Elementos del DOM
+    const buscarBtn = document.getElementById('buscar-btn');
+    const resultadosContainer = document.getElementById('resultados-container');
+    const emptyState = document.getElementById('empty-state');
+    const becasGrid = document.getElementById('becas-grid');
+    const resultsCount = document.getElementById('results-count');
+
+    // Campos del formulario
+    const nombre = document.getElementById('nombre');
+    const ubicacion = document.getElementById('ubicacion');
+    const nivelEducativo = document.getElementById('nivel-educativo');
+    const promedio = document.getElementById('promedio');
+    const situacionEconomica = document.getElementById('situacion-economica');
+    const areaInteres = document.getElementById('area-interes');
+    const descripcion = document.getElementById('descripcion');
+
+    // Evento de búsqueda
+    buscarBtn.addEventListener('click', buscarBecas);
+
+    async function buscarBecas() {
+      // Validar campos requeridos
+      if (!nivelEducativo.value) {
+        alert('⚠️ Por favor selecciona tu nivel educativo');
+        return;
+      }
+
+      // Construir perfil del estudiante
+      const perfil = {
+        nombre: nombre.value.trim() || 'Estudiante',
+        ubicacion: ubicacion.value.trim() || 'México',
+        nivel_educativo: nivelEducativo.value,
+        promedio: parseFloat(promedio.value) || null,
+        situacion_economica: situacionEconomica.value || null,
+        area_interes: areaInteres.value || null,
+        descripcion: descripcion.value.trim() || null
+      };
+
+      console.log('📤 Enviando perfil:', perfil);
+
+      // Mostrar loading
+      buscarBtn.disabled = true;
+      buscarBtn.innerHTML = '🔄 Buscando becas...';
+      emptyState.style.display = 'none';
+      resultadosContainer.style.display = 'none';
+
+      try {
+        const response = await fetch(`${API_BASE}/api/scholarships/search`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(perfil)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${await response.text()}`);
+        }
+
+        const data = await response.json();
+        console.log('✅ Respuesta:', data);
+
+        mostrarResultados(data.scholarships || data.results || []);
+
+      } catch (error) {
+        console.error('❌ Error:', error);
+        alert(`Error al buscar becas: ${error.message}`);
+        emptyState.style.display = 'block';
+      } finally {
+        buscarBtn.disabled = false;
+        buscarBtn.innerHTML = '🔍 Buscar Becas Personalizadas';
+      }
+    }
+
+    function mostrarResultados(becas) {
+      if (!becas || becas.length === 0) {
+        emptyState.innerHTML = `
+          <div class="empty-state-icon">😕</div>
+          <h3>No se encontraron becas</h3>
+          <p>Intenta ajustar tu perfil o revisa más tarde</p>
+        `;
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      // Mostrar resultados
+      resultadosContainer.style.display = 'block';
+      resultsCount.textContent = `${becas.length} beca${becas.length > 1 ? 's' : ''} encontrada${becas.length > 1 ? 's' : ''}`;
+
+      becasGrid.innerHTML = '';
+
+      becas.forEach((beca, index) => {
+        const card = crearTarjetaBeca(beca, index);
+        becasGrid.appendChild(card);
+      });
+    }
+
+    function crearTarjetaBeca(beca, index) {
+      const card = document.createElement('div');
+      card.className = 'scholarship-card';
+      card.style.animationDelay = `${index * 0.1}s`;
+
+      // Calcular porcentaje de match
+      const matchScore = beca.match_score || beca.score || 85;
+      const matchColor = matchScore >= 80 ? '#10b981' : matchScore >= 60 ? '#f59e0b' : '#6b7280';
+
+      card.innerHTML = `
+        <div class="scholarship-header">
+          <h3 class="scholarship-title">${beca.title || beca.name || 'Beca Educativa'}</h3>
+          <span class="match-badge" style="background: ${matchColor}">
+            ${matchScore}% match
+          </span>
+        </div>
+
+        <div class="scholarship-institution">
+          ${beca.institution || beca.provider || 'Institución Educativa'}
+        </div>
+
+        <div class="scholarship-description">
+          ${beca.description || beca.summary || 'Beca disponible para estudiantes'}
+        </div>
+
+        ${beca.requirements ? `
+          <div class="scholarship-tags">
+            ${beca.requirements.map(req => `<span class="tag">${req}</span>`).join('')}
+          </div>
+        ` : ''}
+
+        <div class="scholarship-details">
+          ${beca.amount ? `
+            <div class="detail-item">
+              <span class="detail-label">Monto</span>
+              <span class="detail-value">${beca.amount}</span>
+            </div>
+          ` : ''}
+          
+          ${beca.deadline ? `
+            <div class="detail-item">
+              <span class="detail-label">Fecha límite</span>
+              <span class="detail-value">${beca.deadline}</span>
+            </div>
+          ` : ''}
+          
+          ${beca.level ? `
+            <div class="detail-item">
+              <span class="detail-label">Nivel</span>
+              <span class="detail-value">${beca.level}</span>
+            </div>
+          ` : ''}
+        </div>
+
+        ${beca.why_recommended ? `
+          <div style="margin-top: 12px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-size: 0.9rem;">
+            <strong>💡 Por qué te recomendamos esta beca:</strong><br>
+            ${beca.why_recommended}
+          </div>
+        ` : ''}
+
+        <div class="scholarship-actions">
+          ${beca.url ? `
+            <button class="action-btn primary-action" onclick="window.open('${beca.url}', '_blank')">
+              📋 Ver Convocatoria
+            </button>
+          ` : ''}
+          <button class="action-btn secondary-action" onclick="guardarBeca(${index})">
+            💾 Guardar
+          </button>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function guardarBeca(index) {
+      // Aquí puedes implementar lógica para guardar en localStorage o backend
+      alert('✅ Beca guardada en tu perfil');
+    }
+
+    // Auto-llenar con ejemplo si los campos están vacíos
+    window.addEventListener('load', () => {
+      console.log('🎓 Sistema de becas cargado');
+      console.log('📝 Perfil de ejemplo: Estudiante de secundaria en Quechultenango');
+    });
+  </script>
+</body>
+</html>
