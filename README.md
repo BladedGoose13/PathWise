@@ -120,21 +120,38 @@ python app.py
 
 ## 📂 Project Structure
 ```
-pathwise/
-├── FrontEnd/
-├── Clases/
-│   ├── api_integrators/
-│   ├── cache/
-│   ├── models/
-│   ├── routes/
-│   ├── streaming/
-│   ├── utils/
-│   ├── uploads/
-│   └── app.py
-├── .gitignore
-├── requirements.txt
-└── README.md
+📁 Project Structure - PathWise
 
+pathwise/
+├── 📂 FrontEnd/
+│
+├── 📂 Clases/
+│   ├── 📂 api_integrators/
+│   ├── 📂 cache/
+│   ├── 📂 models/
+│   ├── 📂 routes/
+│   ├── 📂 streaming/
+│   ├── 📂 utils/
+│   ├── 📂 uploads/
+│   └── 🐍 app.py
+│
+├── 📂 Oportunidades/
+│   ├── 📂 __pycache__/
+│   ├── 📂 api_integrators/
+│   ├── 📂 database/
+│   ├── 📂 models/
+│   ├── 📂 routes/
+│   └── 📂 utils/
+│
+├── 🙈 .gitignore
+├── 🐍 app_becas.py
+├── 🐳 Dockerfile
+├── 📝 readme.md
+├── 📦 requirements.txt
+├── 🔐 .env
+├── 🙈 .gitignore
+├── 📖 README.md
+└── 📁 PathWise-main
 ```
 
 ## 🗺 Roadmap
