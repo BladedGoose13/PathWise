@@ -199,6 +199,7 @@ Project Link: [https://github.com/your-username/pathwise](https://github.com/you
 ## 🏆 Acknowledgments
 
 Developed at and winner: **DigiEduHack 2025 Tec campus Puebla** 
+
 **Category: AI and Emerging Technologies**
 - Challenge: Social Mobility
 - Approach: Society 5.0
