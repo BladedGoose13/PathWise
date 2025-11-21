@@ -1,6 +1,6 @@
 # PathWise 🎓
 
-> La plataforma EdTech integral que transforma el talento disperso en trayectorias reales
+> The EdTech ecosystem that transforms dispersed talent into real trayectories
 
 [![Python](https://img.shields.io/badge/python-runs_on_coffee-brown?logo=python&logoColor=white)](https://www.python.org/)
 [![HTML](https://img.shields.io/badge/HTML-div_soup_master-red?logo=html5)](https://developer.mozilla.org/en-US/docs/Web/HTML)
