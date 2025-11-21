@@ -12,6 +12,14 @@
 [![Bug](https://img.shields.io/badge/bug-feature-yellow)](#)
 [![Sleep](https://img.shields.io/badge/sleep-0_hours-red)](#) (for real)... <sub>(no but </sub><sub><small><i>for real...)</i></small></sub>
 
+[![Demon Hunter](https://img.shields.io/badge/Demon-Hunter-b30000?style=flat&logo=firefox&logoColor=white)](#)
+[![K-pop Dev](https://img.shields.io/badge/K--pop-Dev-ff69b4?style=flat&logo=music&logoColor=white)](#)
+[![Main Character](https://img.shields.io/badge/Main-Character-blueviolet)](#)
+[![Villain Arc](https://img.shields.io/badge/Villain-Arc-black?logo=ghost)](#)
+[![Overpowered](https://img.shields.io/badge/Side_character-overpowered-purple)](#)
+[![Kdrama Dev](https://img.shields.io/badge/K--Drama-Coder-ff3366?logo=heart)](#)
+[![Demon Mode](https://img.shields.io/badge/Demon-Mode-red?logo=skull&logoColor=white)](#)
+
 
 ## 📋 Table of Contents
 
