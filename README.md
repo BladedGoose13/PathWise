@@ -9,7 +9,7 @@
 [![Docker](https://img.shields.io/badge/Docker-somehow_it_works-0db7ed?logo=docker&logoColor=white)](...)
 
 [![Debugging](https://img.shields.io/badge/code-works_on_my_machine-green)](#)
-[![Sleep](https://img.shields.io/badge/sleep-0_hours-red)](#)
+[![Sleep](https://img.shields.io/badge/sleep-0_hours-red)](#) (for real)
 [![Bug](https://img.shields.io/badge/bug-feature-yellow)](#)
 
 
