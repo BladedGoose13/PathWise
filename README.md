@@ -1,6 +1,7 @@
 # PathWise 🎓
 
->The integrated EdTech ecosystem that converts scattered potential into structured success.
+> The integrated EdTech ecosystem that converts scattered potential into structured success.
+
 [![Python](https://img.shields.io/badge/python-runs_on_coffee-brown?logo=python&logoColor=white)](https://www.python.org/)
 [![HTML](https://img.shields.io/badge/HTML-div_soup_master-red?logo=html5)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS](https://img.shields.io/badge/CSS-why_isn't_it_centered-blue?logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
