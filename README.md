@@ -11,7 +11,7 @@
 [![Demon Hunter](https://img.shields.io/badge/Demon-Hunter-b30000?style=flat&logo=firefox&logoColor=white)](#)
 [![Debugging](https://img.shields.io/badge/code-works_on_my_machine-green)](#)
 [![Bug](https://img.shields.io/badge/bug-feature-yellow)](#)
-[![Sleep](https://img.shields.io/badge/sleep-0_hours-red)](#) (for real)... <sub>(no but </sub><sub><small><i>for real...)</i></small></sub>
+[![Sleep](https://img.shields.io/badge/sleep-0_hours-red)](#) (for real)... <sub>(no but... </sub><sub><small><i>for real...)</i></small></sub>
 
 ## 📋 Table of Contents
 
