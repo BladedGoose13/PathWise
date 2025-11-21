@@ -10,103 +10,99 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-powered_by_prompt_engineering-purple?logo=openai&logoColor=white)](https://openai.com/)
 
 
-## 📋 Tabla de Contenidos
+## 📋 Table of Contents
 
-- [Sobre el Proyecto](#sobre-el-proyecto)
-- [Características Principales](#características-principales)
-- [Tecnologías](#tecnologías)
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Estructura del Proyecto](#estructura-del-proyecto)
+- [About The Project](#about-the-project)
+- [Key Features](#key-features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
 - [Roadmap](#roadmap)
-- [Contribuir](#contribuir)
-- [Equipo](#equipo)
-- [Licencia](#licencia)
-- [Contacto](#contacto)
+- [Contributing](#contributing)
+- [Team](#team)
+- [License](#license)
+- [Contact](#contact)
 
-## 🎯 Sobre el Proyecto
+## 🎯 About The Project
 
-PathWise es una Progressive Web App diseñada para estudiantes de preparatoria (12-24 años) en México, especialmente aquellos en escuelas públicas de hogares de ingresos bajos a medios. La plataforma aborda la desigualdad educativa mediante un ecosistema integrado que combina:
+PathWise is a Progressive Web App designed for high school students (12-24 years old) in Mexico, especially those in public schools from low to medium-income households. The platform addresses educational inequality through an integrated ecosystem that combines:
 
-- 🧠 **Rutas de aprendizaje personalizadas** impulsadas por IA
-- 📚 **Hub de recursos educativos** centralizados y adaptativos
-- 🤝 **Red social estudiantil hiperlocal** verificada institucionalmente
+- 🧠 **AI-powered personalized learning paths**
+- 📚 **Centralized and adaptive educational resource hub**
+- 🤝 **Institutionally verified hyper-local student social network**
 
-### Problema que Resuelve
+### Problem It Solves
 
-El sistema de educación media superior en México presenta profundas desigualdades: muchos estudiantes de escuelas públicas tienen acceso limitado a dispositivos, internet débil, pocos recursos de aprendizaje, y deben equilibrar la escuela con el trabajo. PathWise centraliza recursos abiertos en rutas claras de aprendizaje y crea espacios seguros para la colaboración local.
+Mexico's upper-secondary education system shows deep inequality: many public school students have limited access to devices, weak internet, few learning resources, and often must balance school with work. PathWise centralizes open resources into clear learning routes and creates safe spaces for local collaboration.
 
-## ✨ Características Principales
+## ✨ Key Features
 
-### 1. Roadmap Orientado a Metas
-- Prueba diagnóstica estandarizada
-- Planes personalizados para becas, admisiones universitarias o regularización académica
-- Seguimiento de progreso en tiempo real
+### 1. Goal-Driven Roadmap
+- Standardized diagnostic test
+- Personalized plans for scholarships, university admissions, or academic regularization
+- Real-time progress tracking
 
-### 2. Hub de Aprendizaje
-- Centralización de recursos educativos open-source
-- Contenido en múltiples formatos (video, texto, interactivo)
-- Generación de materiales personalizados con IA según el estilo de aprendizaje
+### 2. Learning Hub
+- Centralization of open-source educational resources
+- Content in multiple formats (video, text, interactive)
+- AI-generated personalized materials based on learning style
 
-### 3. Comunidad Hiperlocal
-- Red social verificada institucionalmente
-- Colaboración en proyectos reales: emprendimiento, voluntariado, iniciativas cívicas
-- Construcción de CV y portafolio con experiencias verificables
+### 3. Hyper-Local Community
+- Institutionally verified social network
+- Collaboration on real projects: entrepreneurship, volunteering, civic initiatives
+- CV and portfolio building with verifiable experiences
 
-## 🛠 Tecnologías
+## 🛠 Technologies
 
 ### Frontend
 - HTML5, CSS3, JavaScript
 - Progressive Web App (PWA)
-- [Otras librerías/frameworks específicos]
 
 ### Backend
 - Python
-- [Framework específico - FastAPI/Django/Flask]
-- APIs de IA para personalización
+- FastAPI, Docker, OpenAI, Redis
+- AI APIs for personalization (Sora, Chatgpt-4)
 
-### Base de Datos
-- [Sistema de BD utilizado]
+### Database
+- SQLite
 
-### Infraestructura
-- [Detalles de deployment]
+## 🚀 Installation
 
-## 🚀 Instalación
-
-### Prerrequisitos
+### Prerequisites
 ```bash
 node >= 14.x
 python >= 3.8
-[otros requisitos]
+[other requirements]
 ```
 
-### Configuración Local
+### Local Setup
 
-1. Clona el repositorio
+1. Clone the repository
 ```bash
-git clone https://github.com/tu-usuario/pathwise.git
+git clone https://github.com/your-username/pathwise.git
 cd pathwise
 ```
 
-2. Instala dependencias del frontend
+2. Install frontend dependencies
 ```bash
 cd FrontEnd
 npm install
 ```
 
-3. Instala dependencias del backend
+3. Install backend dependencies
 ```bash
-cd ../[directorio-backend]
+cd ../[backend-directory]
 pip install -r requirements.txt
 ```
 
-4. Configura las variables de entorno
+4. Configure environment variables
 ```bash
 cp .env.example .env
-# Edita .env con tus credenciales
+# Edit .env with your credentials
 ```
 
-5. Ejecuta la aplicación
+5. Run the application
 ```bash
 # Terminal 1 - Frontend
 npm start
@@ -115,52 +111,54 @@ npm start
 python app.py
 ```
 
-## 📱 Uso
+## 📱 Usage
 
-[Instrucciones básicas de cómo usar la plataforma, capturas de pantalla, ejemplos]
+[Basic instructions on how to use the platform, screenshots, examples]
 
-## 📂 Estructura del Proyecto
+## 📂 Project Structure
 ```
 pathwise/
 ├── FrontEnd/
-│   ├── index.html
-│   ├── css/
-│   ├── js/
-│   └── assets/
 ├── Clases/
-│   └── [clases Python]
-├── Oportunidades/
-│   └── [módulo de oportunidades]
+│   ├── api_integrators/
+│   ├── cache/
+│   ├── models/
+│   ├── routes/
+│   ├── streaming/
+│   ├── utils/
+│   ├── uploads/
+│   └── app.py
 ├── .gitignore
-├── README.md
-└── [otros archivos de configuración]
+├── requirements.txt
+└── README.md
+
 ```
 
 ## 🗺 Roadmap
 
-- [ ] Implementación completa del sistema de diagnóstico
-- [ ] Integración con APIs de contenido educativo
-- [ ] Sistema de verificación institucional
-- [ ] Generación de contenido con IA
-- [ ] Tier Premium con analytics avanzados
-- [ ] Expansión a otros estados de México
-- [ ] Versión para educación media
+- [ ] Complete implementation of community section
+- [ ] Integration with educational content APIs
+- [ ] Integration of real-time events
+- [ ] AI Chatbot and automatized monthly email dashboards
+- [ ] Premium tier with advanced analytics and colabs
+- [ ] Expansion to regional powerhouses such as Brazil and Chile
+- [ ] Continuing education and graduate extension
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-Las contribuciones son lo que hace que la comunidad de código abierto sea un lugar increíble para aprender, inspirar y crear. Cualquier contribución que hagas será **muy apreciada**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork el proyecto
-2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-Lee [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles sobre nuestro código de conducta y el proceso para enviarnos pull requests.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 👥 Equipo Quechultenango
+## 👥 Les Huntrix Team
 
-**PathWise** es desarrollado por un equipo multidisciplinario comprometido con la equidad educativa:
+**PathWise** is developed by a multidisciplinary team committed to educational equity:
 
 - **Maximilien Tragraz Quintana** - Project Manager, Team Lead, AI & Backend Engineer
 - **Adolfo Navarrete Nájera** - UX Designer
@@ -168,22 +166,28 @@ Lee [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles sobre nuestro código 
 - **Karla Yvette Alemán Pastrana** - Data Engineer, Analyst & Finance Lead
 - **Ana Patricia Figueroa Nuche** - Researcher
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia [TIPO DE LICENCIA] - ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the [LICENSE TYPE] License - see the [LICENSE](LICENSE) file for details.
 
-## 📧 Contacto
+## 📧 Contact
 
 PathWise - [@pathwise](https://twitter.com/pathwise) - contact@pathwise.com
 
-Link del Proyecto: [https://github.com/tu-usuario/pathwise](https://github.com/tu-usuario/pathwise)
+Project Link: [https://github.com/your-username/pathwise](https://github.com/your-username/pathwise)
 
-## 🏆 Reconocimientos
+## 🏆 Acknowledgments
 
-Desarrollado para **DigiEduHack 2025**
+Developed at and winner: **DigiEduHack 2025 Tec campus Puebla** 
 - Challenge: Social Mobility
 - Category: AI and Emerging Technologies
-- Enfoque: Society 5.0
+- Approach: Society 5.0
+
+---
+
+<p align="center">
+  Made with ❤️ from Mexico to students all across the world
+</p>
 
 ---
 
