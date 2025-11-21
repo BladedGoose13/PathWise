@@ -51,8 +51,8 @@ Mexico's upper-secondary education system shows deep inequality: many public sch
 - Content in multiple formats (video, text, interactive)
 - AI-generated personalized materials based on learning style
 
-### 3. Hyper-Local Community
-- Institutionally verified social network
+### 3. Hyper-Local Community (within city or locality)
+- **Institutionally verified** social network
 - Collaboration on real projects: entrepreneurship, volunteering, civic initiatives
 - CV and portfolio building with verifiable experiences
 
