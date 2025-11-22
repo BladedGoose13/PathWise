@@ -242,36 +242,9 @@
   }
   </script>
 
-  <!-- Cargar la API de Google Maps dinámicamente usando la clave que devuelve /config -->
-  <script>
-  async function loadGoogleMaps() {
-    try {
-      const res = await fetch('/config');
-      if (!res.ok) throw new Error('No se obtuvo configuración del servidor');
-      const cfg = await res.json();
-      const key = cfg.google_maps_key;
-      if (!key) throw new Error('API key no disponible en /config');
-
-      const s = document.createElement('script');
-      s.async = true;
-      s.defer = true;
-      s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&libraries=places&callback=initMap`;
-      document.head.appendChild(s);
-
-      setTimeout(() => {
-        if (typeof google === 'undefined') {
-          console.error('Google Maps failed to load in time.');
-          alert('No se pudo cargar Google Maps. Revisa la configuración del servidor o la clave de la API.');
-        }
-      }, 10000);
-    } catch (e) {
-      console.error('Error cargando configuración de mapas:', e);
-      alert('No se pudo cargar la configuración del mapa. Contacta al administrador.');
-    }
-  }
-
-  // Inicia la carga
-  loadGoogleMaps();
-  </script>
+<!-- Carga correcta de Google Maps JS API -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8GjXLicr6OLrQxMriD7d7422fIGwbGh0&libraries=places&callback=initMap">
+</script>
 </body>
 </html>
