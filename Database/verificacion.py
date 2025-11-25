@@ -5,6 +5,7 @@ Integración completa con OpenAI para verificación inteligente
 
 import sqlite3
 import re
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
@@ -138,145 +139,138 @@ def verificar_con_openai(nombre, escuela, email):
 
 class SistemaVerificacion:
     def __init__(self, db_path):
-        self.db_path = db_path
-        self.conn = None
-    
-    def conectar(self):
-        self.conn = sqlite3.connect(self.db_path)
-        return self.conn.cursor()
-    
-    def cerrar(self):
-        if self.conn:
-            self.conn.close()
+        self.db_path = str(db_path)
+
+    @contextmanager
+    def _connect(self):
+        conn = sqlite3.connect(self.db_path)
+        try:
+            yield conn
+        finally:
+            conn.close()
     
     def registrar_usuario(self, email, nombre, escuela, grado_actual, area, community_tipo=None):
         """
         Registra un nuevo usuario con verificación automática
         """
-        cursor = self.conectar()
-        
-        # 1. Validar formato de email
-        if not validar_formato_email(email):
-            self.cerrar()
-            return {
-                'exito': False,
-                'error': 'Formato de email inválido'
-            }
-        
-        # 2. Verificar si el email ya existe
-        cursor.execute("SELECT email FROM usuarios WHERE email = ?", (email,))
-        if cursor.fetchone():
-            self.cerrar()
-            return {
-                'exito': False,
-                'error': 'El email ya está registrado'
-            }
-        
-        # 3. Detectar si es institucional
-        es_institucional, nombre_institucion, confianza_dominio = detectar_institucion(email)
-        
-        # 4. Verificación adicional con OpenAI (si está disponible)
-        verificacion_ia = verificar_con_openai(nombre, escuela, email)
-        
-        # 5. Determinar si requiere verificación
-        requiere_verificacion = 'SI' if (es_institucional or verificacion_ia['es_estudiante']) else 'NO'
-        
-        # 6. Insertar en la base de datos
-        try:
-            cursor.execute('''
-                INSERT INTO usuarios 
-                (email, nombre, escuela, grado_actual, area, community_tipo, requiere_verificacion_estudiante)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (email, nombre, escuela, grado_actual, area, community_tipo, requiere_verificacion))
-            
-            self.conn.commit()
-            
-            resultado = {
-                'exito': True,
-                'email': email,
-                'requiere_verificacion': requiere_verificacion,
-                'deteccion_dominio': {
-                    'es_institucional': es_institucional,
-                    'institucion': nombre_institucion,
-                    'confianza': confianza_dominio
-                },
-                'verificacion_ia': verificacion_ia
-            }
-            
-            self.cerrar()
-            return resultado
-            
-        except Exception as e:
-            self.cerrar()
-            return {
-                'exito': False,
-                'error': str(e)
-            }
+        with self._connect() as conn:
+            cursor = conn.cursor()
+
+            # 1. Validar formato de email
+            if not validar_formato_email(email):
+                return {
+                    'exito': False,
+                    'error': 'Formato de email inválido'
+                }
+
+            # 2. Verificar si el email ya existe
+            cursor.execute("SELECT email FROM usuarios WHERE email = ?", (email,))
+            if cursor.fetchone():
+                return {
+                    'exito': False,
+                    'error': 'El email ya está registrado'
+                }
+
+            # 3. Detectar si es institucional
+            es_institucional, nombre_institucion, confianza_dominio = detectar_institucion(email)
+
+            # 4. Verificación adicional con OpenAI (si está disponible)
+            verificacion_ia = verificar_con_openai(nombre, escuela, email)
+
+            # 5. Determinar si requiere verificación
+            requiere_verificacion = 'SI' if (es_institucional or verificacion_ia['es_estudiante']) else 'NO'
+
+            # 6. Insertar en la base de datos
+            try:
+                cursor.execute('''
+                    INSERT INTO usuarios
+                    (email, nombre, escuela, grado_actual, area, community_tipo, requiere_verificacion_estudiante)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ''', (email, nombre, escuela, grado_actual, area, community_tipo, requiere_verificacion))
+
+                conn.commit()
+
+                return {
+                    'exito': True,
+                    'email': email,
+                    'requiere_verificacion': requiere_verificacion,
+                    'deteccion_dominio': {
+                        'es_institucional': es_institucional,
+                        'institucion': nombre_institucion,
+                        'confianza': confianza_dominio
+                    },
+                    'verificacion_ia': verificacion_ia
+                }
+
+            except Exception as e:
+                return {
+                    'exito': False,
+                    'error': str(e)
+                }
     
     def obtener_usuarios_pendientes(self):
         """
         Obtiene lista de usuarios que requieren verificación
         """
-        cursor = self.conectar()
-        cursor.execute('''
-            SELECT email, nombre, escuela, grado_actual
-            FROM usuarios
-            WHERE requiere_verificacion_estudiante = 'SI'
-        ''')
-        
-        usuarios = cursor.fetchall()
-        self.cerrar()
-        
-        return [
-            {
-                'email': u[0],
-                'nombre': u[1],
-                'escuela': u[2],
-                'grado': u[3]
-            }
-            for u in usuarios
-        ]
+        with self._connect() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT email, nombre, escuela, grado_actual
+                FROM usuarios
+                WHERE requiere_verificacion_estudiante = 'SI'
+            ''')
+
+            usuarios = cursor.fetchall()
+
+            return [
+                {
+                    'email': u[0],
+                    'nombre': u[1],
+                    'escuela': u[2],
+                    'grado': u[3]
+                }
+                for u in usuarios
+            ]
     
     def generar_reporte(self):
         """
         Genera un reporte completo del sistema
         """
-        cursor = self.conectar()
-        
-        # Total de usuarios
-        cursor.execute("SELECT COUNT(*) FROM usuarios")
-        total = cursor.fetchone()[0]
-        
-        # Usuarios que requieren verificación
-        cursor.execute("SELECT COUNT(*) FROM usuarios WHERE requiere_verificacion_estudiante = 'SI'")
-        con_verificacion = cursor.fetchone()[0]
-        
-        # Usuarios verificados
-        cursor.execute("SELECT COUNT(*) FROM usuarios WHERE requiere_verificacion_estudiante = 'NO'")
-        sin_verificacion = cursor.fetchone()[0]
-        
-        # Top instituciones
-        cursor.execute('''
-            SELECT escuela, COUNT(*) as total
-            FROM usuarios
-            GROUP BY escuela
-            ORDER BY total DESC
-            LIMIT 5
-        ''')
-        top_instituciones = cursor.fetchall()
-        
-        self.cerrar()
-        
-        return {
-            'total_usuarios': total,
-            'requieren_verificacion': con_verificacion,
-            'verificados': sin_verificacion,
-            'porcentaje_institucional': round((con_verificacion / total * 100) if total > 0 else 0, 2),
-            'top_instituciones': [
-                {'nombre': inst[0], 'estudiantes': inst[1]} 
-                for inst in top_instituciones
-            ]
-        }
+        with self._connect() as conn:
+            cursor = conn.cursor()
+
+            # Total de usuarios
+            cursor.execute("SELECT COUNT(*) FROM usuarios")
+            total = cursor.fetchone()[0]
+
+            # Usuarios que requieren verificación
+            cursor.execute("SELECT COUNT(*) FROM usuarios WHERE requiere_verificacion_estudiante = 'SI'")
+            con_verificacion = cursor.fetchone()[0]
+
+            # Usuarios verificados
+            cursor.execute("SELECT COUNT(*) FROM usuarios WHERE requiere_verificacion_estudiante = 'NO'")
+            sin_verificacion = cursor.fetchone()[0]
+
+            # Top instituciones
+            cursor.execute('''
+                SELECT escuela, COUNT(*) as total
+                FROM usuarios
+                GROUP BY escuela
+                ORDER BY total DESC
+                LIMIT 5
+            ''')
+            top_instituciones = cursor.fetchall()
+
+            return {
+                'total_usuarios': total,
+                'requieren_verificacion': con_verificacion,
+                'verificados': sin_verificacion,
+                'porcentaje_institucional': round((con_verificacion / total * 100) if total > 0 else 0, 2),
+                'top_instituciones': [
+                    {'nombre': inst[0], 'estudiantes': inst[1]}
+                    for inst in top_instituciones
+                ]
+            }
 
 
 # ============================================================================

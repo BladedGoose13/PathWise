@@ -68,20 +68,19 @@ async def obtener_usuario(email: str):
     """Obtiene información de un usuario por email."""
     import sqlite3
 
-    conn = sqlite3.connect(DB_PATH_STR)
-    cursor = conn.cursor()
+    with sqlite3.connect(DB_PATH_STR) as conn:
+        cursor = conn.cursor()
 
-    cursor.execute(
-        """
-        SELECT email, nombre, escuela, requiere_verificacion_estudiante
-        FROM usuarios
-        WHERE email = ?
-        """,
-        (email,),
-    )
+        cursor.execute(
+            """
+            SELECT email, nombre, escuela, requiere_verificacion_estudiante
+            FROM usuarios
+            WHERE email = ?
+            """,
+            (email,),
+        )
 
-    usuario = cursor.fetchone()
-    conn.close()
+        usuario = cursor.fetchone()
 
     if not usuario:
         raise HTTPException(
