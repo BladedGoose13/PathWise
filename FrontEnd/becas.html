@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="inicio.css">
   <link rel="stylesheet" href="oportunidades.css">
   <link rel="stylesheet" href="becas.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@0..1" />
+  <!-- Use the proper Material Symbols URL with axes and display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD&display=swap" rel="stylesheet" />
   <style>
+    /* Force the Material Symbols family and variation settings */
+    .material-symbols-rounded {
+      font-family: 'Material Symbols Rounded' !important;
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+      font-size: 20px;
+      line-height: 1;
+      vertical-align: middle;
+      display: inline-block;
+    }
     /* === ESTILOS ADICIONALES PARA BECAS === */
     .profile-section {
       background: #fff;
@@ -82,17 +92,25 @@
       text-align: center;
       padding: 40px;
       color: #6b7280;
+      position: relative;
     }
 
     .loading-indicator::after {
-      content: '...';
-      animation: dots 1.5s steps(4, end) infinite;
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 4px;
+      background: transparent;
+      box-shadow: 6px 0 0 #6b7280, 12px 0 0 #6b7280, 18px 0 0 #6b7280;
+      animation: dots 1s steps(3, end) infinite;
+      margin-left: 8px;
+      vertical-align: middle;
     }
 
     @keyframes dots {
-      0%, 20% { content: '.'; }
-      40% { content: '..'; }
-      60%, 100% { content: '...'; }
+      0% { transform: translateX(0); opacity: 0.2; }
+      50% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(0); opacity: 0.2; }
     }
 
     .scholarship-card {
@@ -217,13 +235,17 @@
 
     .empty-state {
       text-align: center;
-      padding: 60px 20px;
-      color: #9ca3af;
+      padding: 40px 20px;
+      color: #744c0a;
+      background: #fff7e6; /* fondo amarillo claro */
+      border: 1px solid #f3d9a6;
+      border-radius: 12px;
     }
 
     .empty-state-icon {
-      font-size: 64px;
-      margin-bottom: 16px;
+      font-size: 48px;
+      margin-bottom: 12px;
+      color: #f59e0b; /* amarillo/ámbar para el icono */
     }
 
     .results-header {
@@ -279,7 +301,7 @@
         </li>
         <li class="nav-item">
           <a href="ayuda.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">Distance</span>
+            <span class="nav-icon material-symbols-rounded">place</span>
             <span class="nav-label">Oportunidades Locales</span>
           </a>
         </li>
@@ -418,7 +440,7 @@
   </main>
 
   <script>
-    const API_BASE = 'http://127.0.0.1:8001';
+    const API_BASE = 'http://127.0.0.1:8000';
 
     // Elementos del DOM
     const buscarBtn = document.getElementById('buscar-btn');
@@ -495,19 +517,29 @@
 
     function mostrarResultados(becas) {
       if (!becas || becas.length === 0) {
-        emptyState.innerHTML = `
-          <div class="empty-state-icon">😕</div>
-          <h3>No se encontraron becas</h3>
-          <p>Intenta ajustar tu perfil o revisa más tarde</p>
-        `;
+        // Mantener el "warning amarillo" usando nodos, no innerHTML bruto
+        emptyState.innerHTML = ''; // limpiar
+        const icon = document.createElement('div');
+        icon.className = 'empty-state-icon';
+        icon.textContent = '⚠️';
+        const title = document.createElement('h3');
+        title.textContent = 'No se encontraron becas';
+        const p = document.createElement('p');
+        p.textContent = 'Intenta ajustar tu perfil o revisa más tarde';
+        emptyState.appendChild(icon);
+        emptyState.appendChild(title);
+        emptyState.appendChild(p);
+
         emptyState.style.display = 'block';
+        resultadosContainer.style.display = 'none';
         return;
       }
 
-      // Mostrar resultados
+      // Mostrar resultados normalmente
       resultadosContainer.style.display = 'block';
-      resultsCount.textContent = `${becas.length} beca${becas.length > 1 ? 's' : ''} encontrada${becas.length > 1 ? 's' : ''}`;
+      emptyState.style.display = 'none';
 
+      resultsCount.textContent = `${becas.length} beca${becas.length > 1 ? 's' : ''} encontrada${becas.length > 1 ? 's' : ''}`;
       becasGrid.innerHTML = '';
 
       becas.forEach((beca, index) => {
@@ -521,73 +553,115 @@
       card.className = 'scholarship-card';
       card.style.animationDelay = `${index * 0.1}s`;
 
-      // Calcular porcentaje de match
+      // Header
+      const header = document.createElement('div');
+      header.className = 'scholarship-header';
+
+      const title = document.createElement('h3');
+      title.className = 'scholarship-title';
+      title.textContent = beca.title || beca.name || 'Beca Educativa';
+
+      const badge = document.createElement('span');
+      badge.className = 'match-badge';
       const matchScore = beca.match_score || beca.score || 85;
       const matchColor = matchScore >= 80 ? '#10b981' : matchScore >= 60 ? '#f59e0b' : '#6b7280';
+      badge.style.background = matchColor;
+      badge.textContent = `${matchScore}% match`;
 
-      card.innerHTML = `
-        <div class="scholarship-header">
-          <h3 class="scholarship-title">${beca.title || beca.name || 'Beca Educativa'}</h3>
-          <span class="match-badge" style="background: ${matchColor}">
-            ${matchScore}% match
-          </span>
-        </div>
+      header.appendChild(title);
+      header.appendChild(badge);
 
-        <div class="scholarship-institution">
-          ${beca.institution || beca.provider || 'Institución Educativa'}
-        </div>
+      // Institution & description
+      const inst = document.createElement('div');
+      inst.className = 'scholarship-institution';
+      inst.textContent = beca.institution || beca.provider || 'Institución Educativa';
 
-        <div class="scholarship-description">
-          ${beca.description || beca.summary || 'Beca disponible para estudiantes'}
-        </div>
+      const desc = document.createElement('div');
+      desc.className = 'scholarship-description';
+      desc.textContent = beca.description || beca.summary || 'Beca disponible para estudiantes';
 
-        ${beca.requirements ? `
-          <div class="scholarship-tags">
-            ${beca.requirements.map(req => `<span class="tag">${req}</span>`).join('')}
-          </div>
-        ` : ''}
+      // Tags (requirements)
+      let tags = null;
+      if (Array.isArray(beca.requirements) && beca.requirements.length) {
+        tags = document.createElement('div');
+        tags.className = 'scholarship-tags';
+        beca.requirements.forEach(req => {
+          const t = document.createElement('span');
+          t.className = 'tag';
+          t.textContent = req;
+          tags.appendChild(t);
+        });
+      }
 
-        <div class="scholarship-details">
-          ${beca.amount ? `
-            <div class="detail-item">
-              <span class="detail-label">Monto</span>
-              <span class="detail-value">${beca.amount}</span>
-            </div>
-          ` : ''}
-          
-          ${beca.deadline ? `
-            <div class="detail-item">
-              <span class="detail-label">Fecha límite</span>
-              <span class="detail-value">${beca.deadline}</span>
-            </div>
-          ` : ''}
-          
-          ${beca.level ? `
-            <div class="detail-item">
-              <span class="detail-label">Nivel</span>
-              <span class="detail-value">${beca.level}</span>
-            </div>
-          ` : ''}
-        </div>
+      // Details
+      const details = document.createElement('div');
+      details.className = 'scholarship-details';
+      if (beca.amount) {
+        const d = document.createElement('div');
+        d.className = 'detail-item';
+        d.innerHTML = `<span class="detail-label">Monto</span><span class="detail-value">${beca.amount}</span>`;
+        details.appendChild(d);
+      }
+      if (beca.deadline) {
+        const d = document.createElement('div');
+        d.className = 'detail-item';
+        d.innerHTML = `<span class="detail-label">Fecha límite</span><span class="detail-value">${beca.deadline}</span>`;
+        details.appendChild(d);
+      }
+      if (beca.level) {
+        const d = document.createElement('div');
+        d.className = 'detail-item';
+        d.innerHTML = `<span class="detail-label">Nivel</span><span class="detail-value">${beca.level}</span>`;
+        details.appendChild(d);
+      }
 
-        ${beca.why_recommended ? `
-          <div style="margin-top: 12px; padding: 12px; background: #f0f9ff; border-radius: 8px; font-size: 0.9rem;">
-            <strong>💡 Por qué te recomendamos esta beca:</strong><br>
-            ${beca.why_recommended}
-          </div>
-        ` : ''}
+      // Why recommended
+      let why = null;
+      if (beca.why_recommended) {
+        why = document.createElement('div');
+        why.style.marginTop = '12px';
+        why.style.padding = '12px';
+        why.style.background = '#f0f9ff';
+        why.style.borderRadius = '8px';
+        why.style.fontSize = '0.9rem';
+        why.innerHTML = `<strong>💡 Por qué te recomendamos esta beca:</strong><br>${beca.why_recommended}`;
+      }
 
-        <div class="scholarship-actions">
-          ${beca.url ? `
-            <button class="action-btn primary-action" onclick="window.open('${beca.url}', '_blank')">
-              📋 Ver Convocatoria
-            </button>
-          ` : ''}
-          <button class="action-btn secondary-action" onclick="guardarBeca(${index})">
-            💾 Guardar
-          </button>
-        </div>
-      `;
+      // Actions (seguras, sin onclick inline)
+      const actions = document.createElement('div');
+      actions.className = 'scholarship-actions';
+
+      if (beca.url) {
+        const btnView = document.createElement('button');
+        btnView.type = 'button';
+        btnView.className = 'action-btn primary-action';
+        btnView.textContent = '📋 Ver Convocatoria';
+        btnView.addEventListener('click', () => {
+          try {
+            const safeUrl = String(beca.url);
+            window.open(safeUrl, '_blank', 'noopener');
+          } catch (e) {
+            console.error('URL inválida', e);
+          }
+        });
+        actions.appendChild(btnView);
+      }
+
+      const btnSave = document.createElement('button');
+      btnSave.type = 'button';
+      btnSave.className = 'action-btn secondary-action';
+      btnSave.textContent = '💾 Guardar';
+      btnSave.addEventListener('click', () => guardarBeca(index));
+      actions.appendChild(btnSave);
+
+      // Assemble card
+      card.appendChild(header);
+      card.appendChild(inst);
+      card.appendChild(desc);
+      if (tags) card.appendChild(tags);
+      if (details.children.length) card.appendChild(details);
+      if (why) card.appendChild(why);
+      card.appendChild(actions);
 
       return card;
     }
