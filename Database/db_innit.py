@@ -5,7 +5,13 @@ from fastapi import APIRouter, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 
-from .verificacion import SistemaVerificacion
+# Permite usar el módulo tanto como paquete instalado (import Database)
+# como ejecutarlo directamente (python Database/db_innit.py) sin fallar
+# por imports relativos.
+try:
+    from .verificacion import SistemaVerificacion
+except ImportError:  # pragma: no cover - ruta alternativa para ejecución directa
+    from verificacion import SistemaVerificacion
 
 DB_PATH = Path(__file__).with_name("PATWISE.db")
 DB_PATH_STR = str(DB_PATH)
