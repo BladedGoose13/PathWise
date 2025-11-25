@@ -72,6 +72,23 @@ except ImportError as e:
     print(f"⚠️ Oportunidades no disponible: {e}")
 
 # ============================================================================
+# IMPORTAR ROUTERS - DATABASE (verificación de estudiantes)
+# ============================================================================
+
+try:
+    from Database.db_innit import router as database_router
+
+    app.include_router(
+        database_router,
+        prefix="/api",
+        tags=["✅ Verificación Estudiantil"],
+    )
+
+    print("✅ Módulo de Database cargado")
+except ImportError as e:
+    print(f"⚠️ Database no disponible: {e}")
+
+# ============================================================================
 # ENDPOINTS
 # ============================================================================
 
