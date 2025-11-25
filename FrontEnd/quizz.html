@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pathwise | Quiz de Aprendizaje</title>
+
+  <!-- Conectar CSS página-->
+  <link rel="stylesheet" href="quizz.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-title">
+        <span class="logo-dot"></span>
+        <span>Pathwise · Quiz de aprendizaje</span>
+      </div>
+      <p class="header-subtitle">
+        Responde chill pero honesto/a. Con esto armamos tu roadmap y dejamos lista la versión Plus si luego la activas.
+      </p>
+    </header>
+
+    <!-- Hero con botón que lleva al quiz -->
+    <section class="hero">
+      <div class="hero-text">
+        <div class="hero-text-title">¿Cómo aprendes mejor?</div>
+        <p class="hero-text-body">
+          Descubre tu tipo de aprendizaje, en qué materias necesitas más apoyo y qué ritmo de estudio va contigo. 
+          Solo son unas cuantas preguntas de opción múltiple.
+        </p>
+        <div class="hero-cta">
+          <span class="hero-tag">Paso 1</span>
+          <a href="#quiz" class="primary-btn">
+            Descubre tu tipo de aprendizaje
+            <span class="primary-btn-icon">➜</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <form id="quiz" action="/guardar-cuestionario" method="POST">
+      <input type="hidden" name="form_id" value="diagnostico_inicial_pathwise" />
+
+      <!-- A) Sobre ti -->
+      <section class="form-section">
+        <div class="section-header">
+          <div class="section-title">Sobre ti</div>
+          <span class="section-badge">Perfil general</span>
+        </div>
+        <p class="section-description">
+          Esto nos ayuda a ubicar tu contexto (secundaria, prepa o uni) y tu punto de partida.
+        </p>
+
+        <!-- Nivel educativo -->
+        <div class="field-group">
+          <span class="field-label">¿En qué estás ahorita?</span>
+          <div class="options-grid options-grid--small">
+            <label class="option-item">
+              <input type="radio" name="nivel_educativo" value="secundaria" />
+              <div class="option-text">
+                <span class="option-main">Estoy en secundaria</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="nivel_educativo" value="prepa" checked />
+              <div class="option-text">
+                <span class="option-main">Estoy en prepa</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="nivel_educativo" value="uni" />
+              <div class="option-text">
+                <span class="option-main">Estoy en universidad / ya egresé</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- BLOQUE SECUNDARIA -->
+        <div id="bloque-secundaria" class="hidden">
+          <div class="field-group">
+            <label for="sec_grado" class="field-label">¿En qué grado de secundaria vas?</label>
+            <select id="sec_grado" name="sec_grado" data-required-secundaria="true">
+              <option value="">Elige una opción</option>
+              <option value="1">1° de secundaria</option>
+              <option value="2">2° de secundaria</option>
+              <option value="3">3° de secundaria</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">¿En qué tipo de secundaria estás?</span>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_sec" value="publica" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Secundaria pública</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_sec" value="privada" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Secundaria privada</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_sec" value="tecnica" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Secundaria técnica</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_sec" value="telesecundaria" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Telesecundaria</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_sec" value="otra" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Otra</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOQUE PREPA -->
+        <div id="bloque-prepa">
+          <div class="field-group">
+            <label for="semestre" class="field-label">¿En qué semestre de prepa vas?</label>
+            <select id="semestre" name="semestre" data-required-prepa="true">
+              <option value="">Elige una opción</option>
+              <option value="1">1° semestre</option>
+              <option value="2">2° semestre</option>
+              <option value="3">3° semestre</option>
+              <option value="4">4° semestre</option>
+              <option value="5">5° semestre</option>
+              <option value="6">6° semestre</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">¿En qué tipo de prepa estás?</span>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_prepa" value="publica" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Prepa pública</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_prepa" value="privada" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Prepa privada</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_prepa" value="tecnica" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Bachillerato técnico / con carrera técnica</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_prepa" value="otro" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Otro tipo de prepa</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOQUE UNI / EDUCACIÓN CONTINUA -->
+        <div id="bloque-uni" class="hidden">
+          <div class="field-group">
+            <label for="uni_area" class="field-label">¿En qué área estudias (o estudiaste) en la uni?</label>
+            <select id="uni_area" name="uni_area" data-required-uni="true">
+              <option value="">Elige un área</option>
+              <option value="negocios_finanzas">Negocios y finanzas</option>
+              <option value="ingenierias_tecnologia">Ingenierías y tecnología</option>
+              <option value="salud">Salud (medicina, enfermería, etc.)</option>
+              <option value="arte_diseno">Arte, diseño y creatividad</option>
+              <option value="ciencias_sociales_humanidades">Ciencias sociales y humanidades</option>
+              <option value="otra">Otra área</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="uni_anio" class="field-label">¿En qué año / generación vas?</label>
+            <select id="uni_anio" name="uni_anio" data-required-uni="true">
+              <option value="">Elige tu año</option>
+              <option value="1">1er año de uni</option>
+              <option value="2">2° año</option>
+              <option value="3">3er año</option>
+              <option value="4">4° año o más</option>
+              <option value="egresado">Ya egresé, pero quiero seguir aprendiendo</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">¿En qué tipo de universidad estás?</span>
+            <div class="options-grid options-grid--small">
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_uni" value="publica" data-required-uni="true" />
+                <div class="option-text">
+                  <span class="option-main">Uni pública</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_uni" value="privada" data-required-uni="true" />
+                <div class="option-text">
+                  <span class="option-main">Uni privada</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_uni" value="tecnologica" data-required-uni="true" />
+                <div class="option-text">
+                  <span class="option-main">Uni tecnológica / ingeniería</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_uni" value="online" data-required-uni="true" />
+                <div class="option-text">
+                  <span class="option-main">Uni en línea / mixta</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="tipo_escuela_uni" value="otra" data-required-uni="true" />
+                <div class="option-text">
+                  <span class="option-main">Otra</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel percibido (aplica para todos) -->
+        <div class="field-group">
+          <span class="field-label">En general, ¿cómo sientes tu nivel en la escuela ahorita?</span>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="radio" name="nivel_percibido" value="muy_bien" required />
+              <div class="option-text">
+                <span class="option-main">Voy muy bien, casi no batallo</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="nivel_percibido" value="maso" />
+              <div class="option-text">
+                <span class="option-main">Voy más o menos, hay materias que sí me pesan</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="nivel_percibido" value="sobreviviendo" />
+              <div class="option-text">
+                <span class="option-main">Siento que voy sobreviviendo 🙃</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="nivel_percibido" value="batallando" />
+              <div class="option-text">
+                <span class="option-main">Estoy batallando bastante en varias materias</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- B) Cómo aprendes mejor -->
+      <section class="form-section">
+        <div class="section-header">
+          <div class="section-title">¿Cómo aprendes mejor?</div>
+          <span class="section-badge">Estilo de aprendizaje</span>
+        </div>
+        <p class="section-description">
+          Con esto detectamos si eres más visual, auditivo, de lectura/escritura o de “aprender haciendo”.
+        </p>
+
+        <div class="field-group">
+          <span class="field-label">Cuando ves un tema nuevo, ¿con qué conectas más?</span>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="radio" name="aprender_nuevo" value="visual" required />
+              <div class="option-text">
+                <span class="option-main">Viendo imágenes, esquemas o videos</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="aprender_nuevo" value="auditivo" />
+              <div class="option-text">
+                <span class="option-main">Escuchando la explicación (profe, audio, podcast, etc.)</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="aprender_nuevo" value="lectura_escritura" />
+              <div class="option-text">
+                <span class="option-main">Leyendo y haciendo apuntes</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="aprender_nuevo" value="kinestesico" />
+              <div class="option-text">
+                <span class="option-main">Haciendo ejercicios / practicando / “aprendo haciendo”</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">Cuando estudias para un examen, ¿qué es lo que más haces?</span>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="radio" name="repaso" value="resumenes" required />
+              <div class="option-text">
+                <span class="option-main">Hago resúmenes, mapas mentales o cuadros</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="repaso" value="explicacion" />
+              <div class="option-text">
+                <span class="option-main">Le pido a alguien que me explique o explico en voz alta</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="repaso" value="leer_apuntes" />
+              <div class="option-text">
+                <span class="option-main">Leo mis apuntes o el libro varias veces</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="repaso" value="ejercicios" />
+              <div class="option-text">
+                <span class="option-main">Hago muchos ejercicios o simulacros de examen</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">En clase, ¿qué tipo de actividades te laten más?</span>
+          <p class="field-hint">Puedes marcar varias.</p>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="checkbox" name="actividades_preferidas[]" value="videos_presentaciones" />
+              <div class="option-text">
+                <span class="option-main">Ver videos, ejemplos visuales o presentaciones</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="actividades_preferidas[]" value="debates_exposiciones" />
+              <div class="option-text">
+                <span class="option-main">Debates, exposiciones, pláticas en grupo</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="actividades_preferidas[]" value="proyectos_manos" />
+              <div class="option-text">
+                <span class="option-main">Proyectos donde hago cosas con las manos</span>
+                <span class="option-sub">Maquetas, experimentos, actividades prácticas.</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="actividades_preferidas[]" value="lectura_escritura" />
+              <div class="option-text">
+                <span class="option-main">Actividades de lectura y escritura</span>
+                <span class="option-sub">Ensayos, reseñas, ejercicios escritos.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- C) Materias fuertes y débiles (secundaria + prepa) -->
+      <section id="section-materias" class="form-section">
+        <div class="section-header">
+          <div class="section-title">Materias fuertes y donde batallas</div>
+          <span class="section-badge">Perfil académico</span>
+        </div>
+        <p class="section-description">
+          Aquí vemos en qué materias necesitas más apoyo y en cuáles vas fuerte.
+        </p>
+
+        <div class="field-group">
+          <span class="field-label">¿En qué materias sientes que batallas más ahorita?</span>
+          <p class="field-hint">Marca todas las que apliquen.</p>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="matematicas" />
+              <div class="option-text">
+                <span class="option-main">Matemáticas</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="fisica" />
+              <div class="option-text">
+                <span class="option-main">Física</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="quimica" />
+              <div class="option-text">
+                <span class="option-main">Química</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="espanol" />
+              <div class="option-text">
+                <span class="option-main">Español / Lectura y redacción</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="ingles" />
+              <div class="option-text">
+                <span class="option-main">Inglés</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="historia" />
+              <div class="option-text">
+                <span class="option-main">Historia</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="ciencias_sociales" />
+              <div class="option-text">
+                <span class="option-main">Ciencias sociales (eco, socio, filo, etc.)</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="otra" />
+              <div class="option-text">
+                <span class="option-main">Otra materia</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_debiles[]" value="ninguna" />
+              <div class="option-text">
+                <span class="option-main">La neta en ninguna en especial</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">¿En qué materias te sientes más seguro/a?</span>
+          <p class="field-hint">Marca todas las que apliquen.</p>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="matematicas" />
+              <div class="option-text">
+                <span class="option-main">Matemáticas</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="fisica" />
+              <div class="option-text">
+                <span class="option-main">Física</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="quimica" />
+              <div class="option-text">
+                <span class="option-main">Química</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="espanol" />
+              <div class="option-text">
+                <span class="option-main">Español / Lectura y redacción</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="ingles" />
+              <div class="option-text">
+                <span class="option-main">Inglés</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="historia" />
+              <div class="option-text">
+                <span class="option-main">Historia</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="ciencias_sociales" />
+              <div class="option-text">
+                <span class="option-main">Ciencias sociales (eco, socio, filo, etc.)</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="checkbox" name="materias_fuertes[]" value="otra" />
+              <div class="option-text">
+                <span class="option-main">Otra materia</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- E) Metas e intereses (ramas secundaria / prepa / uni) -->
+      <section class="form-section">
+        <div class="section-header">
+          <div class="section-title">Tus metas y lo que te interesa</div>
+          <span class="section-badge">Foco del roadmap</span>
+        </div>
+        <p class="section-description">
+          Según esto definimos si tu roadmap es más de rescate, subir promedio, modo pre-uni o educación continua.
+        </p>
+
+        <!-- Objetivo general (aplica para todos) -->
+        <div class="field-group">
+          <span class="field-label">¿Cuál es tu meta principal con Pathwise en este periodo?</span>
+          <div class="options-grid">
+            <label class="option-item">
+              <input type="radio" name="objetivo_semestre" value="subir_promedio" required />
+              <div class="option-text">
+                <span class="option-main">Subir mi promedio en general</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="objetivo_semestre" value="rescatar_materias" />
+              <div class="option-text">
+                <span class="option-main">Rescatar materias donde voy flojo/a</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="objetivo_semestre" value="organizarme" />
+              <div class="option-text">
+                <span class="option-main">Organizarme mejor con tareas y exámenes</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="objetivo_semestre" value="prepararme_uni" />
+              <div class="option-text">
+                <span class="option-main">Prepararme para la uni / exámenes de admisión / posgrado</span>
+              </div>
+            </label>
+            <label class="option-item">
+              <input type="radio" name="objetivo_semestre" value="mantenerme" />
+              <div class="option-text">
+                <span class="option-main">Solo quiero mantenerme y no bajar</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- SECUNDARIA: después de la secu + meta específica -->
+        <div id="secundaria-extra" class="hidden">
+          <div class="field-group">
+            <span class="field-label">Después de secundaria, lo que más te gustaría es…</span>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="sec_plan_despues" value="prepa_general" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Entrar a una prepa general</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="sec_plan_despues" value="prepa_tecnica" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Entrar a una prepa técnica / con carrera técnica</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="sec_plan_despues" value="otra_opcion" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Otra opción (trabajo, otra escuela, etc.)</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="sec_plan_despues" value="no_se" data-required-secundaria="true" />
+                <div class="option-text">
+                  <span class="option-main">Todavía no estoy segura/o</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="sec_meta_objetivo" class="field-label">
+              ¿Qué te gustaría lograr con Pathwise en secundaria?
+            </label>
+            <select id="sec_meta_objetivo" name="sec_meta_objetivo" data-required-secundaria="true">
+              <option value="">Elige una opción</option>
+              <option value="pasar_sin_extra">
+                Pasar todas mis materias sin extraordinarios
+              </option>
+              <option value="subir_calificaciones_prepa">
+                Subir mis calificaciones para aplicar a una buena prepa
+              </option>
+              <option value="preparar_examen_prepa">
+                Prepararme para examen de admisión a prepa
+              </option>
+              <option value="organizar_tareas">
+                Organizarme mejor con tareas, proyectos y exámenes
+              </option>
+              <option value="descubrir_gustos">
+                Descubrir qué materias/áreas me gustan para la prepa
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- PREPA: área de interés + uni extranjero -->
+        <div id="prepa-area-interes">
+          <div class="field-group">
+            <span class="field-label">¿Qué área te llama más la atención para tu futuro?</span>
+            <div class="options-grid">
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="negocios_finanzas" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Negocios y finanzas</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="ingenierias_tecnologia" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Ingenierías y tecnología</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="salud" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Salud (medicina, enfermería, etc.)</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="arte_diseno" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Arte, diseño, creatividad</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="ciencias_sociales_humanidades" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Ciencias sociales y humanidades</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="deportes" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Deportes / actividad física</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="area_interes" value="no_se" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Todavía no tengo idea</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">¿Te interesa estudiar la universidad en el extranjero?</span>
+            <div class="options-grid options-grid--small">
+              <label class="option-item">
+                <input type="radio" name="uni_extranjero" value="si" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">Sí</span>
+                </div>
+              </label>
+              <label class="option-item">
+                <input type="radio" name="uni_extranjero" value="no" data-required-prepa="true" />
+                <div class="option-text">
+                  <span class="option-main">No</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNI: metas de educación continua -->
+        <div id="uni-metas-extra" class="hidden">
+          <div class="field-group">
+            <label for="uni_meta_objetivo" class="field-label">
+              Si estás en universidad o ya egresaste, ¿qué te gustaría conseguir con Pathwise?
+            </label>
+            <select id="uni_meta_objetivo" name="uni_meta_objetivo" data-required-uni="true">
+              <option value="">Elige una opción</option>
+              <option value="subir_promedio_carrera">Subir mi promedio y repasar bases de mi carrera</option>
+              <option value="repasar_temas_clave">Repasar temas clave antes de exámenes o finales</option>
+              <option value="servicio_practicas">
+                Prepararme para servicio social, prácticas o primer trabajo
+              </option>
+              <option value="certificaciones_posgrado">
+                Prepararme para certificaciones o exámenes de posgrado
+              </option>
+              <option value="actualizarme_area">
+                Mantenerme actualizada/o en temas nuevos de mi área
+              </option>
+              <option value="aprender_algo_distinto">
+                Aprender algo distinto a mi carrera por gusto
+              </option>
+            </select>
+            <p class="field-hint">
+              Esto nos ayuda a armarte un plan más de educación continua y no solo de materias de prepa.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Botón para ver el tipo de aprendizaje -->
+      <div class="submit-row">
+        <button type="button" id="btn-resultado" class="primary-btn">
+          Ver mi tipo de aprendizaje
+          <span class="primary-btn-icon">⭐</span>
+        </button>
+      </div>
+
+      <!-- Resultado del tipo de aprendizaje -->
+      <section id="resultado-aprendizaje" class="form-section result-section hidden">
+        <h2 class="result-title">
+          Tu tipo de aprendizaje es: 
+          <span id="tipo-aprendizaje-label"></span>
+        </h2>
+        <p id="tipo-aprendizaje-descripcion" class="result-description"></p>
+      </section>
+    </form>
+  </div>
+
+  <!-- Script para manejar secundaria/prepa/uni + calcular tipo de aprendizaje -->
+  <script>
+    (function () {
+      const form = document.getElementById('quiz');
+      const btn = document.getElementById('btn-resultado');
+      const resultSection = document.getElementById('resultado-aprendizaje');
+      const resultLabel = document.getElementById('tipo-aprendizaje-label');
+      const resultDesc = document.getElementById('tipo-aprendizaje-descripcion');
+
+      // Elementos para ramas
+      const levelRadios = document.querySelectorAll('input[name="nivel_educativo"]');
+      const bloqueSecundaria = document.getElementById('bloque-secundaria');
+      const bloquePrepa = document.getElementById('bloque-prepa');
+      const bloqueUni = document.getElementById('bloque-uni');
+      const sectionMaterias = document.getElementById('section-materias');
+      const secundariaExtra = document.getElementById('secundaria-extra');
+      const prepaAreaInteres = document.getElementById('prepa-area-interes');
+      const uniMetasExtra = document.getElementById('uni-metas-extra');
+
+      const secundariaRequired = document.querySelectorAll('[data-required-secundaria="true"]');
+      const prepaRequired = document.querySelectorAll('[data-required-prepa="true"]');
+      const uniRequired = document.querySelectorAll('[data-required-uni="true"]');
+
+      function updateEducationalBlocks() {
+        const selected = document.querySelector('input[name="nivel_educativo"]:checked')?.value;
+
+        if (selected === 'secundaria') {
+          // mostrar secundaria
+          if (bloqueSecundaria) bloqueSecundaria.classList.remove('hidden');
+          if (bloquePrepa) bloquePrepa.classList.add('hidden');
+          if (bloqueUni) bloqueUni.classList.add('hidden');
+
+          if (sectionMaterias) sectionMaterias.classList.remove('hidden');
+          if (secundariaExtra) secundariaExtra.classList.remove('hidden');
+          if (prepaAreaInteres) prepaAreaInteres.classList.add('hidden');
+          if (uniMetasExtra) uniMetasExtra.classList.add('hidden');
+
+          secundariaRequired.forEach(el => el.required = true);
+          prepaRequired.forEach(el => el.required = false);
+          uniRequired.forEach(el => el.required = false);
+        } else if (selected === 'prepa') {
+          // mostrar prepa
+          if (bloqueSecundaria) bloqueSecundaria.classList.add('hidden');
+          if (bloquePrepa) bloquePrepa.classList.remove('hidden');
+          if (bloqueUni) bloqueUni.classList.add('hidden');
+
+          if (sectionMaterias) sectionMaterias.classList.remove('hidden');
+          if (secundariaExtra) secundariaExtra.classList.add('hidden');
+          if (prepaAreaInteres) prepaAreaInteres.classList.remove('hidden');
+          if (uniMetasExtra) uniMetasExtra.classList.add('hidden');
+
+          secundariaRequired.forEach(el => el.required = false);
+          prepaRequired.forEach(el => el.required = true);
+          uniRequired.forEach(el => el.required = false);
+        } else {
+          // universidad / egresado
+          if (bloqueSecundaria) bloqueSecundaria.classList.add('hidden');
+          if (bloquePrepa) bloquePrepa.classList.add('hidden');
+          if (bloqueUni) bloqueUni.classList.remove('hidden');
+
+          if (sectionMaterias) sectionMaterias.classList.add('hidden');
+          if (secundariaExtra) secundariaExtra.classList.add('hidden');
+          if (prepaAreaInteres) prepaAreaInteres.classList.add('hidden');
+          if (uniMetasExtra) uniMetasExtra.classList.remove('hidden');
+
+          secundariaRequired.forEach(el => el.required = false);
+          prepaRequired.forEach(el => el.required = false);
+          uniRequired.forEach(el => el.required = true);
+        }
+      }
+
+      levelRadios.forEach(r => r.addEventListener('change', updateEducationalBlocks));
+      updateEducationalBlocks(); // Estado inicial
+
+      const labels = {
+        visual: 'Visual',
+        auditivo: 'Auditivo',
+        lectura_escritura: 'Lectura / escritura',
+        kinestesico: 'Kinestésico'
+      };
+
+      const descriptions = {
+        visual: 'Eres visual: te ayudan muchísimo las imágenes, esquemas, colores y videos. Si ves el tema en mapas, cuadros o diagramas, se te queda mucho mejor.',
+        auditivo: 'Eres auditivo: aprendes escuchando y hablando. Te funciona que alguien te explique, los podcasts, los audios y repetir las cosas en voz alta como si dieras clase.',
+        lectura_escritura: 'Eres de lectura / escritura: te hace clic leer, subrayar, hacer apuntes, resúmenes y listas. Si lo ves escrito y lo vuelves a escribir, se te graba cañón.',
+        kinestesico: 'Eres kinestésico: aprendes haciendo. Necesitas practicar, resolver ejercicios, experimentar y moverte; si solo escuchas o lees, te aburres rápido.'
+      };
+
+      function calcularTipoAprendizaje() {
+        const data = new FormData(form);
+        const scores = {
+          visual: 0,
+          auditivo: 0,
+          lectura_escritura: 0,
+          kinestesico: 0
+        };
+
+        // Estilo al ver tema nuevo
+        const q4 = data.get('aprender_nuevo');
+        if (q4 && scores[q4] !== undefined) {
+          scores[q4] += 2;
+        }
+
+        // Estilo al repasar
+        const repaso = data.get('repaso');
+        const repasoMap = {
+          resumenes: 'visual',
+          explicacion: 'auditivo',
+          leer_apuntes: 'lectura_escritura',
+          ejercicios: 'kinestesico'
+        };
+        const estiloRepaso = repasoMap[repaso];
+        if (estiloRepaso && scores[estiloRepaso] !== undefined) {
+          scores[estiloRepaso] += 2;
+        }
+
+        // Actividades preferidas
+        const actividades = data.getAll('actividades_preferidas[]');
+        actividades.forEach((v) => {
+          if (v === 'videos_presentaciones') scores.visual += 1;
+          if (v === 'debates_exposiciones') scores.auditivo += 1;
+          if (v === 'proyectos_manos') scores.kinestesico += 1;
+          if (v === 'lectura_escritura') scores.lectura_escritura += 1;
+        });
+
+        const maxScore = Math.max(
+          scores.visual,
+          scores.auditivo,
+          scores.lectura_escritura,
+          scores.kinestesico
+        );
+
+        if (maxScore <= 0) {
+          alert('Responde primero las preguntas sobre cómo aprendes para ver tu resultado 🙂');
+          return;
+        }
+
+        let tiposGanadores = [];
+        for (const key in scores) {
+          if (scores[key] === maxScore) {
+            tiposGanadores.push(key);
+          }
+        }
+
+        let tipoClave;
+        let labelMostrar;
+
+        if (tiposGanadores.length === 1) {
+          tipoClave = tiposGanadores[0];
+          labelMostrar = labels[tipoClave];
+        } else {
+          const primeros = tiposGanadores.slice(0, 2);
+          tipoClave = primeros[0];
+          labelMostrar = primeros.map((c) => labels[c]).join(' + ');
+        }
+
+        resultLabel.textContent = labelMostrar;
+        resultDesc.textContent = descriptions[tipoClave] || '';
+
+        resultSection.classList.remove('hidden');
+        resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      btn.addEventListener('click', calcularTipoAprendizaje);
+    })();
+  </script>
+</body>
+</html>

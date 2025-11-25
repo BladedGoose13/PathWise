@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar sesión | PathWise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .auth-container {
+      background: #1e293b;
+      padding: 2.5rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .auth-form input {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: #f1f5f9;
+      color: black;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s ease;
+      display: block;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .footer-text {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .footer-text a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <h1>Iniciar sesión</h1>
+    <p class="subtitle">Accede a tu cuenta de PathWise</p>
+
+    <div class="auth-form">
+      <input 
+        type="email" 
+        placeholder="Correo electrónico" 
+        required
+      >
+
+      <input 
+        type="password" 
+        placeholder="Contraseña" 
+        required
+      >
+
+      <!-- BOTÓN COMO LINK (sin backend) -->
+      <a href="nuevoini.html" class="btn-primary">
+        Entrar a mi cuenta
+      </a>
+    </div>
+
+    <div class="footer-text">
+      ¿No tienes cuenta? <a href="registro.html">Crear cuenta</a>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PathWise | Comunidad · Foro</title>
+
+  <link rel="stylesheet" href="foro.css">
+</head>
+<body>
+  <div class="app">
+
+   <!-- SIDEBAR IZQUIERDA PRINCIPAL -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="Logo.png" alt="PathWise" />
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="nuevoini.html" class="nav-item nav-item--simple nav-item--active">Inicio</a>
+        <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+        <a href="oportunidades.html" class="nav-item nav-item--simple">Admisión</a>
+        <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
+
+        <button type="button" id="community-toggle" class="nav-item nav-item--group">
+          <span>Community</span>
+          <span class="nav-chevron">▾</span>
+        </button>
+
+        <div id="community-group" class="nav-sub nav-sub--open">
+          <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+          <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+          <a href="foro.html" class="nav-sub-item nav-sub-item--active">Foro</a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini">
+          <div class="user-avatar">K</div>
+          <div class="user-meta">
+            <div class="user-name">Karla</div>
+            <div class="user-tag">@usuario</div>
+          </div>
+        </div>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- BARRA DE SECCIONES (GENERAL / CARRERAS / PROYECTOS / EVENTOS) -->
+    <aside class="sections-bar">
+      <button class="section-pill section-pill--active" data-section="general">
+        General
+      </button>
+      <button class="section-pill" data-section="carreras">
+        Carreras
+      </button>
+      <button class="section-pill" data-section="proyectos">
+        Proyectos
+      </button>
+      <button class="section-pill" data-section="eventos">
+        Eventos
+      </button>
+    </aside>
+
+    <!-- BARRA DE CARRERAS (SOLO VISIBLE SI SECCIÓN = CARRERAS) -->
+    <aside class="communities-bar">
+      <ul class="communities-list">
+        <li class="community-icon" data-channel="community-medicina">
+          <div class="community-avatar">
+            <img src="medicina.png" alt="Medicina">
+          </div>
+          <span class="tooltip">Medicina</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-arquitectura">
+          <div class="community-avatar">
+            <img src="arquitectura.png" alt="Arquitectura">
+          </div>
+          <span class="tooltip">Arquitectura</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-contabilidad">
+          <div class="community-avatar">
+            <img src="contabilidad.png" alt="Contabilidad">
+          </div>
+          <span class="tooltip">Contabilidad</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-industrial">
+          <div class="community-avatar">
+            <img src="industrial.png" alt="Ing. Industrial">
+          </div>
+          <span class="tooltip">Ing. Industrial</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-finanzas">
+          <div class="community-avatar">
+            <img src="finanzas.png" alt="Finanzas">
+          </div>
+          <span class="tooltip">Finanzas</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-economia">
+          <div class="community-avatar">
+            <img src="economia.png" alt="Economía">
+          </div>
+          <span class="tooltip">Economía</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-marketing">
+          <div class="community-avatar">
+            <img src="marketing.png" alt="Marketing">
+          </div>
+          <span class="tooltip">Marketing</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-derecho">
+          <div class="community-avatar">
+            <img src="derecho.png" alt="Derecho">
+          </div>
+          <span class="tooltip">Derecho</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-mecatronica">
+          <div class="community-avatar">
+            <img src="ingmecanica.png" alt="Ing. Mecatrónica">
+          </div>
+          <span class="tooltip">Ing. Mecatrónica</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-administracion">
+          <div class="community-avatar">
+            <img src="administracion.png" alt="Administración">
+          </div>
+          <span class="tooltip">Administración</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-civil">
+          <div class="community-avatar">
+            <img src="ingcivil.png" alt="Ing. Civil">
+          </div>
+          <span class="tooltip">Ing. Civil</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-sistemas">
+          <div class="community-avatar">
+            <img src="ingsistemas.png" alt="Ing. en Sistemas">
+          </div>
+          <span class="tooltip">Ing. en Sistemas</span>
+        </li>
+
+        <li class="community-icon" data-channel="community-datos">
+          <div class="community-avatar">
+            <img src="analitica.png" alt="Analista de datos">
+          </div>
+          <span class="tooltip">Analista de datos</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main">
+      <header class="forum-header">
+        <div class="forum-title">
+          <h1>Foro de comunidad</h1>
+          <span class="forum-tag">PATHWISE COMMUNITY</span>
+        </div>
+        <div class="forum-subcopy">
+          Conecta con otros estudiantes, comparte tips y arma equipo para proyectos, admisión y becas.
+        </div>
+
+        <!-- Selector de ciudad -->
+        <div class="city-filter">
+          <span class="city-label">Ciudad:</span>
+          <button class="city-pill city-pill--active" data-city="puebla">Puebla</button>
+          <button class="city-pill" data-city="cdmx">CDMX</button>
+          <button class="city-pill" data-city="mty">Monterrey</button>
+          <button class="city-pill" data-city="gdl">Guadalajara</button>
+        </div>
+      </header>
+
+      <div class="forum-body">
+        <!-- Columna izquierda: amigos -->
+        <section class="friends-column">
+          <div class="friends-card">
+            <div class="friends-header">
+              <span class="friends-title">Buscar amigos</span>
+            </div>
+            <div class="friends-search">
+              <span class="search-icon">🔍</span>
+              <input type="text" placeholder="Busca amigos o usuarios..." />
+            </div>
+
+            <div class="friends-list">
+              <div class="friend-item" data-channel="dm-karla">
+                <div class="friend-avatar">K</div>
+                <div class="friend-info">
+                  <div class="friend-name">@karleman</div>
+                  <div class="friend-detail">Prepa · Finanzas</div>
+                </div>
+              </div>
+
+              <div class="friend-item" data-channel="dm-adolfo">
+                <div class="friend-avatar">A</div>
+                <div class="friend-info">
+                  <div class="friend-name">@adolficius</div>
+                  <div class="friend-detail">Uni · Mecatrónica</div>
+                </div>
+              </div>
+
+              <div class="friend-item" data-channel="dm-max">
+                <div class="friend-avatar">M</div>
+                <div class="friend-info">
+                  <div class="friend-name">@maxswallowz</div>
+                  <div class="friend-detail">Prepa · Ingeniería</div>
+                </div>
+              </div>
+
+              <div class="friend-item" data-channel="dm-itzel">
+                <div class="friend-avatar">I</div>
+                <div class="friend-info">
+                  <div class="friend-name">@itzelvalbrito</div>
+                  <div class="friend-detail">Prepa · Programación</div>
+                </div>
+              </div>
+
+              <div class="friend-item" data-channel="dm-ana">
+                <div class="friend-avatar">A</div>
+                <div class="friend-info">
+                  <div class="friend-name">@anafignu</div>
+                  <div class="friend-detail">Uni · Derecho</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Columna derecha: chat -->
+        <section class="chat-column">
+          <div class="chat-card">
+            <div class="chat-header">
+              <div class="chat-channel">
+                <div id="chat-channel-name" class="chat-channel-name">#puebla-general</div>
+                <div id="chat-channel-meta" class="chat-channel-meta">
+                  Ciudad · Puebla · Foro general
+                </div>
+              </div>
+            </div>
+
+            <div id="chat-messages" class="chat-messages">
+              <!-- Se llena con JS -->
+            </div>
+
+            <form class="chat-input-row">
+              <button type="button" class="icon-btn" title="Adjuntar archivo">📎</button>
+              <input
+                type="text"
+                id="chat-input"
+                class="chat-input"
+                placeholder="Escribe un mensaje para la comunidad..."
+              />
+              <button type="submit" class="primary-btn primary-btn--small">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- LÓGICA DEL FORO -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.getElementById("community-toggle");
+      const group = document.getElementById("community-group");
+
+      if (toggle && group) {
+        toggle.addEventListener("click", () => {
+          group.classList.toggle("nav-sub--open");
+        });
+      }
+
+      const chatChannelName = document.getElementById("chat-channel-name");
+      const chatChannelMeta = document.getElementById("chat-channel-meta");
+      const chatMessages = document.getElementById("chat-messages");
+      const chatInput = document.getElementById("chat-input");
+
+      const cityButtons = document.querySelectorAll(".city-pill");
+      const sectionButtons = document.querySelectorAll(".section-pill");
+      const communitiesBar = document.querySelector(".communities-bar");
+
+      let currentCity = "puebla";
+      let currentSection = "general";
+
+      // Chats demo: ciudades + secciones, carreras y DMs
+      const chats = {
+        /* === CIUDAD: PUEBLA === */
+        "city-puebla-general": {
+          name: "#puebla-general",
+          meta: "Ciudad · Puebla · Foro general",
+          placeholder: "Escribe un mensaje para el foro general de Puebla...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 7:30 p.m.",
+              text:
+                "Bienvenid@s al canal general de Puebla 💙. Aquí pueden presentarse y contar en qué prepa/uni están."
+            },
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 7:42 p.m.",
+              text:
+                "Alguien más aplica a becas para el Tec desde Puebla? Podemos compartir tips."
+            }
+          ]
+        },
+        "city-puebla-proyectos": {
+          name: "#puebla-proyectos",
+          meta: "Ciudad · Puebla · Proyectos estudiantiles",
+          placeholder: "Comparte o busca proyectos en Puebla...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 6:10 p.m.",
+              text:
+                "Busco equipo para proyecto de emprendimiento social, si alguien se quiere unir mándeme DM."
+            }
+          ]
+        },
+        "city-puebla-eventos": {
+          name: "#puebla-eventos",
+          meta: "Ciudad · Puebla · Eventos y actividades",
+          placeholder: "Comparte eventos, ferias y actividades en Puebla...",
+          messages: [
+            {
+              user: "@itzelvalbrito",
+              time: "Hoy · 5:05 p.m.",
+              text:
+                "Este fin hay feria de universidades en Angelópolis, si quieren luego subo el flyer."
+            }
+          ]
+        },
+
+        /* === CIUDAD: CDMX === */
+        "city-cdmx-general": {
+          name: "#cdmx-general",
+          meta: "Ciudad · CDMX · Foro general",
+          placeholder: "Escribe un mensaje para el foro general de CDMX...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 4:15 p.m.",
+              text:
+                "¿Quién está en prepa en CDMX y quiere organizar simuladores de admisión juntos?"
+            }
+          ]
+        },
+        "city-cdmx-proyectos": {
+          name: "#cdmx-proyectos",
+          meta: "Ciudad · CDMX · Proyectos estudiantiles",
+          placeholder: "Comparte o busca proyectos en CDMX...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 3:30 p.m.",
+              text:
+                "Abro este canal para quien quiera armar proyectos de impacto social en CDMX."
+            }
+          ]
+        },
+        "city-cdmx-eventos": {
+          name: "#cdmx-eventos",
+          meta: "Ciudad · CDMX · Eventos y actividades",
+          placeholder: "Comparte eventos, ferias y actividades en CDMX...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 2:10 p.m.",
+              text:
+                "En la Ciudad de México hay expo de universidades la próxima semana, luego comparto la info."
+            }
+          ]
+        },
+
+        /* === CIUDAD: MONTERREY === */
+        "city-mty-general": {
+          name: "#mty-general",
+          meta: "Ciudad · Monterrey · Foro general",
+          placeholder: "Escribe un mensaje para el foro general de Monterrey...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 1:00 p.m.",
+              text:
+                "Alguien más de prepa en Monterrey que quiera platicar de carreras de ingeniería?"
+            }
+          ]
+        },
+        "city-mty-proyectos": {
+          name: "#mty-proyectos",
+          meta: "Ciudad · Monterrey · Proyectos estudiantiles",
+          placeholder: "Comparte o busca proyectos en Monterrey...",
+          messages: [
+            {
+              user: "@adolficius",
+              time: "Hoy · 12:30 p.m.",
+              text:
+                "Busco equipo para proyecto de robótica y simuladores de admisión, si les late mándenme mensaje."
+            }
+          ]
+        },
+        "city-mty-eventos": {
+          name: "#mty-eventos",
+          meta: "Ciudad · Monterrey · Eventos y actividades",
+          placeholder: "Comparte eventos, ferias y actividades en Monterrey...",
+          messages: [
+            {
+              user: "@itzelvalbrito",
+              time: "Ayer · 9:40 p.m.",
+              text:
+                "El Tec va a hacer open house de medicina, si alguien quiere ir podemos organizarnos."
+            }
+          ]
+        },
+
+        /* === CIUDAD: GUADALAJARA === */
+        "city-gdl-general": {
+          name: "#gdl-general",
+          meta: "Ciudad · Guadalajara · Foro general",
+          placeholder: "Escribe un mensaje para el foro general de Guadalajara...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 11:20 a.m.",
+              text:
+                "Dejen aquí en qué prepa/uni están en GDL y qué carrera les interesa."
+            }
+          ]
+        },
+        "city-gdl-proyectos": {
+          name: "#gdl-proyectos",
+          meta: "Ciudad · Guadalajara · Proyectos estudiantiles",
+          placeholder: "Comparte o busca proyectos en Guadalajara...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 10:55 a.m.",
+              text:
+                "Alguien quiere armar proyecto de finanzas personales para chavos de prepa?"
+            }
+          ]
+        },
+        "city-gdl-eventos": {
+          name: "#gdl-eventos",
+          meta: "Ciudad · Guadalajara · Eventos y actividades",
+          placeholder: "Comparte eventos, ferias y actividades en Guadalajara...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 9:10 a.m.",
+              text:
+                "Se viene una feria de becas en GDL, en cuanto tenga el póster lo subo aquí."
+            }
+          ]
+        },
+
+        /* === COMUNIDADES POR CARRERA (NO AMARRADO A CIUDAD) === */
+        "community-medicina": {
+          name: "#medicina-general",
+          meta: "Comunidad · Medicina · 120 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de medicina...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 7:45 p.m.",
+              text:
+                "¿Alguien ya hizo simuladores del examen de admisión para medicina? ¿Alguna recomendación de temas que salgan mucho?"
+            },
+            {
+              user: "@anafignu",
+              time: "Hoy · 7:48 p.m.",
+              text:
+                "En PathWise tengo un roadmap enfocado a biología y química, si quieren luego les paso captura de cómo me lo armó para medicina 🧪."
+            },
+            {
+              user: "@karleman",
+              time: "Hoy · 7:52 p.m.",
+              text:
+                "También pueden abrir un Project Lab de medicina y ahí organizan sus simulacros por semana. Este canal es más para dudas rápidas y tips."
+            }
+          ]
+        },
+        "community-arquitectura": {
+          name: "#arquitectura-general",
+          meta: "Comunidad · Arquitectura · 80 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de arquitectura...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 6:20 p.m.",
+              text:
+                "¿Qué apps usan para maquetas digitales además de AutoCAD y Revit?"
+            }
+          ]
+        },
+        "community-contabilidad": {
+          name: "#contabilidad-general",
+          meta: "Comunidad · Contabilidad · 60 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de contabilidad...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 5:10 p.m.",
+              text:
+                "Abrí este canal para compartir tips de estados financieros y exámenes de admisión a contaduría. Dejen sus dudas aquí."
+            }
+          ]
+        },
+        "community-industrial": {
+          name: "#industrial-general",
+          meta: "Comunidad · Ing. Industrial · 95 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de industrial...",
+          messages: [
+            {
+              user: "@adolficius",
+              time: "Ayer · 9:15 p.m.",
+              text:
+                "¿Quién más va a aplicar a industrial en el Tec? Podemos armar grupo de estudio."
+            }
+          ]
+        },
+        "community-finanzas": {
+          name: "#finanzas-general",
+          meta: "Comunidad · Finanzas · 110 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de finanzas...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 8:05 p.m.",
+              text:
+                "Aquí podemos compartir recursos de prepa para economía, finanzas y admisiones a LAF/LIT 😎."
+            }
+          ]
+        },
+        "community-economia": {
+          name: "#economia-general",
+          meta: "Comunidad · Economía · 50 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de economía...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 3:30 p.m.",
+              text:
+                "¿Alguien tiene buenos canales de YouTube para entender oferta y demanda?"
+            }
+          ]
+        },
+        "community-marketing": {
+          name: "#marketing-general",
+          meta: "Comunidad · Marketing · 70 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de marketing...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 4:00 p.m.",
+              text:
+                "Campañas favoritas que les inspiran para sus proyectos de prepa/uni? Dejen links 🤍."
+            }
+          ]
+        },
+        "community-derecho": {
+          name: "#derecho-general",
+          meta: "Comunidad · Derecho · 40 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de derecho...",
+          messages: [
+            {
+              user: "@itzelvalbrito",
+              time: "Hoy · 2:00 p.m.",
+              text:
+                "¿Alguien sabe buenos simuladores para exámenes de admisión a Derecho?"
+            }
+          ]
+        },
+        "community-mecatronica": {
+          name: "#mecatronica-general",
+          meta: "Comunidad · Ing. Mecatrónica · 65 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de mecatrónica...",
+          messages: [
+            {
+              user: "@adolficius",
+              time: "Hoy · 1:30 p.m.",
+              text: "Scope para un proyecto de robot seguidor de línea? :P"
+            }
+          ]
+        },
+        "community-administracion": {
+          name: "#administracion-general",
+          meta: "Comunidad · Administración · 55 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de administración...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 11:20 a.m.",
+              text:
+                "Tips para organizar proyectos y parciales cuando traes mil cosas encima."
+            }
+          ]
+        },
+        "community-civil": {
+          name: "#civil-general",
+          meta: "Comunidad · Ing. Civil · 38 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de civil...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 10:15 a.m.",
+              text:
+                "¿Qué tal están los simuladores de física para quien quiere civil?"
+            }
+          ]
+        },
+        "community-sistemas": {
+          name: "#sistemas-general",
+          meta: "Comunidad · Ing. en Sistemas · 90 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de sistemas...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 9:50 a.m.",
+              text:
+                "Dejen aquí recursos para empezar con HTML/CSS/JS desde cero 👩‍💻."
+            }
+          ]
+        },
+        "community-datos": {
+          name: "#analista-datos",
+          meta: "Comunidad · Analista de datos · 45 miembros",
+          placeholder: "Escribe un mensaje para la comunidad de data...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 8:10 a.m.",
+              text:
+                "¿Quién más está entre BI, finanzas y data? Aquí podemos compartir cosas de Python / Excel / SQL."
+            }
+          ]
+        },
+
+        /* === DMs === */
+        "dm-karla": {
+          name: "@karleman",
+          meta: "Chat directo · Solo tú y esta persona",
+          placeholder: "Escribe un mensaje para @karla...",
+          messages: [
+            {
+              user: "@karleman",
+              time: "Hoy · 6:10 p.m.",
+              text:
+                "Holaaa, aquí podríamos planear el Project Lab de medicina o de finanzas jaja."
+            },
+            {
+              user: "Tú",
+              time: "Hoy · 6:12 p.m.",
+              text:
+                "Súper, luego te enseño cómo me dejó el roadmap PathWise para este semestre."
+            }
+          ]
+        },
+        "dm-adolfo": {
+          name: "@adolficius",
+          meta: "Chat directo · Solo tú y esta persona",
+          placeholder: "Escribe un mensaje para @adolfius...",
+          messages: [
+            {
+              user: "@adolficius",
+              time: "Hoy · 4:00 p.m.",
+              text:
+                "¿Armamos grupo para estudiar cálculo e ingeniería juntos?"
+            }
+          ]
+        },
+        "dm-max": {
+          name: "@maxswallowz",
+          meta: "Chat directo · Solo tú y esta persona",
+          placeholder: "Escribe un mensaje para @maxswallowz...",
+          messages: [
+            {
+              user: "@maxswallowz",
+              time: "Hoy · 5:30 p.m.",
+              text:
+                "Te paso los links de los simuladores que uso para exámenes."
+            }
+          ]
+        },
+        "dm-itzel": {
+          name: "@itzelvalbrito",
+          meta: "Chat directo · Solo tú y esta persona",
+          placeholder: "Escribe un mensaje para @itzelvalbrito...",
+          messages: [
+            {
+              user: "@itzelvalbrito",
+              time: "Hoy · 3:20 p.m.",
+              text:
+                "Ya viste el módulo de becas en PathWise? Está interesante para medicina."
+            }
+          ]
+        },
+        "dm-ana": {
+          name: "@anafignu",
+          meta: "Chat directo · Solo tú y esta persona",
+          placeholder: "Escribe un mensaje para @anafignu...",
+          messages: [
+            {
+              user: "@anafignu",
+              time: "Hoy · 1:20 p.m.",
+              text:
+                "Cuando tengas tu pitch para el hackathon me lo enseñas y te doy feedback :D"
+            }
+          ]
+        }
+      };
+
+      function renderChat(channelId) {
+        const config = chats[channelId];
+        if (!config) return;
+
+        chatChannelName.textContent = config.name;
+        chatChannelMeta.textContent = config.meta;
+        chatInput.placeholder = config.placeholder;
+
+        chatMessages.innerHTML = "";
+        config.messages.forEach((msg) => {
+          const el = document.createElement("div");
+          el.className = "message";
+          const avatarChar = msg.user === "Tú" ? "T" : (msg.user.charAt(1) || "U");
+          el.innerHTML = `
+            <div class="message-avatar">${avatarChar}</div>
+            <div class="message-body">
+              <div class="message-meta">
+                <span class="message-user">${msg.user}</span>
+                <span class="message-time">${msg.time}</span>
+              </div>
+              <p class="message-text">${msg.text}</p>
+            </div>
+          `;
+          chatMessages.appendChild(el);
+        });
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function renderCitySection(city, section) {
+        const key = `city-${city}-${section}`;
+        renderChat(key);
+      }
+
+      function setActiveCity(city) {
+        currentCity = city;
+
+        cityButtons.forEach((btn) =>
+          btn.classList.toggle("city-pill--active", btn.dataset.city === city)
+        );
+
+        if (currentSection !== "carreras") {
+          renderCitySection(currentCity, currentSection);
+        }
+      }
+
+      function setActiveSection(section) {
+        currentSection = section;
+
+        sectionButtons.forEach((btn) =>
+          btn.classList.toggle("section-pill--active", btn.dataset.section === section)
+        );
+
+        // al cambiar de sección, limpiamos selección de amigos
+        document
+          .querySelectorAll(".friend-item")
+          .forEach((f) => f.classList.remove("friend-item--active"));
+
+        if (section === "carreras") {
+          communitiesBar.classList.add("communities-bar--visible");
+
+          // selecciona primera carrera por defecto
+          const firstCommunity = document.querySelector(".community-icon");
+          if (firstCommunity) {
+            document
+              .querySelectorAll(".community-icon")
+              .forEach((i) => i.classList.remove("community-icon--active"));
+            firstCommunity.classList.add("community-icon--active");
+            renderChat(firstCommunity.dataset.channel);
+          }
+        } else {
+          communitiesBar.classList.remove("communities-bar--visible");
+          document
+            .querySelectorAll(".community-icon")
+            .forEach((i) => i.classList.remove("community-icon--active"));
+          renderCitySection(currentCity, section);
+        }
+      }
+
+      // Click en ciudades
+      cityButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          setActiveCity(btn.dataset.city);
+        });
+      });
+
+      // Click en secciones
+      sectionButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          setActiveSection(btn.dataset.section);
+        });
+      });
+
+      // Click en comunidades (carreras)
+      document.querySelectorAll(".community-icon").forEach((icon) => {
+        icon.addEventListener("click", () => {
+          setActiveSection("carreras");
+          document
+            .querySelectorAll(".community-icon")
+            .forEach((i) => i.classList.remove("community-icon--active"));
+          icon.classList.add("community-icon--active");
+          renderChat(icon.dataset.channel);
+        });
+      });
+
+      // Click en amigos (DM)
+      document.querySelectorAll(".friend-item").forEach((friend) => {
+        friend.addEventListener("click", () => {
+          document
+            .querySelectorAll(".friend-item")
+            .forEach((f) => f.classList.remove("friend-item--active"));
+          friend.classList.add("friend-item--active");
+
+          const channel = friend.dataset.channel;
+          renderChat(channel);
+        });
+      });
+
+      // Render inicial: Puebla + General
+      setActiveCity(currentCity);
+      setActiveSection(currentSection);
+    });
+  </script>
+</body>
+</html>

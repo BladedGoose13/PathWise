@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+  <title>PathWise – Inicio</title>
+  <link rel="stylesheet" href="foro.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    /* ========== ESTILOS MEJORADOS PARA INICIO ========== */
+    
+    .main {
+      padding: 32px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero principal */
+    .hero-welcome {
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      color: #ffffff;
+      padding: 40px 36px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+      box-shadow: 0 18px 40px rgba(20, 85, 230, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-welcome::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-welcome h1 {
+      font-size: 36px;
+      font-weight: 800;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .hero-welcome p {
+      font-size: 16px;
+      margin: 0 0 24px 0;
+      opacity: 0.95;
+      line-height: 1.6;
+      max-width: 600px;
+      position: relative;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: #1455e6;
+      padding: 14px 32px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      position: relative;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-btn:active {
+      transform: translateY(0);
+    }
+
+    .hero-btn::after {
+      content: "→";
+      font-size: 18px;
+    }
+
+    /* Tarjeta de descripción */
+    .about-card {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 20px;
+      margin-bottom: 32px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .about-card h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+    }
+
+    .about-card p {
+      font-size: 15px;
+      color: #4b5563;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* Carrusel de novedades */
+    .carousel-section {
+      background: #ffffff;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      margin-bottom: 32px;
+    }
+
+    .carousel-header {
+      margin-bottom: 20px;
+    }
+
+    .carousel-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 6px 0;
+    }
+
+    .carousel-header p {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    .carousel-wrapper {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: inset 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .carousel {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .carousel::-webkit-scrollbar-track {
+      background: rgba(148, 163, 184, 0.1);
+      border-radius: 999px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 999px;
+      transition: background 0.2s ease;
+    }
+
+    .carousel::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.6);
+    }
+
+    .carousel-item {
+      min-width: 280px;
+      max-width: 340px;
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .carousel-item:hover {
+      transform: scale(1.02);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Sección de pasos */
+    .section-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 8px 0;
+    }
+
+    .section-header p {
+      font-size: 15px;
+      color: #6b7280;
+      margin: 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .step-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(20, 85, 230, 0.3);
+    }
+
+    .step-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+      padding-right: 40px;
+    }
+
+    .step-card p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Misión y Visión */
+    .mv-section {
+      margin-bottom: 40px;
+    }
+
+    .mv-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .mv-layout {
+        grid-template-columns: 1fr 1.2fr;
+      }
+    }
+
+    .mv-graphic-card {
+      background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+      border-radius: 20px;
+      padding: 40px 24px;
+      border: 2px solid #bfdbfe;
+      box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+
+    .mv-graphic-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .mv-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .mv-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .mv-pill {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(20, 85, 230, 0.1);
+      color: #1455e6;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .mv-pill--alt {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .mv-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+    }
+
+    .mv-list {
+      margin: 0;
+      padding-left: 20px;
+      list-style: none;
+    }
+
+    .mv-list li {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 8px;
+    }
+
+    .mv-list li::before {
+      content: "→";
+      position: absolute;
+      left: -16px;
+      color: #1455e6;
+      font-weight: 700;
+    }
+
+    /* Por qué PathWise */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .why-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .why-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+    }
+
+    .why-card p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* === EQUIPO PATHWISE === */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.team-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1455e6, #1d5fff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover::before {
+  transform: scaleX(1);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+}
+
+.team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1455e6, #1d5fff);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 20px rgba(20, 85, 230, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover .team-avatar {
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(20, 85, 230, 0.45);
+}
+
+/* Si prefieres usar imágenes en lugar de iniciales, descomenta esto:
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+*/
+
+.team-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.team-role {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1455e6;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.team-bio {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive para equipo */
+@media (max-width: 860px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    /* Tips y recomendaciones */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .tip-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      border-left: 4px solid #1455e6;
+    }
+
+    .tip-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1455e6;
+      margin: 0 0 10px 0;
+    }
+
+    .tip-card p {
+      font-size: 14px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* === SECCIÓN DE IMÁGENES FINALES === */
+    .back {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fondo-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.1);
+    }
+
+    .back .logout-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      box-shadow: 0 8px 20px rgba(20, 85, 230, 0.4);
+      margin: 0 auto;
+      display: flex;
+      width: fit-content;
+    }
+
+    .back .logout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(20, 85, 230, 0.5);
+      filter: brightness(1.05);
+    }
+
+    .back .logout-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(20, 85, 230, 0.35);
+    }
+
+    .back .nav-icon {
+      font-size: 20px;
+    }
+
+    /* Footer mejorado */
+    .footer {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      margin-top: 40px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(20, 85, 230, 0.06);
+      border-radius: 999px;
+      text-decoration: none;
+      color: #1455e6;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.12s ease;
+      border: 2px solid transparent;
+    }
+
+    .footer-link:hover {
+      background: rgba(20, 85, 230, 0.12);
+      border-color: #1455e6;
+      transform: translateY(-2px);
+    }
+
+    .footer-link .material-symbols-rounded {
+      font-size: 20px;
+    }
+
+    .footer-link p {
+      margin: 0;
+    }
+
+    .footer-copyright {
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 600;
+      padding-top: 12px;
+      border-top: 2px solid #f3f4f6;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .main {
+        padding: 24px 20px;
+      }
+
+      .hero-welcome {
+        padding: 32px 28px;
+      }
+
+      .hero-welcome h1 {
+        font-size: 28px;
+      }
+
+      .about-card,
+      .carousel-section {
+        padding: 24px;
+      }
+
+      .section-header h2 {
+        font-size: 24px;
+      }
+
+      .mv-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .back {
+        padding: 20px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .footer-link {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR IZQUIERDA PRINCIPAL -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="PathWise" />
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="nuevoini.html" class="nav-item nav-item--simple nav-item--active">Inicio</a>
+      <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+      <a href="oportunidades.html" class="nav-item nav-item--simple">Admisión</a>
+      <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
+
+      <button type="button" id="community-toggle" class="nav-item nav-item--group">
+        <span>Community</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+
+      <div id="community-group" class="nav-sub nav-sub--open">
+        <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+        <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+        <a href="foro.html" class="nav-sub-item">Foro</a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-mini">
+        <div class="user-avatar">K</div>
+        <div class="user-meta">
+          <div class="user-name">Karla</div>
+          <div class="user-tag">@usuario</div>
+        </div>
+      </div>
+      <button class="logout-btn">Cerrar sesión</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- Hero Welcome -->
+    <section class="hero-welcome">
+      <h1>Bienvenida a PathWise</h1>
+      <p>La plataforma que te ayuda a trazar y entender tu camino profesional con claridad y confianza.</p>
+      <a href="quizz.html" class="hero-btn">Comenzar</a>
+    </section>
+
+    <!-- ¿Qué es PathWise? -->
+    <section class="about-card">
+      <h2>¿Qué es PathWise?</h2>
+      <p>PathWise analiza tus intereses, habilidades y metas para mostrarte rutas claras hacia carreras o perfiles que hagan match contigo. No es solo otra plataforma de cursos, es tu brújula personalizada durante toda la prepa.</p>
+    </section>
+
+    <!-- Carrusel de novedades -->
+    <section class="carousel-section">
+      <div class="carousel-header">
+        <h2>Novedades de PathWise</h2>
+        <p>Mantente actualizado de las novedades que mejorarán tu futuro.</p>
+      </div>
+
+      <div class="carousel-wrapper">
+        <div class="carousel">
+          <div class="carousel-item">
+            <img src="img5.jpeg" alt="Dashboard de progreso PathWise" />
+          </div>
+          <div class="carousel-item">
+            <img src="img1.jpeg" alt="Roadmap semanal" />
+          </div>
+          <div class="carousel-item">
+            <img src="img2.jpeg" alt="Pantalla de recompensas" />
+          </div>
+          <div class="carousel-item">
+            <img src="img3.jpeg" alt="Vista de simuladores" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona PathWise -->
+    <section id="como-funciona">
+      <div class="section-header">
+        <h2>¿Cómo funciona PathWise?</h2>
+        <p>No es solo otra plataforma de cursos. Es una ruta clara, hecha a tu medida, que se ajusta contigo durante la prepa.</p>
+      </div>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>Responde tu quiz inicial</h3>
+          <p>Empezamos con un cuestionario rápido sobre tu tipo de aprendizaje, tus materias fuertes, las que más te cuestan y tus planes de universidad.</p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>Te armamos un roadmap real</h3>
+          <p>Con lo que respondes, PathWise diseña una ruta semanal con objetivos alcanzables, tomando en cuenta tu tiempo y tu rutina.</p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>Evoluciona con versión Plus</h3>
+          <p>Si más adelante activas PathWise Plus, tu plan se ajusta a tus calificaciones, simuladores y materias donde sigas batallando.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section id="mision-vision" class="mv-section">
+      <div class="section-header">
+        <h2>Nuestra razón de ser</h2>
+        <p>Lo que mueve a PathWise por dentro y hacia dónde queremos llevar a los estudiantes de prepa.</p>
+      </div>
+
+      <div class="mv-layout">
+        <div class="mv-graphic-card">
+          <img src="pryb.jpg" alt="Impacto PathWise">
+        </div>
+
+        <div class="mv-grid">
+          <article class="mv-card">
+            <span class="mv-pill">Misión</span>
+            <h3>Que ningún estudiante de prepa se quede sin un plan claro</h3>
+            <ul class="mv-list">
+              <li>Diseñamos rutas personalizadas que respetan tu ritmo y tu contexto</li>
+              <li>Traducimos becas, exámenes y opciones de universidad a un lenguaje sencillo</li>
+              <li>Sumamos a familias y escuelas para que no camines solo</li>
+            </ul>
+          </article>
+
+          <article class="mv-card">
+            <span class="mv-pill mv-pill--alt">Visión</span>
+            <h3>Ser la brújula confiable de los estudiantes de Latinoamérica</h3>
+            <ul class="mv-list">
+              <li>Reducir la brecha entre "quiero estudiar" y "no sé por dónde empezar"</li>
+              <li>Hacer que hablar de becas y universidades sea normal y alcanzable</li>
+              <li>Construir una comunidad que comparte rutas, tips y oportunidades reales</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Por qué PathWise -->
+    <section id="por-que">
+      <div class="section-header">
+        <h2>¿Por qué PathWise?</h2>
+        <p>Porque no solo "te llena de contenido", sino que te ayuda a priorizar y tomar decisiones informadas.</p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <h3>Hecho para prepa</h3>
+          <p>Todo está pensado para tu vida en la prepa: tareas, parciales, servicio, proyectos y presión por el promedio.</p>
+        </article>
+
+        <article class="why-card">
+          <h3>Se adapta a ti</h3>
+          <p>Tu roadmap se adapta a tu tipo de aprendizaje (visual, auditivo, lectura/escritura o kinestésico) y se ajusta conforme avanzas.</p>
+        </article>
+
+        <article class="why-card">
+          <h3>Accesible para todos</h3>
+          <p>Plan gratuito con roadmap básico y recursos confiables, junto con una versión Premium para quien quiera ir al siguiente nivel.</p>
+        </article>
+
+        <article class="why-card">
+          <h3>Enfocado en becas y futuro</h3>
+          <p>No solo te ayudamos a pasar materias: te ayudamos a encontrar tu carrera, qué universidades se alinean contigo y qué becas podrías conseguir.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Equipo PathWise -->
+<section id="equipo" class="section">
+  <div class="section-header">
+    <h2>El corazón detrás de PathWise</h2>
+    <p>
+      Somos estudiantes y jóvenes que ya vivimos el drama de la prepa, los exámenes de admisión
+      y las becas. Por eso PathWise está diseñado desde tu realidad, no desde un escritorio.
+    </p>
+  </div>
+
+  <div class="team-grid">
+    <article class="team-card">
+      <div class="team-avatar">AN</div>
+      <h3>Adolfo Navarrete</h3>
+      <p class="team-role">UX Designer</p>
+      <p class="team-bio">
+        Diseña experiencias intuitivas que hacen que navegar por tu futuro sea tan fácil como scrollear.
+      </p>
+    </article>
+
+    <article class="team-card">
+      <div class="team-avatar">AF</div>
+      <h3>Ana Figueroa</h3>
+      <p class="team-role">Researcher</p>
+      <p class="team-bio">
+        Investiga lo que realmente necesitas para convertir dudas en datos y datos en soluciones reales.
+      </p>
+    </article>
+
+    <article class="team-card">
+      <div class="team-avatar">KA</div>
+      <h3>Karla Alemán</h3>
+      <p class="team-role">Data Analyst Engineer & Finance Lead</p>
+      <p class="team-bio">
+        Traduce números complejos en decisiones claras para que tu camino sea más predecible y accesible.
+      </p>
+    </article>
+
+    <article class="team-card">
+      <div class="team-avatar">MT</div>
+      <h3>Maximilien Tragarz</h3>
+      <p class="team-role">AI & Prompt Engineer y Back End Engineer</p>
+      <p class="team-bio">
+        Construye la inteligencia detrás de tus roadmaps personalizados y hace que todo funcione sin fricción.
+      </p>
+    </article>
+
+    <article class="team-card">
+      <div class="team-avatar">IV</div>
+      <h3>Itzelene Valladares</h3>
+      <p class="team-role">Front End Engineer & UI Designer</p>
+      <p class="team-bio">
+        Da vida visual a PathWise para que cada pantalla te inspire a seguir avanzando hacia tus metas.
+      </p>
+    </article>
+  </div>
+</section>
+
+    <!-- Tips y recomendaciones -->
+    <div class="tips-grid">
+      <section class="tip-card">
+        <h3>Tip del día</h3>
+        <p>Documenta tus logros, incluso los pequeños. Te ayudarán en entrevistas y decisiones profesionales.</p>
+      </section>
+
+      <section class="tip-card">
+        <h3>Recomendación</h3>
+        <p>Dedica al menos 1 hora por semana a explorar nuevas áreas para mantener tu crecimiento continuo.</p>
+      </section>
+    </div>
+
+    <!-- SECCIÓN DE IMÁGENES FINALES -->
+    <div class="back">
+      <img src="fondo bienn.png" alt="Visualización del roadmap PathWise" class="fondo-img">
+      <button class="logout-btn" onclick="window.location.href='clases.html'">
+        <span>Siguiente nivel</span>
+        <span class="nav-icon material-symbols-rounded">arrow_forward</span>
+      </button>
+    </div>
+
+    <div class="back">
+      <img src="dashboard.jpeg" alt="Dashboard PathWise" class="fondo-img">
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-links">
+        <a href="PDFPDF.pdf" target="_blank" class="footer-link">
+          <span class="material-symbols-rounded">privacy_tip</span>
+          <p>Políticas de Privacidad</p>
+        </a>
+
+        <a href="prices.html" class="footer-link">
+          <span class="material-symbols-rounded">attach_money</span>
+          <p>Precios</p>
+        </a>
+      </div>
+      
+      <div class="footer-copyright">
+        © PathWise — 2025
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

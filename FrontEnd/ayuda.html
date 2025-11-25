@@ -122,45 +122,13 @@
   let markers = [];
 
   function initMap() {
-    // Usar la ubicación del usuario como centro predeterminado
-    const defaultCenter = { lat: 19.018151353785328, lng: -98.24370562438774 };
+    const defaultCenter = { lat: 19.018151353785328, lng: -98.24370562438774 }; // Tec de Monterrey Puebla
 
     map = new google.maps.Map(document.getElementById("map"), {
       center: defaultCenter,
       zoom: 14,
-      mapId: "44d076ec289aa894c4913e19"
+      mapId: "44d076ec289aa894c4913e19" // Aquí va tu Map ID
     });
-
-    // Intentar obtener la ubicación del usuario automáticamente al cargar
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const userLocation = {
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude,
-          };
-          map.setCenter(userLocation);
-          
-          // Agregar marcador en la ubicación del usuario
-          new google.maps.Marker({
-            position: userLocation,
-            map,
-            title: "Tu ubicación actual",
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 8,
-              fillColor: "#4285F4",
-              fillOpacity: 1,
-              strokeColor: "#ffffff",
-              strokeWeight: 2,
-            }
-          });
-        },
-        (error) => {
-          console.log("No se pudo obtener la ubicación automáticamente:", error.message);
-        }
-      );
-    }
 
     const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);
@@ -214,14 +182,6 @@
                 position: posLatLng,
                 map,
                 title: "Tú estás aquí",
-                icon: {
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: 8,
-                  fillColor: "#4285F4",
-                  fillOpacity: 1,
-                  strokeColor: "#ffffff",
-                  strokeWeight: 2,
-                }
               }),
             ];
           },
@@ -234,9 +194,9 @@
   }
 </script>
 
-<!-- IMPORTANTE: Reemplaza YOUR_API_KEY con tu clave real -->
+<!-- Carga correcta de Google Maps JS API -->
 <script async
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8GjXLicr6OLrQxMriD7d7422fIGwbGh0&libraries=places&callback=initMap">
 </script>
 </body>
 </html>

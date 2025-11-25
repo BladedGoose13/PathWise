@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PathWise | Comunidad · Proyectos</title>
+  <link rel="stylesheet" href="proyecto.css">
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR IZQUIERDA PRINCIPAL -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="Logo.png" alt="PathWise" />
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="nuevoini.html" class="nav-item nav-item--simple">Inicio</a>
+        <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+        <a href="oportunidades.html" class="nav-item nav-item--simple">Admisión</a>
+        <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
+
+        <button type="button" id="community-toggle" class="nav-item nav-item--group">
+          <span>Community</span>
+          <span class="nav-chevron">▾</span>
+        </button>
+
+        <div id="community-group" class="nav-sub nav-sub--open">
+          <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+          <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+          <a href="foro.html" class="nav-sub-item">Foro</a>
+
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini">
+          <div class="user-avatar">K</div>
+          <div class="user-meta">
+            <div class="user-name">Karla</div>
+            <div class="user-tag">@usuario</div>
+          </div>
+        </div>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main">
+      <header class="forum-header">
+        <div class="forum-title">
+          <h1>Proyectos</h1>
+        </div>
+
+        <div class="forum-subcopy">
+          Únete a proyectos estudiantiles, crea equipo, aprende haciendo y construye tu portafolio
+          mientras colaboras con otros estudiantes apasionados.
+        </div>
+
+        <div class="city-filter">
+          <span class="city-label">Categoría:</span>
+          <button class="city-pill city-pill--active" data-category="Todos">Todos</button>
+          <button class="city-pill" data-category="Tecnología">Tecnología</button>
+          <button class="city-pill" data-category="Emprendimiento">Emprendimiento</button>
+          <button class="city-pill" data-category="Social">Social</button>
+          <button class="city-pill" data-category="Arte">Arte</button>
+        </div>
+      </header>
+
+      <div class="forum-body">
+        <!-- COLUMNA IZQUIERDA: LISTA DE PROYECTOS -->
+        <section class="friends-column">
+          <div class="friends-card">
+            <div class="friends-header">
+              <span class="friends-title">Proyectos disponibles</span>
+              <span class="friends-subtitle">
+                Explora iniciativas abiertas o crea la tuya propia.
+              </span>
+            </div>
+
+            <div class="friends-search">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Buscar por nombre, categoría o habilidad..."
+              />
+            </div>
+
+            <div class="friends-list projects-list" id="projects-list">
+              <!-- La lista se genera dinámicamente con JS -->
+            </div>
+
+            <button class="primary-btn primary-btn--small create-project-btn">
+              + Crear nuevo proyecto
+            </button>
+          </div>
+        </section>
+
+        <!-- COLUMNA CENTRAL: DETALLE DEL PROYECTO -->
+        <section class="chat-column">
+          <article class="chat-card project-detail-card">
+            <div class="chat-header project-header">
+              <div>
+                <div class="chat-channel-label">Proyecto seleccionado</div>
+                <div class="chat-channel-name" id="proj-title">App de tutorías peer-to-peer</div>
+                <div class="chat-channel-meta" id="proj-meta">
+                  Tecnología · 4 semanas · Remoto · 3/6 lugares
+                </div>
+              </div>
+
+              <div class="project-tags" id="proj-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Firebase</span>
+              </div>
+            </div>
+
+            <div class="proj-detail-layout">
+              <div class="proj-detail-image">
+                <img id="proj-image" 
+                src="abogacia-640.jpg" 
+                alt="Imagen del proyecto">
+              </div>
+
+              <div class="proj-detail-info">
+                <h3 class="proj-section-title">¿De qué trata?</h3>
+                <p class="proj-description" id="proj-description">
+                  <!-- Se llena con JS -->
+                </p>
+
+                <h3 class="proj-section-title">Buscamos personas con</h3>
+                <ul class="proj-skills-list" id="proj-skills">
+                  <!-- Se llena con JS -->
+                </ul>
+
+                <div class="proj-leader-section">
+                  <span class="proj-leader-label">Líder del proyecto:</span>
+                  <div class="proj-leader-info">
+                    <div class="proj-leader-avatar" id="proj-leader-avatar">M</div>
+                    <div class="proj-leader-text">
+                      <div class="proj-leader-name" id="proj-leader-name">Miguel · Ingeniería</div>
+                      <div class="proj-leader-contact" id="proj-leader-contact">@miguel_dev</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="proj-cta-row">
+                  <button class="primary-btn primary-btn--small">
+                    Unirme al proyecto
+                  </button>
+                  <button type="button" class="secondary-btn">
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-quick-cards">
+              <div class="proj-quick-card">
+                <div class="proj-quick-title">Compromiso esperado</div>
+                <p class="proj-quick-text" id="proj-commitment">
+                  <!-- Se llena con JS -->
+                </p>
+              </div>
+
+              <div class="proj-quick-card">
+                <div class="proj-quick-title">¿Qué aprenderás?</div>
+                <p class="proj-quick-text" id="proj-learning">
+                  <!-- Se llena con JS -->
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- COLUMNA DERECHA: EQUIPO Y APLICACIONES -->
+        <section class="friends-column project-team-column">
+          <div class="friends-card project-team-card">
+            <div class="friends-header">
+              <span class="friends-title">Equipo actual</span>
+              <span class="friends-subtitle">
+                Personas que ya se unieron al proyecto.
+              </span>
+            </div>
+
+            <div class="proj-team-list" id="proj-team">
+              <!-- Se llena con JS -->
+            </div>
+
+            <div class="proj-divider"></div>
+
+            <div class="friends-header">
+              <span class="friends-title">Actualizaciones</span>
+              <span class="friends-subtitle">
+                Últimas novedades del proyecto.
+              </span>
+            </div>
+
+            <div class="proj-updates-list" id="proj-updates">
+              <!-- Se llena con JS -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ===== DATOS DE PROYECTOS POR CATEGORÍA =====
+    const projectsData = {
+      "Todos": [
+        {
+          id: "p1",
+          initials: "AP",
+          name: "App de tutorías peer-to-peer",
+          short: "Tecnología · 4 sem · Remoto",
+          category: "Tecnología",
+          meta: "Tecnología · 4 semanas · Remoto · 3/6 lugares",
+          tags: ["React", "Node.js", "Firebase"],
+          image: "proyecto-tutorias.png",
+          description: "Desarrollaremos una plataforma web donde estudiantes puedan conectarse para tutorías entre pares, con sistema de agendado, videollamadas integradas y seguimiento de progreso.",
+          skills: [
+            "Desarrollo frontend con React",
+            "Backend con Node.js y Express",
+            "Manejo de bases de datos (Firebase)",
+            "Diseño UI/UX (opcional pero valioso)"
+          ],
+          leader: {
+            avatar: "M",
+            name: "Miguel · Ingeniería",
+            contact: "@miguel_dev"
+          },
+          commitment: "8-10 horas semanales, reuniones los martes y jueves por la tarde. Trabajo principalmente remoto con flexibilidad de horarios.",
+          learning: "Desarrollo full-stack, trabajo en equipo con metodologías ágiles, uso de Git/GitHub, y experiencia real construyendo un producto desde cero.",
+          team: [
+            { initial: "M", name: "Miguel", role: "Full-stack · Líder" },
+            { initial: "A", name: "Andrea", role: "Frontend" },
+            { initial: "L", name: "Luis", role: "Backend" }
+          ],
+          updates: [
+            { date: "Hace 2 días", text: "Completamos el wireframe inicial. Siguiente paso: arquitectura de base de datos." },
+            { date: "Hace 1 semana", text: "¡Bienvenida Andrea al equipo! Ya somos 3." }
+          ]
+        },
+        {
+          id: "p2",
+          initials: "EC",
+          name: "E-commerce para artesanos locales",
+          short: "Emprendimiento · 6 sem · Híbrido",
+          category: "Emprendimiento",
+          meta: "Emprendimiento · 6 semanas · Híbrido · 2/5 lugares",
+          tags: ["Marketing", "E-commerce", "Redes"],
+          image: "proyecto-ecommerce.png",
+          description: "Crearemos una plataforma que conecte artesanos locales con compradores, incluyendo estrategia de marketing digital, branding y gestión de redes sociales.",
+          skills: [
+            "Marketing digital y contenido",
+            "Gestión de redes sociales",
+            "Fotografía de producto (básico)",
+            "Atención al cliente"
+          ],
+          leader: {
+            avatar: "S",
+            name: "Sofía · Mercadotecnia",
+            contact: "@sofi_mkt"
+          },
+          commitment: "6-8 horas semanales, con flexibilidad. Algunas reuniones presenciales para sesiones de foto con artesanos.",
+          learning: "Estrategia de marketing completa, desde branding hasta ejecución en redes. Experiencia real con clientes y métricas de ventas.",
+          team: [
+            { initial: "S", name: "Sofía", role: "Marketing · Líder" },
+            { initial: "C", name: "Carlos", role: "Diseño gráfico" }
+          ],
+          updates: [
+            { date: "Hace 3 días", text: "Tuvimos la primera reunión con 2 artesanos. ¡Muy emocionados!" },
+            { date: "Hace 2 semanas", text: "Definimos el branding y paleta de colores." }
+          ]
+        },
+        {
+          id: "p3",
+          initials: "CP",
+          name: "Campaña de salud mental",
+          short: "Social · 3 sem · Presencial",
+          category: "Social",
+          meta: "Social · 3 semanas · Presencial · 4/8 lugares",
+          tags: ["Activismo", "Salud mental", "Comunicación"],
+          image: "proyecto-salud.png",
+          description: "Organizaremos una campaña de concientización sobre salud mental en campus universitarios, con talleres, contenido visual y eventos presenciales.",
+          skills: [
+            "Comunicación y oratoria",
+            "Organización de eventos",
+            "Diseño de contenido (carteles, flyers)",
+            "Empatía y escucha activa"
+          ],
+          leader: {
+            avatar: "P",
+            name: "Paola · Psicología",
+            contact: "@paola_psico"
+          },
+          commitment: "5-7 horas semanales, incluyendo reuniones presenciales. Mayor carga la semana del evento principal.",
+          learning: "Gestión de proyectos sociales, trabajo con instituciones educativas, diseño de campañas de impacto y habilidades de facilitación grupal.",
+          team: [
+            { initial: "P", name: "Paola", role: "Coordinación · Líder" },
+            { initial: "R", name: "Roberto", role: "Logística" },
+            { initial: "D", name: "Diana", role: "Diseño" },
+            { initial: "F", name: "Fernando", role: "Contenido" }
+          ],
+          updates: [
+            { date: "Hace 1 día", text: "Conseguimos el permiso para usar el auditorio A3. ¡Vamos!" },
+            { date: "Hace 5 días", text: "Diana terminó los primeros diseños de carteles." }
+          ]
+        },
+        {
+          id: "p4",
+          initials: "PD",
+          name: "Podcast estudiantil",
+          short: "Arte · Continuo · Remoto",
+          category: "Arte",
+          meta: "Arte · Proyecto continuo · Remoto · 3/6 lugares",
+          tags: ["Audio", "Edición", "Comunicación"],
+          image: "proyecto-podcast.png",
+          description: "Lanzaremos un podcast semanal donde entrevistamos estudiantes, profesores y egresados sobre sus experiencias, proyectos y consejos para la vida universitaria.",
+          skills: [
+            "Edición de audio (Audacity, Adobe Audition)",
+            "Conducción y entrevistas",
+            "Guionismo y research",
+            "Marketing de contenido"
+          ],
+          leader: {
+            avatar: "J",
+            name: "Jorge · Comunicación",
+            contact: "@jorge_podcast"
+          },
+          commitment: "4-6 horas semanales. Grabaciones los viernes por la tarde, edición flexible durante la semana.",
+          learning: "Producción de audio profesional, entrevista y storytelling, construcción de audiencia y trabajo en equipo creativo.",
+          team: [
+            { initial: "J", name: "Jorge", role: "Host · Líder" },
+            { initial: "M", name: "Mariana", role: "Editora" },
+            { initial: "K", name: "Kevin", role: "Research" }
+          ],
+          updates: [
+            { date: "Hace 4 horas", text: "¡Episodio 3 ya está en Spotify! Escúchenlo." },
+            { date: "Hace 3 días", text: "Confirmada entrevista con el director de la carrera de Diseño." }
+          ]
+        },
+        {
+          id: "p5",
+          initials: "RP",
+          name: "Robot autónomo para competencia",
+          short: "Tecnología · 8 sem · Presencial",
+          category: "Tecnología",
+          meta: "Tecnología · 8 semanas · Presencial · 1/4 lugares",
+          tags: ["Robótica", "Arduino", "Mecánica"],
+          image: "proyecto-robot.png",
+          description: "Diseñaremos y construiremos un robot autónomo para participar en la competencia nacional de robótica. Incluye diseño mecánico, programación de sensores y estrategia de competencia.",
+          skills: [
+            "Programación en C/C++ (Arduino)",
+            "Diseño mecánico o electrónico",
+            "Trabajo con sensores y actuadores",
+            "Resolución de problemas técnicos"
+          ],
+          leader: {
+            avatar: "D",
+            name: "Diego · Mecatrónica",
+            contact: "@diego_robot"
+          },
+          commitment: "10-12 horas semanales. Trabajo presencial en el taller de robótica, especialmente los fines de semana.",
+          learning: "Robótica práctica, trabajo bajo presión con deadlines de competencia, prototipado rápido y debugging en hardware.",
+          team: [
+            { initial: "D", name: "Diego", role: "Mecánica · Líder" },
+            { initial: "I", name: "Isabel", role: "Programación" },
+            { initial: "A", name: "Antonio", role: "Electrónica" }
+          ],
+          updates: [
+            { date: "Hace 6 horas", text: "Primer prototipo funcionando. Los sensores responden bien." },
+            { date: "Hace 1 semana", text: "Aprobado el presupuesto para materiales. ¡A construir!" }
+          ]
+        },
+        {
+          id: "p6",
+          initials: "NV",
+          name: "Newsletter de ciencia",
+          short: "Arte · Continuo · Remoto",
+          category: "Arte",
+          meta: "Arte · Proyecto continuo · Remoto · 2/5 lugares",
+          tags: ["Escritura", "Divulgación", "Diseño"],
+          image: "proyecto-newsletter.png",
+          description: "Crearemos una newsletter quincenal que explique temas de ciencia y tecnología de forma accesible para estudiantes, con ilustraciones y un tono cercano.",
+          skills: [
+            "Redacción y edición",
+            "Investigación y fact-checking",
+            "Diseño editorial (Canva, InDesign)",
+            "Gestión de plataformas de email"
+          ],
+          leader: {
+            avatar: "V",
+            name: "Valeria · Biotecnología",
+            contact: "@vale_science"
+          },
+          commitment: "3-5 horas semanales, completamente remoto. Reuniones quincenales para planear contenido.",
+          learning: "Divulgación científica, escritura clara y atractiva, uso de herramientas de email marketing y construcción de comunidad.",
+          team: [
+            { initial: "V", name: "Valeria", role: "Editora · Líder" },
+            { initial: "H", name: "Héctor", role: "Research" }
+          ],
+          updates: [
+            { date: "Hace 2 días", text: "Edición #4 enviada a 120 suscriptores. ¡Creciendo!" },
+            { date: "Hace 1 semana", text: "Héctor escribió un artículo increíble sobre CRISPR." }
+          ]
+        }
+      ]
+    };
+
+    // Filtrar por categoría
+    function getProjectsByCategory(category) {
+      if (category === "Todos") return projectsData["Todos"];
+      return projectsData["Todos"].filter(p => p.category === category);
+    }
+
+    // ===== ESTADO Y REFERENCIAS =====
+    let currentCategory = "Todos";
+    let currentProjectId = null;
+
+    const categoryPills = document.querySelectorAll(".city-pill");
+    const projectsList = document.getElementById("projects-list");
+
+    const projTitle = document.getElementById("proj-title");
+    const projMeta = document.getElementById("proj-meta");
+    const projTags = document.getElementById("proj-tags");
+    const projImage = document.getElementById("proj-image");
+    const projDescription = document.getElementById("proj-description");
+    const projSkills = document.getElementById("proj-skills");
+    const projLeaderAvatar = document.getElementById("proj-leader-avatar");
+    const projLeaderName = document.getElementById("proj-leader-name");
+    const projLeaderContact = document.getElementById("proj-leader-contact");
+    const projCommitment = document.getElementById("proj-commitment");
+    const projLearning = document.getElementById("proj-learning");
+    const projTeam = document.getElementById("proj-team");
+    const projUpdates = document.getElementById("proj-updates");
+    const searchInput = document.getElementById("search-input");
+
+    function renderProjects(category, filterText = "") {
+      const projects = getProjectsByCategory(category);
+      projectsList.innerHTML = "";
+
+      projects.forEach((proj) => {
+        if (
+          filterText &&
+          !proj.name.toLowerCase().includes(filterText.toLowerCase()) &&
+          !proj.tags.some(tag => tag.toLowerCase().includes(filterText.toLowerCase()))
+        ) {
+          return;
+        }
+
+        const btn = document.createElement("button");
+        btn.className = "friend-item project-item";
+        btn.dataset.id = proj.id;
+
+        btn.innerHTML = `
+          <div class="friend-avatar">${proj.initials}</div>
+          <div class="friend-info">
+            <div class="friend-name">${proj.name}</div>
+            <div class="friend-detail">${proj.short}</div>
+          </div>
+        `;
+
+        btn.addEventListener("click", () => {
+          setActiveProject(proj.id);
+        });
+
+        projectsList.appendChild(btn);
+      });
+
+      const firstBtn = projectsList.querySelector(".friend-item");
+      if (firstBtn) {
+        setActiveProject(firstBtn.dataset.id);
+      } else {
+        currentProjectId = null;
+      }
+    }
+
+    function setActiveProject(id) {
+      currentProjectId = id;
+
+      const proj = projectsData["Todos"].find((p) => p.id === id);
+      if (!proj) return;
+
+      // Actualizar estado visual lista
+      projectsList
+        .querySelectorAll(".friend-item")
+        .forEach((item) =>
+          item.classList.remove("project-item--active")
+        );
+      const activeBtn = projectsList.querySelector(
+        `.friend-item[data-id="${id}"]`
+      );
+      if (activeBtn) {
+        activeBtn.classList.add("project-item--active");
+      }
+
+      // Actualizar detalle central
+      projTitle.textContent = proj.name;
+      projMeta.textContent = proj.meta;
+
+      projTags.innerHTML = "";
+      proj.tags.forEach((tag) => {
+        const span = document.createElement("span");
+        span.className = "project-tag";
+        span.textContent = tag;
+        projTags.appendChild(span);
+      });
+
+      if (proj.image) {
+        projImage.src = proj.image;
+        projImage.alt = `Imagen de ${proj.name}`;
+      }
+
+      projDescription.textContent = proj.description;
+
+      projSkills.innerHTML = "";
+      proj.skills.forEach((skill) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="check-icon">✓</span>
+          ${skill}
+        `;
+        projSkills.appendChild(li);
+      });
+
+      projLeaderAvatar.textContent = proj.leader.avatar;
+      projLeaderName.textContent = proj.leader.name;
+      projLeaderContact.textContent = proj.leader.contact;
+
+      projCommitment.textContent = proj.commitment;
+      projLearning.textContent = proj.learning;
+
+      // Equipo
+      projTeam.innerHTML = "";
+      proj.team.forEach((member) => {
+        const article = document.createElement("article");
+        article.className = "proj-team-member";
+        article.innerHTML = `
+          <div class="proj-team-avatar">${member.initial}</div>
+          <div class="proj-team-info">
+            <div class="proj-team-name">${member.name}</div>
+            <div class="proj-team-role">${member.role}</div>
+          </div>
+        `;
+        projTeam.appendChild(article);
+      });
+
+      // Actualizaciones
+      projUpdates.innerHTML = "";
+      proj.updates.forEach((update) => {
+        const article = document.createElement("article");
+        article.className = "proj-update";
+        article.innerHTML = `
+          <div class="proj-update-date">${update.date}</div>
+          <p class="proj-update-text">${update.text}</p>
+        `;
+        projUpdates.appendChild(article);
+      });
+    }
+
+    function setCategory(category) {
+      currentCategory = category;
+
+      categoryPills.forEach((pill) =>
+        pill.classList.toggle(
+          "city-pill--active",
+          pill.dataset.category === category
+        )
+      );
+
+      const filterText = searchInput.value.trim();
+      renderProjects(category, filterText);
+    }
+
+    // ===== EVENTOS =====
+    categoryPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        setCategory(pill.dataset.category);
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      const text = searchInput.value.trim();
+      renderProjects(currentCategory, text);
+    });
+
+    // Dropdown de community
+    const toggle = document.getElementById("community-toggle");
+    const group = document.getElementById("community-group");
+    if (toggle && group) {
+      toggle.addEventListener("click", () => {
+        group.classList.toggle("nav-sub--open");
+      });
+    }
+
+    // Inicializar
+    setCategory("Todos");
+  </script>
+</body>
+</html>

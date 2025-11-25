@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Becas - Plataforma Educativa</title>
-  <link rel="stylesheet" href="inicio.css">
-  <link rel="stylesheet" href="oportunidades.css">
+  <link rel="stylesheet" href="foro.css">
   <link rel="stylesheet" href="becas.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@0..1" />
   <style>
@@ -240,68 +239,44 @@
   </style>
 </head>
 <body>
-  <!-- === SIDEBAR === -->
-  <aside class="sidebar">
-    <header class="sidebar-header">
-      <a href="#" class="header-logo">
-        <img src="imag.png" alt="logo">
-      </a>
-      <button class="toggler sidebar-toggler">
-        <span class="material-symbols-rounded">chevron_left</span>
-      </button>
-    </header>
+<div class="app">
+<!-- SIDEBAR IZQUIERDA PRINCIPAL -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="Logo.png" alt="PathWise" />
+      </div>
 
-    <nav class="sidebar-nav">
-      <ul class="nav-list primary-nav">
-        <li class="nav-item">
-          <a href="inicio.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">home</span>
-            <span class="nav-label">Inicio</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="clases.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">assignment</span>
-            <span class="nav-label">Clases</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="oportunidades.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">book</span>
-            <span class="nav-label">Oportunidades</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="becas.html" class="nav-link active">
-            <span class="nav-icon material-symbols-rounded">school</span>
-            <span class="nav-label">Becas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="ayuda.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">Distance</span>
-            <span class="nav-label">Oportunidades Locales</span>
-          </a>
-        </li>
-      </ul>
+      <nav class="sidebar-nav">
+        <a href="nuevoini.html" class="nav-item nav-item--simple nav-item--active">Inicio</a>
+        <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+        <a href="oportunidades.html" class="nav-item nav-item--simple">Admisión</a>
+        <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
 
-      <ul class="nav-list secondary-nav">
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">account_circle</span>
-            <span class="nav-label">Perfil</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="index.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">logout</span>
-            <span class="nav-label">Salir</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+        <button type="button" id="community-toggle" class="nav-item nav-item--group">
+          <span>Community</span>
+          <span class="nav-chevron">▾</span>
+        </button>
 
+        <div id="community-group" class="nav-sub nav-sub--open">
+          <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+          <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+          <a href="foro.html" class="nav-sub-item nav-sub-item--active">Foro</a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini">
+          <div class="user-avatar">K</div>
+          <div class="user-meta">
+            <div class="user-name">Karla</div>
+            <div class="user-tag">@usuario</div>
+          </div>
+        </div>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+</aside>
   <!-- === MAIN CONTENT === -->
   <main class="main-content">
     <h1>🎓 Búsqueda de Becas Personalizada</h1>
@@ -318,7 +293,7 @@
             id="nombre" 
             class="profile-input" 
             placeholder="Tu nombre completo"
-            value="María González"
+            value="Karla Yvette Aleman"
           >
         </div>
 
@@ -603,5 +578,6 @@
       console.log('📝 Perfil de ejemplo: Estudiante de secundaria en Quechultenango');
     });
   </script>
+</div>
 </body>
 </html>

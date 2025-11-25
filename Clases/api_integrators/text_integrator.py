@@ -272,7 +272,7 @@ class TextIntegrator:
         Ejecuta búsquedas en paralelo y devuelve una mezcla intercalada (round-robin)."""
         print(f"\n{'='*60}")
         print(f"🚀 BÚSQUEDA DE TEXTO INICIADA (sin prioridad fija)")
-        print(f"   Tema: {topic}  Idioma: {language}  Nivel: {grade_level}  Max: {max_results}")
+        print(f"   Tema: {topic}  Idioma: {language}  Nivel: {grade_level}  Max: {10}")
         print(f"{'='*60}\n")
 
         # lanzar todas las búsquedas en paralelo (cada función ya filtra si no está configurada)
@@ -282,7 +282,7 @@ class TextIntegrator:
                 ex.submit(self.search_openlibrary, topic, language, max_results): 'openlibrary',        
                 ex.submit(self.search_educational_pdfs, topic, language, max_results): 'google'
             }
-            results_by_source = {'arxiv': [], 'openlibrary': [], 'google': []}
+            results_by_source = {'All': [], 'arxiv': [], 'openlibrary': [], 'google': []}
             for fut in as_completed(future_map):
                 src = future_map[fut]
                 try:

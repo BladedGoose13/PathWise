@@ -3,181 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menú Lateral</title>
-  <link rel="stylesheet" href="inicio.css">
-  </html><link rel="stylesheet" href="oportunidades.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@0..1" />
+  <title>Oportunidades - PathWise</title>
+  <link rel="stylesheet" href="foro.css">
+  <style>
+    /* ========== ESTILOS MEJORADOS PARA OPORTUNIDADES ========== */
+    
+    .main-content {
+      padding: 32px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header de la página */
+    .opportunities-header {
+      margin-bottom: 32px;
+    }
+
+    .opportunities-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .opportunities-intro {
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      color: #ffffff;
+      padding: 24px 28px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 14px 32px rgba(20, 85, 230, 0.35);
+    }
+
+    .opportunities-intro p {
+      margin: 0 0 12px 0;
+      line-height: 1.6;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .opportunities-intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Grid de universidades */
+    .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    /* Tarjeta de universidad */
+    .uni-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .uni-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+    }
+
+    /* Header de la tarjeta con logo */
+    .uni-card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .uni-logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: #f9fafb;
+      padding: 8px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+
+    .uni-card-header h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+
+    /* Requisitos */
+    .uni-requirements {
+      flex: 1;
+      margin-bottom: 20px;
+    }
+
+    .uni-requirements-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      gap: 10px;
+    }
+
+    .checklist input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #d1d5db;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      appearance: none;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .checklist input[type="checkbox"]:checked {
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      border-color: #1455e6;
+    }
+
+    .checklist input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .checklist label {
+      font-size: 14px;
+      color: #374151;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s ease;
+    }
+
+    .checklist input[type="checkbox"]:checked + label {
+      color: #9ca3af;
+      text-decoration: line-through;
+    }
+
+    /* Botón de acción */
+    .uni-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #1455e6, #1d5fff);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(20, 85, 230, 0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+
+    .uni-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(20, 85, 230, 0.5);
+      filter: brightness(1.05);
+    }
+
+    .uni-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 6px 16px rgba(20, 85, 230, 0.35);
+    }
+
+    .uni-btn::after {
+      content: "→";
+      font-size: 16px;
+    }
+
+    /* Progress indicator */
+    .uni-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: rgba(20, 85, 230, 0.06);
+      border-radius: 12px;
+    }
+
+    .uni-progress-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(148, 163, 184, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .uni-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #1455e6, #1d5fff);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .uni-progress-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1455e6;
+      white-space: nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .uni-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .main-content {
+        padding: 24px 20px;
+      }
+
+      .uni-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .opportunities-header h1 {
+        font-size: 26px;
+      }
+
+      .opportunities-intro {
+        padding: 20px 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
+<div class="app">
+
+  <!-- SIDEBAR IZQUIERDA PRINCIPAL -->
   <aside class="sidebar">
-    <header class="sidebar-header">
-      <a href="#" class="header-logo">
-        <img src="imag.png" alt="logo">
-      </a>
-      <button class="toggler sidebar-toggler">
-        <span class="material-symbols-rounded">chevron_left</span>
-      </button>
-    </header>
+    <div class="sidebar-logo">
+      <img src="Logo.png" alt="PathWise" />
+    </div>
 
     <nav class="sidebar-nav">
-      <ul class="nav-list primary-nav">
-        <li class="nav-item">
-          <a href="inicio.html" class="nav-link active">
-            <span class="nav-icon material-symbols-rounded">home</span>
-            <span class="nav-label">Inicio</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="clases.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">Assignment</span>
-            <span class="nav-label">Clases</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="oportunidades.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">book</span>
-            <span class="nav-label">Oportunidades</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="becas.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">school</span>
-            <span class="nav-label">Becas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="ayuda.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">Distance</span>
-            <span class="nav-label">Oportunidades Locales</span>
-          </a>
-        </li>
-      </ul>
+      <a href="nuevoini.html" class="nav-item nav-item--simple">Inicio</a>
+      <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+      <a href="oportunidades.html" class="nav-item nav-item--simple nav-item--active">Admisión</a>
+      <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
 
-      <ul class="nav-list secondary-nav">
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">account_circle</span>
-            <span class="nav-label">Perfil</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="index.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">logout</span>
-            <span class="nav-label">Salir</span>
-          </a>
-        </li>
-      </ul>
+      <button type="button" id="community-toggle" class="nav-item nav-item--group">
+        <span>Community</span>
+        <span class="nav-chevron">▾</span>
+      </button>
+
+      <div id="community-group" class="nav-sub nav-sub--open">
+        <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+        <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+        <a href="foro.html" class="nav-sub-item">Foro</a>
+      </div>
     </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-mini">
+        <div class="user-avatar">K</div>
+        <div class="user-meta">
+          <div class="user-name">Karla</div>
+          <div class="user-tag">@usuario</div>
+        </div>
+      </div>
+      <button class="logout-btn">Cerrar sesión</button>
+    </div>
   </aside>
 
+  <!-- MAIN CONTENT -->
   <main class="main-content">
-    <h1>Oportunidades</h1>
-    <p>"¡Tu esfuerzo y talento merecen ser reconocidos! Estas becas están diseñadas para jóvenes como tú, que buscan crecer académica y personalmente. Postúlate y da el siguiente paso hacia tu futuro."</p>
-    <p>"Sabemos que tienes el talento y la dedicación para alcanzar grandes metas. Participar en estas becas te permitirá acceder a universidades de alto nivel y desarrollar tu futuro académico con todo tu potencial."</p>
-    <div class="uni-container">
+    
+    <div class="opportunities-header">
+      <h1>Oportunidades de Admisión</h1>
+    </div>
 
-  <div class="uni-card">
-  <img src="unam.png" class="uni-img">
-  <h3>UNAM</h3>
-  <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="liderazgo"><label for="liderazgo">Liderazgo y proactividad</label></li>
-    <li><input type="checkbox" id="innovacion"><label for="innovacion">Innovación y emprendimiento</label></li>
-    <li><input type="checkbox" id="trabajo"><label for="trabajo">Trabajo en equipo</label></li>
-    <li><input type="checkbox" id="excelencia"><label for="excelencia">Excelencia académica</label></li>
-    <li><input type="checkbox" id="compromiso"><label for="compromiso">Compromiso social</label></li>
-  </ul>
-  <br>
-  <a href="https://www.dgae.unam.mx/admision_licenciatura/" target="_blank" class="uni-btn">Ir al sitio</a>
-</div>
+    <div class="opportunities-intro">
+      <p>¡Tu esfuerzo y talento merecen ser reconocidos! Estas oportunidades están diseñadas para jóvenes como tú, que buscan crecer académica y personalmente. Postúlate y da el siguiente paso hacia tu futuro.</p>
+      <p>Sabemos que tienes el talento y la dedicación para alcanzar grandes metas. Participar en estos procesos de admisión te permitirá acceder a universidades de alto nivel y desarrollar tu futuro académico con todo tu potencial.</p>
+    </div>
 
+    <div class="uni-grid">
 
-  <div class="uni-card">
-    <img src="udlap.png" class="uni-img">
-    <h3>UDLAP</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="excelencia"><label for="excelencia">Excelencia académica</label></li>
-    <li><input type="checkbox" id="compromiso"><label for="compromiso">Compromiso social</label></li>
-  </ul>
-  <br>
-    <a href="https://www.udlap.mx/eligeudlap/" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+      <!-- UNAM -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="unam.png" alt="UNAM" class="uni-logo">
+          <h3>UNAM</h3>
+        </div>
 
-  <div class="uni-card">
-    <img src="ipn.png" class="uni-img">
-    <h3>IPN</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="liderazgo"><label for="liderazgo">Liderazgo y proactividad</label></li>
-    <li><input type="checkbox" id="innovacion"><label for="innovacion">Innovación y emprendimiento</label></li>
-  </ul>
-  <br>
-    <a href="https://www.admision.ipn.mx/nse/convocatoria/index.html#examen" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/5</span>
+        </div>
 
-  <div class="uni-card">
-    <img src="itam.png" class="uni-img">
-    <h3>ITAM</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="innovacion"><label for="innovacion">Innovación y emprendimiento</label></li>
-    <li><input type="checkbox" id="trabajo"><label for="trabajo">Trabajo en equipo</label></li>
-  </ul>
-  <br>
-    <a href="https://carreras.itam.mx/admisiones/" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="unam-liderazgo"><label for="unam-liderazgo">Liderazgo y proactividad</label></li>
+            <li><input type="checkbox" id="unam-innovacion"><label for="unam-innovacion">Innovación y emprendimiento</label></li>
+            <li><input type="checkbox" id="unam-trabajo"><label for="unam-trabajo">Trabajo en equipo</label></li>
+            <li><input type="checkbox" id="unam-excelencia"><label for="unam-excelencia">Excelencia académica</label></li>
+            <li><input type="checkbox" id="unam-compromiso"><label for="unam-compromiso">Compromiso social</label></li>
+          </ul>
+        </div>
 
-  <div class="uni-card">
-    <img src="anahuac.png" class="uni-img">
-    <h3>Anáhuac</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="liderazgo"><label for="liderazgo">Liderazgo y proactividad</label></li>
-    <li><input type="checkbox" id="innovacion"><label for="innovacion">Innovación y emprendimiento</label></li>
-    <li><input type="checkbox" id="trabajo"><label for="trabajo">Trabajo en equipo</label></li>
-    <li><input type="checkbox" id="excelencia"><label for="excelencia">Excelencia académica</label></li>
-    <li><input type="checkbox" id="compromiso"><label for="compromiso">Compromiso social</label></li>
-  </ul>
-  <br>
-    <a href="https://mexico.anahuac.mx/licenciaturas/admision-general" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+        <a href="https://www.dgae.unam.mx/admision_licenciatura/" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
 
-  <div class="uni-card">
-    <img src="buap.png" class="uni-img">
-    <h3>BUAP</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="liderazgo"><label for="liderazgo">Liderazgo y proactividad</label></li>
-  </ul>
-  <br>
-    <a href="https://admision.buap.mx/" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+      <!-- UDLAP -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="udlap.png" alt="UDLAP" class="uni-logo">
+          <h3>UDLAP</h3>
+        </div>
 
-  <div class="uni-card">
-    <img src="tec.png" class="uni-img">
-    <h3>Tec de Monterrey</h3>
-    <p>Requisitos faltantes:</p>
-  <br>
-  <ul class="checklist">
-    <li><input type="checkbox" id="liderazgo"><label for="liderazgo">Liderazgo y proactividad</label></li>
-    <li><input type="checkbox" id="innovacion"><label for="innovacion">Innovación y emprendimiento</label></li>
-    <li><input type="checkbox" id="trabajo"><label for="trabajo">Trabajo en equipo</label></li>
-    <li><input type="checkbox" id="excelencia"><label for="excelencia">Excelencia académica</label></li>
-    <li><input type="checkbox" id="compromiso"><label for="compromiso">Compromiso social</label></li>
-  </ul>
-  <br>
-    <a href="https://tec.mx/es/profesional" target="_blank" class="uni-btn">Ir al sitio</a>
-  </div>
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/2</span>
+        </div>
 
-</div>
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="udlap-excelencia"><label for="udlap-excelencia">Excelencia académica</label></li>
+            <li><input type="checkbox" id="udlap-compromiso"><label for="udlap-compromiso">Compromiso social</label></li>
+          </ul>
+        </div>
+
+        <a href="https://www.udlap.mx/eligeudlap/" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+      <!-- IPN -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="ipn.png" alt="IPN" class="uni-logo">
+          <h3>IPN</h3>
+        </div>
+
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/2</span>
+        </div>
+
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="ipn-liderazgo"><label for="ipn-liderazgo">Liderazgo y proactividad</label></li>
+            <li><input type="checkbox" id="ipn-innovacion"><label for="ipn-innovacion">Innovación y emprendimiento</label></li>
+          </ul>
+        </div>
+
+        <a href="https://www.admision.ipn.mx/nse/convocatoria/index.html#examen" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+      <!-- ITAM -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="itam.png" alt="ITAM" class="uni-logo">
+          <h3>ITAM</h3>
+        </div>
+
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/2</span>
+        </div>
+
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="itam-innovacion"><label for="itam-innovacion">Innovación y emprendimiento</label></li>
+            <li><input type="checkbox" id="itam-trabajo"><label for="itam-trabajo">Trabajo en equipo</label></li>
+          </ul>
+        </div>
+
+        <a href="https://carreras.itam.mx/admisiones/" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+      <!-- ANÁHUAC -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="anahuac.png" alt="Anáhuac" class="uni-logo">
+          <h3>Anáhuac</h3>
+        </div>
+
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/5</span>
+        </div>
+
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="anahuac-liderazgo"><label for="anahuac-liderazgo">Liderazgo y proactividad</label></li>
+            <li><input type="checkbox" id="anahuac-innovacion"><label for="anahuac-innovacion">Innovación y emprendimiento</label></li>
+            <li><input type="checkbox" id="anahuac-trabajo"><label for="anahuac-trabajo">Trabajo en equipo</label></li>
+            <li><input type="checkbox" id="anahuac-excelencia"><label for="anahuac-excelencia">Excelencia académica</label></li>
+            <li><input type="checkbox" id="anahuac-compromiso"><label for="anahuac-compromiso">Compromiso social</label></li>
+          </ul>
+        </div>
+
+        <a href="https://mexico.anahuac.mx/licenciaturas/admision-general" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+      <!-- BUAP -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="buap.png" alt="BUAP" class="uni-logo">
+          <h3>BUAP</h3>
+        </div>
+
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/1</span>
+        </div>
+
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="buap-liderazgo"><label for="buap-liderazgo">Liderazgo y proactividad</label></li>
+          </ul>
+        </div>
+
+        <a href="https://admision.buap.mx/" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+      <!-- TEC -->
+      <div class="uni-card">
+        <div class="uni-card-header">
+          <img src="tec.png" alt="Tec de Monterrey" class="uni-logo">
+          <h3>Tec de Monterrey</h3>
+        </div>
+
+        <div class="uni-progress">
+          <div class="uni-progress-bar">
+            <div class="uni-progress-fill" style="width: 0%"></div>
+          </div>
+          <span class="uni-progress-text">0/5</span>
+        </div>
+
+        <div class="uni-requirements">
+          <div class="uni-requirements-title">Requisitos faltantes</div>
+          <ul class="checklist">
+            <li><input type="checkbox" id="tec-liderazgo"><label for="tec-liderazgo">Liderazgo y proactividad</label></li>
+            <li><input type="checkbox" id="tec-innovacion"><label for="tec-innovacion">Innovación y emprendimiento</label></li>
+            <li><input type="checkbox" id="tec-trabajo"><label for="tec-trabajo">Trabajo en equipo</label></li>
+            <li><input type="checkbox" id="tec-excelencia"><label for="tec-excelencia">Excelencia académica</label></li>
+            <li><input type="checkbox" id="tec-compromiso"><label for="tec-compromiso">Compromiso social</label></li>
+          </ul>
+        </div>
+
+        <a href="https://tec.mx/es/profesional" target="_blank" class="uni-btn">Ir al sitio</a>
+      </div>
+
+    </div>
+
   </main>
 
-  <script src="scrip.js"></script>
+  <script>
+    // JavaScript para actualizar las barras de progreso dinámicamente
+    document.addEventListener("DOMContentLoaded", function() {
+      const cards = document.querySelectorAll('.uni-card');
+      
+      cards.forEach(card => {
+        const checkboxes = card.querySelectorAll('input[type="checkbox"]');
+        const progressFill = card.querySelector('.uni-progress-fill');
+        const progressText = card.querySelector('.uni-progress-text');
+        const total = checkboxes.length;
+        
+        function updateProgress() {
+          const checked = card.querySelectorAll('input[type="checkbox"]:checked').length;
+          const percentage = (checked / total) * 100;
+          
+          progressFill.style.width = percentage + '%';
+          progressText.textContent = checked + '/' + total;
+        }
+        
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', updateProgress);
+        });
+      });
+    });
+  </script>
+
+</div>
+
 </body>
+</html>

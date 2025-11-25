@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap");
+
+/* --------------------------- */
+/*         VARIABLES           */
+/* --------------------------- */
+:root {
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+
+    --primary: #1455e6;
+    --primary-light: #e3ecff;
+    --accent: #467aff;
+
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
+/* --------------------------- */
+/*        ESTILOS BASE         */
+/* --------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-color: #e9f2ff;
+}
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+/* --------------------------- */
+/*         SIDEBAR             */
+/* --------------------------- */
+.sidebar {
+    width: 280px;
+    background: #fff;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #d0d7e1;
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+.logo {
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Menú */
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 12px;
+    transition: 0.3s ease-in-out;
+    color: #333;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    background: rgba(255, 149, 0, 0.18);
+}
+
+/* Dropdown */
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    padding-left: 25px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-menu a {
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+/* --------------------------- */
+/*       CONTENIDO MAIN        */
+/* --------------------------- */
+.main {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+/* Títulos */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+h3 {
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* --------------------------- */
+/*      BOTONES Y PILLS        */
+/* --------------------------- */
+.progress-pill {
+    background: #ddeaff;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* --------------------------- */
+/*  FIX: NAV-LINK RENOMBRADO   */
+/* --------------------------- */
+.header-nav-link {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 8px;
+    padding: 12px 15px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* --------------------------- */
+/*   TARJETAS Y CONTENEDORES   */
+/* --------------------------- */
+.card {
+    background: #fff;
+    padding: 25px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 0 20px #adbbf31c;
+    margin-bottom: 25px;
+}
+
+/* Listas dentro de tarjetas */
+ul {
+    margin-left: 20px;
+}

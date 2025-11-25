@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PathWise | Comunidad · Voluntariado</title>
+  <link rel="stylesheet" href="voluntariado.css">
+</head>
+<body>
+  <div class="app">
+    <!-- SIDEBAR IZQUIERDA PRINCIPAL -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="Logo.png" alt="PathWise" />
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="nuevoini.html" class="nav-item nav-item--simple nav-item--active">Inicio</a>
+        <a href="clases.html" class="nav-item nav-item--simple">Clase</a>
+        <a href="oportunidades.html" class="nav-item nav-item--simple">Admisión</a>
+        <a href="becas.html" class="nav-item nav-item--simple">Becas</a>
+
+        <button type="button" id="community-toggle" class="nav-item nav-item--group">
+          <span>Community</span>
+          <span class="nav-chevron">▾</span>
+        </button>
+
+        <div id="community-group" class="nav-sub nav-sub--open">
+          <a href="Proyectos.html" class="nav-sub-item">Proyectos</a>
+          <a href="voluntarido.html" class="nav-sub-item">Voluntariado</a>
+          <a href="foro.html" class="nav-sub-item nav-sub-item--active">Foro</a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini">
+          <div class="user-avatar">K</div>
+          <div class="user-meta">
+            <div class="user-name">Karla</div>
+            <div class="user-tag">@usuario</div>
+          </div>
+        </div>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </aside>
+
+</aside>
+
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main">
+      <header class="forum-header">
+        <div class="forum-title">
+          <h1>Voluntariado</h1>
+        </div>
+
+        <div class="forum-subcopy">
+          Descubre oportunidades para ayudar, cumplir tu servicio social y sumar experiencia real
+          mientras conectas con causas que te importan.
+        </div>
+
+        <div class="city-filter">
+          <span class="city-label">Ciudad:</span>
+          <button class="city-pill city-pill--active" data-city="Puebla">Puebla</button>
+          <button class="city-pill" data-city="CDMX">CDMX</button>
+          <button class="city-pill" data-city="Monterrey">Monterrey</button>
+          <button class="city-pill" data-city="Guadalajara">Guadalajara</button>
+        </div>
+      </header>
+
+      <div class="forum-body">
+        <!-- COLUMNA IZQUIERDA: LISTA DE OPORTUNIDADES -->
+        <section class="friends-column">
+          <div class="friends-card">
+            <div class="friends-header">
+              <span class="friends-title">Oportunidades</span>
+              <span class="friends-subtitle">
+                Elige una opción para ver los detalles y reseñas.
+              </span>
+            </div>
+
+            <div class="friends-search">
+              <span class="search-icon"></span>
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Buscar por nombre, causa o institución..."
+              />
+            </div>
+
+            <div class="friends-list volunteer-opportunities" id="opportunity-list">
+              <!-- La lista se genera dinámicamente con JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- COLUMNA CENTRAL: DETALLE DE LA OPORTUNIDAD -->
+        <section class="chat-column">
+          <article class="chat-card volunteer-detail-card">
+            <div class="chat-header volunteer-header">
+              <div>
+                <div class="chat-channel-label">Voluntariado seleccionado</div>
+                <div class="chat-channel-name" id="vol-title">Eco-limpieza en campus</div>
+                <div class="chat-channel-meta" id="vol-meta">
+                  Puebla · Presencial · Servicio social válido · 25 lugares
+                </div>
+              </div>
+
+              <div class="rating-chip">
+                <span class="rating-stars" id="vol-rating-stars">★★★★★</span>
+                <span class="rating-score" id="vol-rating-score">4.8</span>
+                <span class="rating-count" id="vol-rating-count">· 32 reseñas</span>
+              </div>
+            </div>
+
+            <div class="vol-detail-layout">
+              <div class="vol-detail-image">
+                <img id="vol-image" 
+                src="ecocampus.png" 
+                alt="Imagen del voluntariado">
+              </div>
+
+              <div class="vol-detail-info">
+                <h3 class="vol-section-title">Requisitos</h3>
+                <ul class="vol-checklist" id="vol-requirements">
+                  <!-- Se llena con JS -->
+                </ul>
+
+                <h3 class="vol-section-title">¿Qué vas a hacer?</h3>
+                <p class="vol-description" id="vol-description">
+                  <!-- Se llena con JS -->
+                </p>
+
+                <div class="vol-cta-row">
+                  <button class="primary-btn primary-btn--small">
+                    Postularme
+                  </button>
+                  <button type="button" class="secondary-btn">
+                    Guardar para después
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="vol-quick-cards">
+              <div class="vol-quick-card">
+                <div class="vol-quick-title">Notas rápidas</div>
+                <p class="vol-quick-text" id="vol-notes">
+                  <!-- Se llena con JS -->
+                </p>
+              </div>
+
+              <div class="vol-quick-card">
+                <div class="vol-quick-title">Resumen de reseñas</div>
+                <p class="vol-quick-text" id="vol-summary">
+                  <!-- Se llena con JS -->
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- COLUMNA DERECHA: RESEÑAS / COMENTARIOS -->
+        <section class="friends-column volunteer-comments-column">
+          <div class="friends-card volunteer-comments-card">
+            <div class="friends-header">
+              <span class="friends-title">Reseñas de estudiantes</span>
+              <span class="friends-subtitle">
+                Personas que ya fueron cuentan su experiencia.
+              </span>
+            </div>
+
+            <div class="vol-comments-list" id="vol-comments">
+              <!-- Se llena con JS -->
+            </div>
+
+            <form class="vol-comment-form" id="comment-form">
+              <label for="comment-text">Deja tu reseña</label>
+
+              <div class="vol-comment-rating-input">
+                <span>Tu puntuación:</span>
+                <select id="comment-rating">
+                  <option value="5">⭐ 5 - Me encantó</option>
+                  <option value="4">⭐ 4 - Muy bueno</option>
+                  <option value="3">⭐ 3 - Está bien</option>
+                  <option value="2">⭐ 2 - Podría mejorar</option>
+                  <option value="1">⭐ 1 - No lo repetiría</option>
+                </select>
+              </div>
+
+              <textarea
+                id="comment-text"
+                placeholder="Cuenta cómo te fue en esta experiencia..."
+              ></textarea>
+
+              <button type="submit" class="primary-btn primary-btn--small">
+                Publicar reseña
+              </button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // ===== DATOS DE OPORTUNIDADES POR CIUDAD =====
+const volunteerData = {
+  "Puebla": [
+    {
+      id: "p1",
+      initials: "EC",
+      name: "Eco-limpieza en campus",
+      short: "Puebla · Sábados · 3 hrs",
+      meta: "Puebla · Presencial · Servicio social válido · 25 lugares",
+      rating: 4.8,
+      ratingCount: 32,
+      image: "ecocampus.png",         // 👈 NOMBRE EXACTO DE TU FLYER
+      requirements: [
+        "Ser estudiante de preparatoria o universidad.",
+        "Disponibilidad mínima de 3 horas los sábados por la mañana.",
+        "Registrar tus horas en PathWise para que cuenten como servicio.",
+        "Asistir a una inducción de 30 minutos en línea."
+      ],
+      description:
+        "Apoyarás en jornadas de limpieza dentro y alrededor del campus, separando residuos, levantando basura y participando en campañas de sensibilización con otros estudiantes.",
+      notes:
+        "Lleva ropa cómoda, bloqueador y una botella reutilizable. Te daremos guantes y bolsas recicladas.",
+      summary:
+        "Los estudiantes destacan el ambiente relajado, el buen equipo y que es muy fácil completar horas de servicio social.",
+      reviews: [
+        {
+          initial: "A",
+          name: "Ana · Derecho",
+          ratingText: "★★★★★ · 5.0",
+          text: "Me encantó, se arma muy buen ambiente y terminé mis horas de servicio sin estrés."
+        },
+        {
+          initial: "M",
+          name: "Max · Ingeniería",
+          ratingText: "★★★★☆ · 4.3",
+          text: "Hay días pesados si hace calor, pero vale la pena. Conocí a gente de otras carreras."
+        }
+      ]
+    },
+    {
+      id: "p2",
+      initials: "TM",
+      name: "Tutorías de matemáticas",
+      short: "Puebla · Entre semana · 2 hrs",
+      meta: "Puebla · Híbrido · Servicio social válido · 15 lugares",
+      rating: 4.9,
+      ratingCount: 18,
+      image: "tutorias-mate.png",     // 👈 crea este archivo / o cambia el nombre
+      requirements: [
+        "Promedio mínimo de 80 en matemáticas.",
+        "Compromiso de asistir al menos 4 semanas seguidas.",
+        "Gusto por explicar y trabajar con alumnos de secundaria."
+      ],
+      description:
+        "Darás tutorías de regularización a estudiantes de secundaria que necesitan apoyo en álgebra y geometría básica, de forma presencial y en línea.",
+      notes:
+        "Ideal si te gustan los números y quieres practicar habilidades de comunicación.",
+      summary:
+        "Los comentarios resaltan que es una forma ligera de acumular horas y reforzar lo que ya sabes.",
+      reviews: [
+        {
+          initial: "L",
+          name: "Luis · Ingeniería Industrial",
+          ratingText: "★★★★★ · 5.0",
+          text: "Sentí que realmente ayudé a los chavos. Además reforcé temas que ya había visto."
+        }
+      ]
+    },
+    {
+      id: "p3",
+      initials: "CC",
+      name: "Comedor comunitario",
+      short: "Puebla · Domingos · 4 hrs",
+      meta: "Puebla · Presencial · Servicio social y voluntariado · 20 lugares",
+      rating: 4.6,
+      ratingCount: 21,
+      image: "comedor-comunitario.png",
+      requirements: [
+        "Disponibilidad los domingos por la mañana.",
+        "Actitud de servicio y trabajo en equipo.",
+        "Uso obligatorio de cubrebocas y cofia durante la actividad."
+      ],
+      description:
+        "Ayudarás en la preparación y servicio de alimentos para familias de la comunidad cercana, apoyando en cocina, servicio y logística.",
+      notes:
+        "Es una actividad un poco más cansada físicamente pero muy gratificante.",
+      summary:
+        "Las reseñas mencionan el impacto directo con la comunidad y lo significativo que se siente la experiencia.",
+      reviews: [
+        {
+          initial: "S",
+          name: "Sofía · Arquitectura",
+          ratingText: "★★★★☆ · 4.4",
+          text: "Terminas cansada pero feliz. Ver a las familias agradecidas no tiene precio."
+        }
+      ]
+    }
+  ],
+
+  "CDMX": [
+    {
+      id: "c1",
+      initials: "FN",
+      name: "Fundación Niños con Futuro",
+      short: "CDMX · Tardes entre semana",
+      meta: "CDMX · Presencial · Apoyo escolar y lúdico · 18 lugares",
+      rating: 4.9,
+      ratingCount: 27,
+      image: "fundacion-ninos.png",
+      requirements: [
+        "Carta de no antecedentes penales (puede ser digital).",
+        "Asistir mínimo 1 vez por semana.",
+        "Gusto por convivir con niñas y niños."
+      ],
+      description:
+        "Realizarás actividades lúdicas y de apoyo escolar con niñas y niños en situación vulnerable, en coordinación con el personal de la fundación.",
+      notes:
+        "Recomendable si te interesa psicología, educación o trabajo social.",
+      summary:
+        "Las reseñas resaltan el aprendizaje humano y la cercanía con las historias de los niños.",
+      reviews: [
+        {
+          initial: "K",
+          name: "Karen · Psicología",
+          ratingText: "★★★★★ · 5.0",
+          text: "Te cambia la perspectiva totalmente. Aprendí más de lo que enseñé."
+        }
+      ]
+    },
+    {
+      id: "c2",
+      initials: "TL",
+      name: "Taller de lectura en primaria",
+      short: "CDMX · Sábados por la mañana",
+      meta: "CDMX · Presencial · Lectura y comprensión · 10 lugares",
+      rating: 4.7,
+      ratingCount: 14,
+      image: "taller-lectura.png",
+      requirements: [
+        "Gusto por la lectura.",
+        "Habilidad básica para hablar frente a grupo.",
+        "Llegar 15 minutos antes para preparar el material."
+      ],
+      description:
+        "Coordinarás pequeños círculos de lectura con niñas y niños de primaria, haciendo dinámicas para que entiendan y disfruten las historias.",
+      notes:
+        "Actividad tranquila, ideal si te gustan los libros y la expresión oral.",
+      summary:
+        "Los estudiantes dicen que se siente como jugar mientras enseñas.",
+      reviews: [
+        {
+          initial: "R",
+          name: "Rodrigo · Comunicación",
+          ratingText: "★★★★☆ · 4.5",
+          text: "Es muy relajado y sales con buenas anécdotas. Recomendado."
+        }
+      ]
+    },
+    {
+      id: "c3",
+      initials: "HU",
+      name: "Huerto urbano comunitario",
+      short: "CDMX · Fines de semana · 3 hrs",
+      meta: "CDMX · Presencial · Sustentabilidad · 12 lugares",
+      rating: 4.8,
+      ratingCount: 19,
+      image: "huerto-urbano.png",
+      requirements: [
+        "No necesitas experiencia previa.",
+        "Disposición a ensuciarte las manos (literal).",
+        "Llevar gorra o sombrero."
+      ],
+      description:
+        "Apoyarás en el mantenimiento de un huerto urbano: siembra, riego, compostaje y talleres básicos para la comunidad.",
+      notes:
+        "Perfecto si te interesa el medio ambiente y quieres algo al aire libre.",
+      summary:
+        "Reseñas mencionan que es terapéutico y que se aprende mucho sobre plantas.",
+      reviews: [
+        {
+          initial: "D",
+          name: "Diego · Biotecnología",
+          ratingText: "★★★★★ · 5.0",
+          text: "Me encantó estar al aire libre, sentí que descansaba de la rutina."
+        }
+      ]
+    }
+  ],
+
+  "Monterrey": [
+    {
+      id: "m1",
+      initials: "BA",
+      name: "Banco de alimentos",
+      short: "Monterrey · Flexible",
+      meta: "Monterrey · Presencial · Logística y empaquetado · 30 lugares",
+      rating: 4.6,
+      ratingCount: 25,
+      image: "banco-alimentos.png",
+      requirements: [
+        "Capacidad para cargar cajas ligeras.",
+        "Disponibilidad mínima de 2 horas por visita.",
+        "Uso de tenis cerrados."
+      ],
+      description:
+        "Ayudarás a clasificar y empacar alimentos que se donan a distintas comunidades y organizaciones.",
+      notes:
+        "Actividad dinámica, ideal para ir en grupo con amigos.",
+      summary:
+        "Los estudiantes destacan que el tiempo pasa rápido y se siente muy productivo.",
+      reviews: [
+        {
+          initial: "M",
+          name: "Mariana · Administración",
+          ratingText: "★★★★☆ · 4.4",
+          text: "Es cansado pero divertido, sobre todo si vas con amigos."
+        }
+      ]
+    },
+    {
+      id: "m2",
+      initials: "ST",
+      name: "Mentorías STEM para niñas",
+      short: "Monterrey · Entre semana · 2 hrs",
+      meta: "Monterrey · Híbrido · Mentorías · 16 lugares",
+      rating: 4.9,
+      ratingCount: 17,
+      image: "mentorias-stem.png",
+      requirements: [
+        "Ser estudiante de alguna carrera STEM.",
+        "Disponibilidad para sesiones virtuales y presenciales.",
+        "Interés por inspirar a niñas en ciencia y tecnología."
+      ],
+      description:
+        "Darás mentorías y pequeñas clases introductorias de ciencia, tecnología o matemáticas a niñas de secundaria.",
+      notes:
+        "Buen complemento si buscas proyectos para tu CV en tecnología.",
+      summary:
+        "Los comentarios resaltan lo emocionante que es ver a las niñas interesarse por STEM.",
+      reviews: [
+        {
+          initial: "F",
+          name: "Fernanda · Mecatrónica",
+          ratingText: "★★★★★ · 5.0",
+          text: "Me vi reflejada en ellas. Súper recomendado si quieres motivar a más niñas en ingeniería."
+        }
+      ]
+    },
+    {
+      id: "m3",
+      initials: "RP",
+      name: "Rescate y adopción de perritos",
+      short: "Monterrey · Fines de semana",
+      meta: "Monterrey · Presencial · Cuidado animal · 14 lugares",
+      rating: 4.7,
+      ratingCount: 22,
+      image: "rescate-perritos.png",
+      requirements: [
+        "Amor por los animales.",
+        "No tener alergias fuertes a pelo de mascotas.",
+        "Compromiso con los horarios del refugio."
+      ],
+      description:
+        "Apoyarás en la limpieza de áreas, paseos y eventos de adopción para perritos rescatados.",
+      notes:
+        "Ideal si amas a los perritos y quieres un voluntariado emocionalmente bonito.",
+      summary:
+        "Las reseñas dicen que terminas lleno de pelos… pero también de amor.",
+      reviews: [
+        {
+          initial: "J",
+          name: "Juan · Finanzas",
+          ratingText: "★★★★☆ · 4.6",
+          text: "Te encariñas muchísimo, pero vale la pena todo el trabajo."
+        }
+      ]
+    }
+  ],
+
+  "Guadalajara": [
+    {
+      id: "g1",
+      initials: "TI",
+      name: "Talleres de inglés para niñas",
+      short: "Guadalajara · Fines de semana",
+      meta: "Guadalajara · Presencial · Idiomas · 12 lugares",
+      rating: 4.8,
+      ratingCount: 15,
+      image: "ingles-ninas.png",
+      requirements: [
+        "Nivel intermedio de inglés (B1 mínimo).",
+        "Habilidad para hablar frente a grupo.",
+        "Compromiso de asistir al menos 5 sesiones."
+      ],
+      description:
+        "Impartirás talleres básicos de inglés a niñas de primaria con dinámicas de juego y conversación.",
+      notes:
+        "Actividad perfecta si quieres practicar tu inglés y enseñar al mismo tiempo.",
+      summary:
+        "Reseñas destacan que las niñas participan mucho y pierden el miedo a hablar inglés.",
+      reviews: [
+        {
+          initial: "I",
+          name: "Itzel · Lenguas Modernas",
+          ratingText: "★★★★★ · 5.0",
+          text: "Se vuelve el momento favorito de la semana. Muy lindo ver cómo avanzan."
+        }
+      ]
+    },
+    {
+      id: "g2",
+      initials: "HA",
+      name: "Apoyo en hogar de ancianos",
+      short: "Guadalajara · Domingos · 3 hrs",
+      meta: "Guadalajara · Presencial · Acompañamiento · 10 lugares",
+      rating: 4.7,
+      ratingCount: 19,
+      image: "hogar-ancianos.png",
+      requirements: [
+        "Respeto y empatía hacia adultos mayores.",
+        "Escucha activa y paciencia.",
+        "Seguir lineamientos del personal médico."
+      ],
+      description:
+        "Acompañarás a residentes de un hogar de ancianos en actividades lúdicas, pláticas y apoyo ligero.",
+      notes:
+        "Es una experiencia emocionalmente intensa pero muy significativa.",
+      summary:
+        "Los comentarios mencionan que se crean lazos muy bonitos con los abuelitos.",
+      reviews: [
+        {
+          initial: "P",
+          name: "Paola · Medicina",
+          ratingText: "★★★★☆ · 4.5",
+          text: "Te encariñas mucho, aprendes a valorar el tiempo con tu propia familia."
+        }
+      ]
+    },
+    {
+      id: "g3",
+      initials: "FC",
+      name: "Festival cultural comunitario",
+      short: "Guadalajara · Evento especial",
+      meta: "Guadalajara · Presencial · Organización de eventos · 25 lugares",
+      rating: 4.6,
+      ratingCount: 12,
+      image: "festival-comunitario.png",
+      requirements: [
+        "Disponibilidad el fin de semana del evento.",
+        "Gusto por la organización y logística.",
+        "Asistir a 2 juntas previas de planeación."
+      ],
+      description:
+        "Apoyarás en la logística, montaje y actividades del festival cultural de la comunidad: música, danza y talleres.",
+      notes:
+        "Ideal si te gustan los eventos y el trabajo en equipo.",
+      summary:
+        "Reseñas resaltan el ambiente festivo y la sensación de logro al ver todo armado.",
+      reviews: [
+        {
+          initial: "C",
+          name: "Carlos · Mercadotecnia",
+          ratingText: "★★★★☆ · 4.4",
+          text: "Aprendí muchísimo de eventos. Acabé cansadísimo pero feliz."
+        }
+      ]
+    }
+  ]
+};
+
+    // ===== ESTADO Y REFERENCIAS =====
+    let currentCity = "Puebla";
+    let currentOpportunityId = null;
+
+    const cityPills = document.querySelectorAll(".city-pill");
+    const opportunityList = document.getElementById("opportunity-list");
+
+    const volTitle = document.getElementById("vol-title");
+    const volMeta = document.getElementById("vol-meta");
+    const volRatingStars = document.getElementById("vol-rating-stars");
+    const volRatingScore = document.getElementById("vol-rating-score");
+    const volRatingCount = document.getElementById("vol-rating-count");
+    const volImage = document.getElementById("vol-image");
+    const volReqList = document.getElementById("vol-requirements");
+    const volDescription = document.getElementById("vol-description");
+    const volNotes = document.getElementById("vol-notes");
+    const volSummary = document.getElementById("vol-summary");
+    const volComments = document.getElementById("vol-comments");
+    const searchInput = document.getElementById("search-input");
+    const commentForm = document.getElementById("comment-form");
+
+    function getStars(rating) {
+      const rounded = Math.round(rating);
+      let stars = "";
+      for (let i = 0; i < 5; i++) {
+        stars += i < rounded ? "★" : "☆";
+      }
+      return stars;
+    }
+
+    function renderOpportunities(city, filterText = "") {
+      const opportunities = volunteerData[city] || [];
+      opportunityList.innerHTML = "";
+
+      opportunities.forEach((op) => {
+        if (
+          filterText &&
+          !op.name.toLowerCase().includes(filterText.toLowerCase())
+        ) {
+          return;
+        }
+
+        const btn = document.createElement("button");
+        btn.className = "friend-item volunteer-opportunity";
+        btn.dataset.id = op.id;
+
+        btn.innerHTML = `
+          <div class="friend-avatar">${op.initials}</div>
+          <div class="friend-info">
+            <div class="friend-name">${op.name}</div>
+            <div class="friend-detail">${op.short}</div>
+          </div>
+        `;
+
+        btn.addEventListener("click", () => {
+          setActiveOpportunity(op.id);
+        });
+
+        opportunityList.appendChild(btn);
+      });
+
+      // Seleccionar la primera oportunidad visible
+      const firstBtn = opportunityList.querySelector(".friend-item");
+      if (firstBtn) {
+        setActiveOpportunity(firstBtn.dataset.id);
+      } else {
+        // Si no hay resultados por búsqueda
+        currentOpportunityId = null;
+      }
+    }
+
+    function setActiveOpportunity(id) {
+      currentOpportunityId = id;
+
+      const opportunities = volunteerData[currentCity] || [];
+      const op = opportunities.find((o) => o.id === id);
+      if (!op) return;
+
+      // Actualizar estado visual lista
+      opportunityList
+        .querySelectorAll(".friend-item")
+        .forEach((item) =>
+          item.classList.remove("volunteer-opportunity--active")
+        );
+      const activeBtn = opportunityList.querySelector(
+        `.friend-item[data-id="${id}"]`
+      );
+      if (activeBtn) {
+        activeBtn.classList.add("volunteer-opportunity--active");
+      }
+
+      // Actualizar detalle central
+      volTitle.textContent = op.name;
+      volMeta.textContent = op.meta;
+      volRatingScore.textContent = op.rating.toFixed(1);
+      volRatingCount.textContent = `· ${op.ratingCount} reseñas`;
+      volRatingStars.textContent = getStars(op.rating);
+
+      if (op.image) {
+        volImage.src = op.image;
+        volImage.alt = `Imagen de ${op.name}`;
+      }
+
+      volReqList.innerHTML = "";
+      op.requirements.forEach((req) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="check-icon">✓</span>
+          ${req}
+        `;
+        volReqList.appendChild(li);
+      });
+
+      volDescription.textContent = op.description;
+      volNotes.textContent = op.notes;
+      volSummary.textContent = op.summary;
+
+      // Reseñas
+      volComments.innerHTML = "";
+      op.reviews.forEach((rev) => {
+        const article = document.createElement("article");
+        article.className = "vol-comment";
+        article.innerHTML = `
+          <div class="vol-comment-header">
+            <div class="vol-comment-avatar">${rev.initial}</div>
+            <div class="vol-comment-meta">
+              <div class="vol-comment-name">${rev.name}</div>
+              <div class="vol-comment-rating">${rev.ratingText}</div>
+            </div>
+          </div>
+          <p class="vol-comment-text">${rev.text}</p>
+        `;
+        volComments.appendChild(article);
+      });
+    }
+
+    function setCity(city) {
+      currentCity = city;
+
+      cityPills.forEach((pill) =>
+        pill.classList.toggle(
+          "city-pill--active",
+          pill.dataset.city === city
+        )
+      );
+
+      const filterText = searchInput.value.trim();
+      renderOpportunities(city, filterText);
+    }
+
+    // ===== EVENTOS =====
+    cityPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        setCity(pill.dataset.city);
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      const text = searchInput.value.trim();
+      renderOpportunities(currentCity, text);
+    });
+
+    // Dropdown de community (igual que en foro)
+    const toggle = document.getElementById("community-toggle");
+    const group = document.getElementById("community-group");
+    if (toggle && group) {
+      toggle.addEventListener("click", () => {
+        group.classList.toggle("nav-sub--open");
+      });
+    }
+
+    // Formulario de reseña (solo prevenir que recargue)
+    if (commentForm) {
+      commentForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Aquí podrías agregar lógica para guardar la reseña si después conectan backend
+        commentForm.reset();
+        alert("Gracias por tu reseña 💙");
+      });
+    }
+
+    // Inicializar (Puebla por default)
+    setCity("Puebla");
+  </script>
+</body>
+</html>

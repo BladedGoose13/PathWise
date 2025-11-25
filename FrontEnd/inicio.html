@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menú Lateral</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+  <link rel="stylesheet" href="incio2.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -430,6 +431,82 @@
   color: #7bb9e8;
   font-weight: 600;
 }
+/* --- DROPDOWN MEJORADO Y BONITO --- */
+
+.dropdown {
+  position: relative;
+}
+
+/* iconito */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-icon {
+  font-size: 1.4rem;
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+/* MENÚ GLASS EFECTO */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* ahora SI baja hacia abajo */
+  left: 0;
+  background: rgba(255, 255, 255, 0.75); /* semitransparente */
+  backdrop-filter: blur(14px); /* efecto glass */
+  list-style: none;
+  min-width: 200px;
+  padding: 10px 0;
+  margin-top: 8px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  display: none;
+  z-index: 999;
+  border: 1px solid rgba(255,255,255,0.6);
+  animation: dropdownFade 0.25s ease-out;
+}
+
+/* Animación suave */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 18px;
+  text-decoration: none;
+  color: #0f172a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+  border-radius: 8px;
+}
+
+/* Hover más elegante */
+.dropdown-menu li a:hover {
+  background: rgba(219, 234, 254, 0.8);
+  padding-left: 24px;
+}
+
+/* MOSTRAR MENU AL PASAR */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+
 
 </style>
 
@@ -463,7 +540,7 @@
         <li class="nav-item">
           <a href="oportunidades.html" class="nav-link">
             <span class="nav-icon material-symbols-rounded">book</span>
-            <span class="nav-label">Oportunidades</span>
+            <span class="nav-label">Admisión</span>
           </a>
         </li>
         <li class="nav-item">
@@ -472,12 +549,21 @@
             <span class="nav-label">Becas</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a href="ayuda.html" class="nav-link">
-            <span class="nav-icon material-symbols-rounded">Distance</span>
-            <span class="nav-label">Oportunidades Locales</span>
+        <li class="nav-item dropdown">
+          <a href="ayuda.html" class="nav-link dropdown-toggle">
+            <span class="nav-icon material-symbols-rounded">Groups</span>
+            <span class="nav-label">Comunidad</span>
+            <span class="material-symbols-rounded dropdown-icon">expand_more</span>
           </a>
+
+          <ul class="dropdown-menu">
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="las.html">Laboratorios</a></li>
+            <li><a href="voluntariado.html">Voluntariado</a></li>
+            <li><a href="foro.html">Foro</a></li>
+          </ul>
         </li>
+
       </ul>
 
       <ul class="nav-list secondary-nav">
@@ -505,6 +591,43 @@
       </div>
       <div class="hero-logo">
         <img src="imag.png" alt="logo">
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-tag">Para estudiantes de prepa</p>
+          <h1>Tu camino a la uni y becas, sin perderte en el proceso.</h1>
+          <p class="hero-subtitle">
+            PathWise combina tu tipo de aprendizaje, tus materias fuertes y tus metas
+            para armar un roadmap que sí se adapta a tu realidad: escuela, tareas y vida.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#registro" class="btn-primary hero-btn">
+              Comienza tu ruta gratis
+            </a>
+            <a href="#como-funciona" class="btn-ghost hero-btn hero-btn--ghost">
+              Ver cómo funciona
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <span>• Diseñado para todos los niveles socioeconómicos</span>
+            <span>• Roadmap personalizado + versión Plus opcional</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="hero-card-label">Tu ruta en 3 pasos</p>
+          <ol>
+            <li>Respondes un quiz ligero sobre ti y tu forma de aprender.</li>
+            <li>PathWise detecta tus materias fuertes y donde batallas.</li>
+            <li>Te arma un plan semanal realista y fácil de seguir.</li>
+          </ol>
+          </p>
+        </div>
       </div>
     </section>
 
@@ -567,3 +690,5 @@
 
 </body>
 </html>
+
+
