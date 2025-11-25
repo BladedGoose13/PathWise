@@ -6,12 +6,13 @@ Integración completa con OpenAI para verificación inteligente
 import sqlite3
 import re
 from datetime import datetime
+from pathlib import Path
 
 # ============================================================================
 # CONFIGURACIÓN
 # ============================================================================
 
-DB_PATH = '/mnt/user-data/outputs/PATWISE_modified.db'
+DB_PATH = Path(__file__).with_name("PATWISE.db")
 
 # Para usar OpenAI real, descomentar y configurar:
 # from openai import OpenAI
