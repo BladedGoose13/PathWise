@@ -1,25 +1,26 @@
-from fastapi import FastAPI, HTTPException, status
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, EmailStr
-from verificacion import SistemaVerificacion
+from pathlib import Path
 from typing import Optional
 
-app = FastAPI(
-    title="PathWise API",
-    description="API de verificación de estudiantes",
-    version="2.0"
-)
+from fastapi import APIRouter, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, EmailStr
 
-# CORS para desarrollo
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Permite usar el módulo tanto como paquete instalado (import Database)
+# como ejecutarlo directamente (python Database/db_innit.py) sin fallar
+# por imports relativos.
+try:
+    from .verificacion import SistemaVerificacion
+except ImportError:  # pragma: no cover - ruta alternativa para ejecución directa
+    from verificacion import SistemaVerificacion
 
-sistema = SistemaVerificacion('PATWISE_modified.db')
+DB_PATH = Path(__file__).with_name("PATWISE.db")
+DB_PATH_STR = str(DB_PATH)
+
+sistema = SistemaVerificacion(DB_PATH_STR)
+
+ROUTER_PREFIX = "/database"
+router = APIRouter(prefix=ROUTER_PREFIX, tags=["Database"])
+
 
 # Modelos Pydantic
 class UsuarioRegistro(BaseModel):
@@ -30,86 +31,107 @@ class UsuarioRegistro(BaseModel):
     area: Optional[str] = None
     community_tipo: Optional[str] = None
 
+
 class UsuarioRespuesta(BaseModel):
     email: str
     nombre: str
     escuela: str
     requiere_verificacion: str
 
+
 # Endpoints
-@app.post("/api/registro", response_model=dict, status_code=status.HTTP_201_CREATED)
+@router.post("/registro", response_model=dict, status_code=status.HTTP_201_CREATED)
 async def registrar_usuario(usuario: UsuarioRegistro):
-    """
-    Registra un nuevo usuario con verificación automática
-    """
+    """Registra un nuevo usuario con verificación automática."""
     resultado = sistema.registrar_usuario(
         email=usuario.email,
         nombre=usuario.nombre,
         escuela=usuario.escuela,
         grado_actual=usuario.grado_actual,
         area=usuario.area,
-        community_tipo=usuario.community_tipo
+        community_tipo=usuario.community_tipo,
     )
-    
-    if not resultado['exito']:
+
+    if not resultado["exito"]:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=resultado['error']
+            detail=resultado["error"],
         )
-    
+
     return {
         "success": True,
         "message": "Usuario registrado exitosamente",
         "data": {
-            "email": resultado['email'],
-            "requiere_verificacion": resultado['requiere_verificacion'],
-            "deteccion": resultado['deteccion_dominio']
-        }
+            "email": resultado["email"],
+            "requiere_verificacion": resultado["requiere_verificacion"],
+            "deteccion": resultado["deteccion_dominio"],
+        },
     }
 
-@app.get("/api/usuarios/{email}", response_model=UsuarioRespuesta)
+
+@router.get("/usuarios/{email}", response_model=UsuarioRespuesta)
 async def obtener_usuario(email: str):
-    """
-    Obtiene información de un usuario por email
-    """
+    """Obtiene información de un usuario por email."""
     import sqlite3
-    conn = sqlite3.connect('PATWISE_modified.db')
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        SELECT email, nombre, escuela, requiere_verificacion_estudiante
-        FROM usuarios
-        WHERE email = ?
-    ''', (email,))
-    
-    usuario = cursor.fetchone()
-    conn.close()
-    
+
+    with sqlite3.connect(DB_PATH_STR) as conn:
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            SELECT email, nombre, escuela, requiere_verificacion_estudiante
+            FROM usuarios
+            WHERE email = ?
+            """,
+            (email,),
+        )
+
+        usuario = cursor.fetchone()
+
     if not usuario:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Usuario no encontrado"
+            status_code=status.HTTP_404_NOT_FOUND, detail="Usuario no encontrado"
         )
-    
+
     return {
         "email": usuario[0],
         "nombre": usuario[1],
         "escuela": usuario[2],
-        "requiere_verificacion": usuario[3]
+        "requiere_verificacion": usuario[3],
     }
 
-@app.get("/api/estadisticas")
+
+@router.get("/estadisticas")
 async def obtener_estadisticas():
-    """
-    Obtiene estadísticas del sistema
-    """
+    """Obtiene estadísticas del sistema."""
     return sistema.generar_reporte()
 
-@app.get("/api/usuarios/verificar/pendientes")
+
+@router.get("/usuarios/verificar/pendientes")
 async def usuarios_pendientes():
-    """
-    Lista usuarios que requieren verificación
-    """
-    return {
-        "usuarios": sistema.obtener_usuarios_pendientes()
-    }
+    """Lista usuarios que requieren verificación."""
+    return {"usuarios": sistema.obtener_usuarios_pendientes()}
+
+
+def create_app() -> FastAPI:
+    """Crea una instancia de FastAPI para ejecutar el servicio de verificación."""
+    app = FastAPI(
+        title="PathWise API",
+        description="API de verificación de estudiantes",
+        version="2.0",
+    )
+
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    # Mantener el mismo prefijo que en main.py cuando se ejecuta de forma independiente
+    app.include_router(router, prefix="/api")
+    return app
+
+
+app = create_app()

@@ -4,11 +4,13 @@ from api_integrators.ai_integrator import AIGenerator
 from streaming.pdf_streamer import PDFStreamer
 from cache.redis_cache import RedisCache
 from utils.rate_limiter import APIRateLimiter, RateLimitException
-from models.schemas import (
-    TextSearchRequest, 
-    GenerateStudyGuideRequest, 
+# Usamos la ruta absoluta del paquete para evitar conflictos con otros
+# módulos llamados "models" en la aplicación principal.
+from Clases.models.schemas import (
+    TextSearchRequest,
+    GenerateStudyGuideRequest,
     GeneratePracticeRequest,
-    GenerateQuizRequest
+    GenerateQuizRequest,
 )
 import hashlib
 
