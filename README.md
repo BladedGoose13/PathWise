@@ -15,16 +15,16 @@
 
 ## 📋 Table of Contents
 
-- #about-the-project
-- #key-features
-- #technologies
-- #installation
-- #usage
-- #project-structure
-- #roadmap
-- #team
-- #license
-- #contact
+- About-the-project
+- Key-features
+- Technologies
+- Installation
+- Usage
+- Project-structure
+- Roadmap
+- Team
+- License
+- Contact
 
 ## 🎯 About The Project
 
