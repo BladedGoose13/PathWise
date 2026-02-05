@@ -83,7 +83,7 @@ python >= 3.8
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/pathwise.git
+git clone https://github.com/BladedGoose13/pathwise.git
 cd pathwise
 ```
 
