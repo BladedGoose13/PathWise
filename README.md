@@ -87,30 +87,20 @@ git clone https://github.com/your-username/pathwise.git
 cd pathwise
 ```
 
-2. Install frontend dependencies
+2. Install dependencies
 ```bash
-cd FrontEnd
-npm install
-```
-
-3. Install backend dependencies
-```bash
-cd ../[backend-directory]
+cd ../pathwise
 pip install -r requirements.txt
 ```
 
-4. Configure environment variables
+3. Configure environment variables
 ```bash
-cp .env.example .env
-# Edit .env with your credentials
+cp .env
 ```
 
-5. Run the application
+4. Run the application
 ```bash
-# Terminal 1 - Frontend
 npm start
-
-# Terminal 2 - Backend
 python app.py
 ```
 
@@ -164,18 +154,6 @@ pathwise/
 - [ ] Expansion to regional powerhouses such as Brazil and Chile
 - [ ] Continuing education and graduate extension
 
-## 🤝 Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
 ## 👥 Les Huntrix Team
 
 **PathWise** is developed by a multidisciplinary team committed to educational equity:
@@ -188,7 +166,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## 📄 License
 
-This project is licensed under the [LICENSE TYPE] License - see the [LICENSE](LICENSE) file for details.
+See the [LICENSE](LICENSE) file for details.
 
 ## 📧 Contact
 
