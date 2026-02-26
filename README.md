@@ -171,7 +171,7 @@ See the [LICENSE](LICENSE) file for details.
 
 PathWise - [@pathwise](https://twitter.com/pathwise) - contact@pathwise.com
 
-Project Link: [https://github.com/your-username/pathwise](https://github.com/your-username/pathwise)
+Project Link: [https://github.com/your-username/pathwise](https://github.com/bladedgoose13/pathwise)
 
 ## 🏆 Acknowledgments
 
