@@ -94,10 +94,6 @@ npm start
 python app.py
 ```
 
-## 📱 Usage
-
-[Basic instructions on how to use the platform, screenshots, examples]
-
 ## 📂 Project Structure
 ```
 📁 Project Structure - PathWise
