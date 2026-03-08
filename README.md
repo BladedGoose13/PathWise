@@ -71,15 +71,6 @@ Mexico's upper-secondary education system shows deep inequality: many public sch
 
 ## 🚀 Installation
 
-### Prerequisites
-```bash
-node >= 14.x
-python >= 3.8
-[other requirements]
-```
-
-### Local Setup
-
 1. Clone the repository
 ```bash
 git clone https://github.com/BladedGoose13/pathwise.git
