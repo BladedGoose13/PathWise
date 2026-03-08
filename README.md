@@ -175,7 +175,9 @@ Project Link: [https://github.com/bladedgoose13/pathwise](https://github.com/bla
 
 ## 🏆 Acknowledgments
 
-Developed at and winner: **DigiEduHack 2025 Tec campus Puebla** 
+**Global winner of the 2025 DigiEduHack**
+
+Developed at and winner: **DigiEduHack 2025 Tec campus Puebla**
 
 **Category: AI and Emerging Technologies**
 - Challenge: Social Mobility
