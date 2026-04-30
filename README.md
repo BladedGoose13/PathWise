@@ -154,12 +154,6 @@ pathwise/
 
 See the [LICENSE](LICENSE) file for details.
 
-## 📧 Contact
-
-PathWise - [@pathwise](https://twitter.com/pathwise) - contact@pathwise.com
-
-Project Link: [https://github.com/bladedgoose13/pathwise](https://github.com/bladedgoose13/pathwise)
-
 ## 🏆 Acknowledgments
 
 **Global winner of the 2025 DigiEduHack**
