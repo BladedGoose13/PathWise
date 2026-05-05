@@ -124,7 +124,6 @@ pathwise/
 ├── 🐳 Dockerfile
 ├── 📝 readme.md
 ├── 📦 requirements.txt
-├── 🔐 .env
 ├── 🙈 .gitignore
 ├── 📖 README.md
 └── 📁 PathWise-main
